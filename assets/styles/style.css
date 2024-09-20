@@ -1,0 +1,28 @@
+:root {
+  --clr-light: #ecebeb;
+  --clr-dark: #161310;
+  --clr-accent: #b25f3f;
+
+  --clr-text: var(--clr-dark);
+  --clr-background: var(--clr-light);
+
+  --ff-base: "Merchant-ExtraLight", "Helvetica", serif;
+  --ff-secondary: "PP Neue Montreal", sans-serif;
+}
+
+.darkmode {
+  --clr-text: var(--clr-light);
+  --clr-background: var(--clr-dark);
+
+  color-scheme: dark;
+}
+
+body {
+  background-color: var(--clr-background);
+  color: var(--clr-text);
+  font-family: var(--ff-base);
+}
+
+nav {
+  font-family: var(--ff-secondary);
+}

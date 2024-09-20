@@ -9,7 +9,7 @@
 }
 
 html {
-    color-scheme: dark light;
+    color-scheme: light;
     hanging-punctuation: first last;
 }
 
@@ -19,6 +19,7 @@ body {
 
 img, picture, svg, video {
     display: block;
+    font-style: italic;
     max-width: 100%;
 }
 
