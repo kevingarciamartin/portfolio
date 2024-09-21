@@ -28,7 +28,7 @@ body {
   font-family: var(--ff-base);
 }
 
-nav {
+header {
   --_margin: 2vh;
 
   position: fixed;
