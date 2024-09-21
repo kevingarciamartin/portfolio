@@ -8,6 +8,11 @@
 
   --ff-base: "Merchant-ExtraLight", "Helvetica", serif;
   --ff-secondary: "PP Neue Montreal", sans-serif;
+
+  --fs-small: 0.9rem;
+  --fs-medium: 1rem;
+  --fs-large: 2rem;
+  --fs-x-large: calc(100vw / 8);
 }
 
 .darkmode {
@@ -24,5 +29,30 @@ body {
 }
 
 nav {
+  position: fixed;
   font-family: var(--ff-secondary);
+  font-size: var(--fs-small);
+  font-weight: bold;
+  letter-spacing: -1px;
+}
+
+.hero {
+  display: grid;
+  grid-template-rows: 1fr auto;
+  align-items: center;
+  justify-items: center;
+  height: 100svh;
+
+  img {
+    width: 50vw;
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+  }
+
+  h1 {
+    align-self: end;
+    font-size: var(--fs-x-large);
+    font-weight: bold;
+    letter-spacing: -0.05em;
+  }
 }
