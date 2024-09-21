@@ -32,6 +32,10 @@ p {
     text-wrap: pretty;
 }
 
+button {
+    cursor: pointer;
+}
+
 @media (prefers-reduced-motion: no-preference) {
     :has(:target) {
         scroll-behavior: smooth;
