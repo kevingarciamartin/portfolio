@@ -82,7 +82,7 @@ header {
         color: inherit;
         text-decoration: none;
 
-        span {
+        [aria-hidden="true"] {
           display: none;
         }
       }
