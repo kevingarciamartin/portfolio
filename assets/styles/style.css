@@ -104,7 +104,7 @@ header {
   height: 100svh;
 
   img {
-    width: 50vw;
+    width: min(50vw, 15rem);
     aspect-ratio: 3 / 4;
     object-fit: cover;
   }
