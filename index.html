@@ -13,22 +13,57 @@
   <body>
     <header>
       <ul>
-        <li>Kevin Garcia Martin</li>
-        <li>Menu</li>
+        <li>
+          <div>Kevin Garcia Martin:</div>
+          <div>Frontend Developer x Engineer</div>
+        </li>
+        <li>
+          <div>Location:</div>
+          <div>Stockholm, Sweden</div>
+        </li>
+        <li>
+          <div>Navigation:</div>
+          <nav>
+            <ul>
+              <li><a href="#hero" class="active">Home,</a></li>
+              <li><a href="#work">Work,</a></li>
+              <li><a href="#cv">CV,</a></li>
+              <li><a href="#contact">Contact</a></li>
+            </ul>
+          </nav>
+        </li>
+        <li>
+          <div>Theme:</div>
+          <div class="theme-buttons">
+            <button
+              id="light-mode-toggle"
+              class="light-mode-toggle active"
+              aria-label="toggle light mode"
+            >
+              Light Mode,
+            </button>
+            <button
+              id="dark-mode-toggle"
+              class="dark-mode-toggle"
+              aria-label="toggle dark mode"
+            >
+              Dark Mode
+            </button>
+          </div>
+        </li>
       </ul>
-      <button
-        id="dark-mode-toggle"
-        class="dark-mode-toggle"
-        aria-label="toggle dark mode"
-      >
-        Dark Mode
-      </button>
     </header>
     <main>
-      <section class="hero">
-        <img src="assets/img/portrait.jpg" alt="portrait" width="300px"/>
+      <section id="hero" class="hero">
+        <img src="assets/img/portrait.jpg" alt="portrait" width="300px" />
         <h1>Kevin Garcia Martin</h1>
       </section>
+
+      <section id="work"></section>
+
+      <section id="cv"></section>
+
+      <section id="contact"></section>
     </main>
   </body>
 </html>
