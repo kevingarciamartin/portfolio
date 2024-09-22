@@ -1,25 +1,39 @@
 let darkMode = localStorage.getItem("darkMode");
+const lightModeToggle = document.querySelector("#light-mode-toggle");
 const darkModeToggle = document.querySelector("#dark-mode-toggle");
 
-const enableDarkMode = () => {
-  document.body.classList.add("darkmode");
-  localStorage.setItem("darkMode", "enabled");
-};
+const enableLightMode = () => {
+  document.body.classList.add("light-theme");
+  document.body.classList.remove("dark-theme");
 
-const disableDarkMode = () => {
-  document.body.classList.remove("darkmode");
+  lightModeToggle.classList.add("active");
+  darkModeToggle.classList.remove("active");
+
   localStorage.setItem("darkMode", null);
 };
 
-if (darkMode === "enabled") {
-  enableDarkMode();
-}
+const enableDarkMode = () => {
+  document.body.classList.add("dark-theme");
+  document.body.classList.remove("light-theme");
+
+  darkModeToggle.classList.add("active");
+  lightModeToggle.classList.remove("active");
+
+  localStorage.setItem("darkMode", "enabled");
+};
+
+darkMode === "enabled" ? enableDarkMode() : enableLightMode();
+
+lightModeToggle.addEventListener("click", () => {
+  darkMode = localStorage.getItem("darkMode");
+  if (darkMode !== null) {
+    enableLightMode();
+  }
+});
 
 darkModeToggle.addEventListener("click", () => {
   darkMode = localStorage.getItem("darkMode");
   if (darkMode !== "enabled") {
     enableDarkMode();
-  } else {
-    disableDarkMode();
   }
 });
