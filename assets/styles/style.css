@@ -208,6 +208,11 @@ header {
       transform: translateY(calc(-1em - 3px));
     }
   }
+
+  footer ul {
+    display: grid;
+    gap: 1em;
+  }
 }
 
 .hero {
