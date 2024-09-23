@@ -108,13 +108,19 @@ header {
     flex-direction: column;
     justify-content: space-between;
 
+    position: fixed;
     background-color: var(--clr-background);
     inset: 0;
     padding: var(--_margin);
-    z-index: 1000;
+    z-index: 9999;
 
     ul:first-of-type {
       display: flex;
+
+      #menu-btn {
+        height: calc(1em + 2px);
+        overflow-y: hidden;
+      }
     }
 
     > ul:last-of-type {
@@ -124,14 +130,14 @@ header {
 
       > li:nth-of-type(3) {
         grid-row: 4;
-        margin-top: 3rem;
+        margin-top: 4rem;
 
         div {
           display: none;
         }
 
         nav ul {
-          --_grid-gap: 2em;
+          --_grid-gap: 3em;
 
           display: grid;
           grid-template-columns: 1fr;
@@ -172,6 +178,19 @@ header {
           }
         }
       }
+    }
+  }
+
+  header[data-mobile-menu-active="false"] {
+    background-color: transparent;
+    > ul:last-of-type {
+      opacity: 0;
+    }
+  }
+
+  header[data-mobile-menu-active="true"] {
+    #menu-btn > * {
+      transform: translateY(calc(-1em - 3px));
     }
   }
 }
