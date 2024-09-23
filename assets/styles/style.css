@@ -31,6 +31,11 @@
   color-scheme: dark;
 }
 
+button {
+  background-color: transparent;
+  border: none;
+}
+
 body {
   background-color: var(--clr-background);
   color: var(--clr-text);
@@ -48,6 +53,7 @@ header {
   font-size: var(--fs-small);
   font-weight: bold;
   letter-spacing: -1px;
+  z-index: 9999;
 
   ul {
     display: flex;
@@ -55,8 +61,11 @@ header {
     list-style: none;
   }
 
-  ul li {
+  > ul:first-of-type {
+    display: none;
+  }
 
+  ul li {
     div:first-of-type {
       color: var(--clr-text-secondary);
     }
@@ -69,7 +78,7 @@ header {
       button.active {
         cursor: default;
       }
-      
+
       li:not(:has(.active)),
       button:not(.active) {
         color: var(--clr-text-secondary);
@@ -77,7 +86,6 @@ header {
     }
 
     nav ul {
-
       li a {
         color: inherit;
         text-decoration: none;
@@ -90,14 +98,82 @@ header {
 
     .theme-buttons {
       display: flex;
-  
-      button {
-        background: transparent;
-        border: none;
+    }
+  }
+}
+
+@media (max-width: 810px) {
+  header {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    background-color: var(--clr-background);
+    inset: 0;
+    padding: var(--_margin);
+    z-index: 1000;
+
+    ul:first-of-type {
+      display: flex;
+    }
+
+    > ul:last-of-type {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+
+      > li:nth-of-type(3) {
+        grid-row: 4;
+        margin-top: 3rem;
+
+        div {
+          display: none;
+        }
+
+        nav ul {
+          --_grid-gap: 2em;
+
+          display: grid;
+          grid-template-columns: 1fr;
+          gap: var(--_grid-gap);
+
+          li a {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 1em;
+
+            position: relative;
+            font-size: var(--fs-large);
+
+            &::before {
+              content: "";
+              position: absolute;
+              background-color: var(--clr-text);
+              height: 1px;
+              width: 100%;
+              translate: 0 calc(var(--_grid-gap) / -4);
+            }
+
+            &.active {
+              color: var(--clr-text-secondary);
+            }
+
+            &:not(.active) {
+              color: var(--clr-text);
+            }
+
+            [aria-hidden="true"] {
+              display: block;
+            }
+
+            span:not([aria-hidden="true"]) {
+              display: none;
+            }
+          }
+        }
       }
     }
   }
-
 }
 
 .hero {
