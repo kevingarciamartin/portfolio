@@ -198,7 +198,10 @@ header {
 
   header[data-mobile-menu-active="false"] {
     background-color: transparent;
+    bottom: auto;
+    
     > ul:last-of-type {
+      display: none;
       opacity: 0;
     }
   }
