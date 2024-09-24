@@ -65,6 +65,8 @@ header {
   left: var(--padding);
   right: var(--padding);
   z-index: 9999;
+  filter: invert(1);
+  mix-blend-mode: difference;
 
   > ul:first-of-type {
     display: none;
@@ -207,6 +209,9 @@ header {
   }
 
   header[data-mobile-menu-active="true"] {
+    filter: none;
+    mix-blend-mode: normal;
+
     #menu-btn > * {
       transform: translateY(calc(-1em - 3px));
     }
