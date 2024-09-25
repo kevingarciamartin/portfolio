@@ -277,7 +277,8 @@ footer {
   }
 
   footer {
-    min-height: 80svh;
+    min-height: 100svh;
+    padding-top: 5rem;
 
     ul {
       display: grid;
