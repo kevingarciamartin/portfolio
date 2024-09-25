@@ -177,6 +177,10 @@ footer {
 }
 
 @media (max-width: 810px) {
+  body:has([data-mobile-menu-open="true"]) {
+    overflow-y: hidden;
+  }
+
   header {
     --_padding: 2vh;
 
