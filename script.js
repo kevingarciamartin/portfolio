@@ -4,8 +4,8 @@ const navLinks = document.querySelectorAll(".nav-link");
 const fastTravel = document.querySelector("#fast-travel");
 
 menuBtn.addEventListener("click", () => {
-  header.dataset.mobileMenuActive =
-    header.dataset.mobileMenuActive === "false" ? "true" : "false";
+  header.dataset.mobileMenuOpen =
+    header.dataset.mobileMenuOpen === "false" ? "true" : "false";
 });
 
 navLinks.forEach((navLink) => {
@@ -13,8 +13,8 @@ navLinks.forEach((navLink) => {
     removeNavLinkActiveState();
     navLink.classList.add("active");
 
-    if (header.dataset.mobileMenuActive === "true") {
-      header.dataset.mobileMenuActive = "false";
+    if (header.dataset.mobileMenuOpen === "true") {
+      header.dataset.mobileMenuOpen = "false";
     }
   });
 });

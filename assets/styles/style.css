@@ -257,7 +257,7 @@ footer {
     }
   }
 
-  header[data-mobile-menu-active="false"] {
+  header[data-mobile-menu-open="false"] {
     background-color: transparent;
     bottom: auto;
 
@@ -267,7 +267,7 @@ footer {
     }
   }
 
-  header[data-mobile-menu-active="true"] {
+  header[data-mobile-menu-open="true"] {
     filter: none;
     mix-blend-mode: initial;
 
