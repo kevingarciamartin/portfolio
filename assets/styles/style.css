@@ -179,8 +179,8 @@ footer {
     display: flex;
     gap: 0.5ch;
     align-items: start;
-    line-height: 1;
-    margin-top: 0.3ch;
+    line-height: 0.75;
+    margin-top: 0.4ch;
 
     svg {
       fill: var(--clr-text);
