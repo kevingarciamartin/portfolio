@@ -256,6 +256,15 @@ footer {
               display: none;
             }
           }
+
+          li:last-child a::after {
+            content: '';
+            position: absolute;
+            background-color: var(--clr-text);
+            height: 1px;
+            width: 100%;
+            translate: 0 calc(var(--_grid-gap) / 1.7);
+          } 
         }
       }
     }
