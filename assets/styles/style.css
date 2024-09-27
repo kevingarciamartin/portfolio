@@ -221,7 +221,7 @@ footer {
       grid-template-columns: 1fr;
       gap: 1rem;
 
-      > li:nth-of-type(3) {
+      > li:has(nav) {
         grid-row: 4;
         margin-block: 4rem 1rem;
 
@@ -267,7 +267,7 @@ footer {
             [aria-hidden="true"] {
               display: block;
             }
-            
+
             [aria-hidden="true"]::before {
               content: counter(menu-counter, decimal-leading-zero);
             }
@@ -294,6 +294,11 @@ footer {
     background-color: transparent;
     bottom: auto;
 
+    #menu-btn > * {
+      transform: translateY(0);
+      transition: transform 500ms ease;
+    }
+
     > ul:last-of-type {
       display: none;
       opacity: 0;
@@ -306,6 +311,7 @@ footer {
 
     #menu-btn > * {
       transform: translateY(calc(-1em - 3px));
+      transition: transform 500ms ease;
     }
   }
 
