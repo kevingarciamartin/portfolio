@@ -6,6 +6,10 @@ const fastTravel = document.querySelector("#fast-travel");
 menuBtn.addEventListener("click", () => {
   header.dataset.mobileMenuOpen =
     header.dataset.mobileMenuOpen === "false" ? "true" : "false";
+  menuBtn.disabled = true;
+  setTimeout(() => {
+    menuBtn.disabled = false;
+  }, 50);
 });
 
 navLinks.forEach((navLink) => {
@@ -13,9 +17,8 @@ navLinks.forEach((navLink) => {
     removeNavLinkActiveState();
     navLink.classList.add("active");
 
-    if (header.dataset.mobileMenuOpen === "true") {
+    if (header.dataset.mobileMenuOpen === "true")
       header.dataset.mobileMenuOpen = "false";
-    }
   });
 });
 
