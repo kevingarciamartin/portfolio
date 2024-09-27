@@ -84,6 +84,19 @@ header {
       color: var(--clr-text-secondary);
     }
 
+    div:has(.clock) {
+      display: flex;
+      gap: 0.5ch;
+
+      .clock {
+        display: flex;
+
+        .colon {
+          opacity: 1;
+        }
+      }
+    }
+
     nav ul,
     .theme-buttons {
       gap: 0.5ch;
