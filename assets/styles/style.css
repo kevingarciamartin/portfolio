@@ -236,6 +236,8 @@ footer {
           grid-template-columns: 1fr;
           gap: var(--_grid-gap);
 
+          counter-reset: menu-counter;
+
           li a {
             display: grid;
             grid-template-columns: auto 1fr;
@@ -243,6 +245,7 @@ footer {
 
             position: relative;
             font-size: var(--fs-large);
+            counter-increment: menu-counter;
 
             &::before {
               content: "";
@@ -263,6 +266,10 @@ footer {
 
             [aria-hidden="true"] {
               display: block;
+            }
+            
+            [aria-hidden="true"]::before {
+              content: counter(menu-counter, decimal-leading-zero);
             }
 
             span:not([aria-hidden="true"]) {
