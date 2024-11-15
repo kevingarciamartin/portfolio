@@ -3,13 +3,13 @@
   --clr-neutral-400: hsl(0 0 40);
   --clr-neutral-900: #161310;
   --clr-accent: #b25f3f;
-  
+
   --clr-background: var(--clr-neutral-100);
   --clr-text: var(--clr-neutral-900);
   --clr-text-secondary: var(--clr-neutral-400);
 
-  --ff-base: "Merchant-ExtraLight", "Helvetica", serif;
-  --ff-secondary: "PP Neue Montreal", sans-serif;
+  --ff-base: "PP Neue Montreal", sans-serif;
+  --ff-header: "Merchant-ExtraLight", "Helvetica", serif;
 
   --fs-small: 0.9rem;
   --fs-medium: 1rem;
@@ -45,6 +45,13 @@ button {
 }
 
 body {
+  --_body-padding-inline: 2vh;
+
+  display: grid;
+  grid-template-columns: var(--_body-padding-inline) [content-start] 1fr [content-end] var(
+      --_body-padding-inline
+    );
+
   background-color: var(--clr-background);
   color: var(--clr-text);
   font-family: var(--ff-base);
@@ -53,9 +60,6 @@ body {
 
 header,
 footer {
-  --padding: 2vh;
-
-  font-family: var(--ff-secondary);
   font-size: var(--fs-small);
   font-weight: bold;
   letter-spacing: -1px;
@@ -69,9 +73,9 @@ footer {
 
 header {
   position: fixed;
-  top: var(--padding);
-  left: var(--padding);
-  right: var(--padding);
+  top: var(--_body-padding-inline);
+  left: var(--_body-padding-inline);
+  right: var(--_body-padding-inline);
   z-index: 9999;
   mix-blend-mode: difference;
 
@@ -126,8 +130,24 @@ header {
   }
 }
 
+main {
+  display: grid;
+  grid-template-columns: subgrid;
+  grid-column: 1 / -1;
+}
+
 section {
+  grid-column: 1 / -1;
   min-height: 100svh;
+}
+
+h1 {
+  font-family: var(--ff-header);
+  font-size: var(--fs-x-large);
+  font-weight: initial;
+  letter-spacing: -0.05em;
+  line-height: 0.7;
+  translate: -0.05ch 0;
 }
 
 #hero {
@@ -136,22 +156,28 @@ section {
   align-items: center;
   justify-items: center;
 
+  min-height: 100svh;
+
   img {
     width: min(50vw, 15rem);
     aspect-ratio: 3 / 4;
     object-fit: cover;
     translate: 0 10%;
   }
-
-  h1 {
-    font-size: var(--fs-x-large);
-    letter-spacing: -0.05em;
-    line-height: 0.7;
-  }
 }
 
 footer {
-  padding: var(--padding);
+  display: grid;
+  align-items: end;
+  grid-template-columns: subgrid;
+  grid-column: 1 / -1;
+
+  min-height: 100svh;
+  padding-block: var(--_body-padding-inline);
+
+  .container {
+    grid-column: content-start / content-end;
+  }
 
   ul li div:first-of-type {
     color: var(--clr-text-secondary);
@@ -173,6 +199,12 @@ footer {
       fill: var(--clr-text);
       width: calc(var(--fs-small) * 0.6);
     }
+  }
+
+  h1 {
+    justify-self: center;
+    grid-column: 1 / -1;
+    grid-row: 1;
   }
 }
 
@@ -324,12 +356,21 @@ footer a:focus-visible svg {
   }
 
   footer {
-    min-height: 100svh;
-    padding-top: 5rem;
+    min-height: 90svh;
+
+    .container {
+      display: grid;
+      align-self: center;
+    }
 
     ul {
+      align-self: center;
       display: grid;
       gap: 1em;
+    }
+
+    h1 {
+      grid-row: 2;
     }
   }
 }
