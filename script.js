@@ -42,7 +42,7 @@ function updateClock() {
   clockColon.textContent = ":";
   clockMinutes.textContent = `${minutes.toString().padStart(2, "0")})`;
 
-  setTimeout(updateClock, 60 * 1000);
+  setTimeout(updateClock, 1 * 1000);
 }
 
 function animateClock() {
