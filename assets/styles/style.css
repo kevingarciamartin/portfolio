@@ -3,10 +3,10 @@
   --clr-neutral-400: hsl(0 0 40);
   --clr-neutral-900: #161310;
   --clr-accent: #b25f3f;
-
+  
+  --clr-background: var(--clr-neutral-100);
   --clr-text: var(--clr-neutral-900);
   --clr-text-secondary: var(--clr-neutral-400);
-  --clr-background: var(--clr-neutral-100);
 
   --ff-base: "Merchant-ExtraLight", "Helvetica", serif;
   --ff-secondary: "PP Neue Montreal", sans-serif;
@@ -14,7 +14,7 @@
   --fs-small: 0.9rem;
   --fs-medium: 1rem;
   --fs-large: 2rem;
-  --fs-x-large: calc(100vw / 8);
+  --fs-x-large: calc(100vw / 7.6);
 }
 
 .light-theme {
@@ -143,12 +143,12 @@ header {
     width: min(50vw, 15rem);
     aspect-ratio: 3 / 4;
     object-fit: cover;
+    translate: 0 10%;
   }
 
   h1 {
     align-self: end;
     font-size: var(--fs-x-large);
-    font-weight: bold;
     letter-spacing: -0.05em;
   }
 }
