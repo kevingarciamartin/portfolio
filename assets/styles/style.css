@@ -126,10 +126,7 @@ header {
   }
 }
 
-#hero,
-#work,
-#cv,
-#contact {
+section {
   min-height: 100svh;
 }
 
@@ -151,18 +148,6 @@ header {
     letter-spacing: -0.05em;
     line-height: 0.7;
   }
-}
-
-#work {
-  background-color: var(--clr-accent);
-}
-
-#cv {
-  background-color: var(--clr-background);
-}
-
-#contact {
-  background-color: var(--clr-text);
 }
 
 footer {
