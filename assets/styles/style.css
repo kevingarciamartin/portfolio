@@ -147,9 +147,9 @@ header {
   }
 
   h1 {
-    align-self: end;
     font-size: var(--fs-x-large);
     letter-spacing: -0.05em;
+    line-height: 0.7;
   }
 }
 
@@ -332,6 +332,10 @@ footer a:focus-visible svg {
       transform: translateY(calc(-1em - 3px));
       transition: transform 500ms ease;
     }
+  }
+
+  #hero h1 {
+    line-height: initial;
   }
 
   footer {
