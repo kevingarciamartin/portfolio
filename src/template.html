@@ -1,11 +1,135 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Kevin Garcia Martin's portfolio." />
+    <title>Kevin Garcia Martin — Frontend Developer x Engineer</title>
+  </head>
+  <body>
+    <header data-mobile-menu-open="false">
+      <ul>
+        <li>Kevin Garcia Martin</li>
+        <button id="menu-btn">
+          <div>Menu</div>
+          <div>Close</div>
+        </button>
+      </ul>
+      <ul>
+        <li>
+          <div>Kevin Garcia Martin:</div>
+          <div>Frontend Developer x Engineer</div>
+        </li>
+        <li>
+          <div>Location:</div>
+          <div>
+            Stockholm, Sweden<span class="clock">
+              <span class="hours"></span>
+              <span class="colon"></span>
+              <span class="minutes"></span>
+            </span>
+          </div>
+        </li>
+        <li>
+          <div>Navigation:</div>
+          <nav>
+            <ul>
+              <li>
+                <a href="#hero" class="nav-link active">
+                  <span aria-hidden="true"></span>Home<span>,</span>
+                </a>
+              </li>
+              <li>
+                <a href="#work" class="nav-link">
+                  <span aria-hidden="true"></span>Work<span>,</span>
+                </a>
+              </li>
+              <li>
+                <a href="#cv" class="nav-link">
+                  <span aria-hidden="true"></span>CV<span>,</span>
+                </a>
+              </li>
+              <li>
+                <a href="#contact" class="nav-link">
+                  <span aria-hidden="true"></span>Contact
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </li>
+        <li>
+          <div>Theme:</div>
+          <div class="theme-buttons">
+            <button
+              id="light-mode-toggle"
+              class="light-mode-toggle active"
+              aria-label="toggle light mode"
+            >
+              Light Mode,
+            </button>
+            <button
+              id="dark-mode-toggle"
+              class="dark-mode-toggle"
+              aria-label="toggle dark mode"
+            >
+              Dark Mode
+            </button>
+          </div>
+        </li>
+      </ul>
+    </header>
+
+    <main>
+      <section id="hero">
+        <img src="assets/img/portrait.jpg" alt="portrait" width="300px" />
+        <h1>Kevin Garcia Martin</h1>
+      </section>
+
+      <section id="work"></section>
+
+      <section id="cv"></section>
+
+      <section id="contact"></section>
+    </main>
+
+    <footer>
+      <div class="container">
+        <ul>
+          <li>
+            <div>Fast Travel:</div>
+            <a href="#hero" id="fast-travel">Go Back to Top</a>
+          </li>
+          <li>
+            <div>Design by:</div>
+            <a
+              href="https://alextkachev.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Alex Tkachev
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                <path
+                  d="M320 0c-17.7 0-32 14.3-32 32s14.3 32 32 32l82.7 0L201.4 265.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L448 109.3l0 82.7c0 17.7 14.3 32 32 32s32-14.3 32-32l0-160c0-17.7-14.3-32-32-32L320 0zM80 32C35.8 32 0 67.8 0 112L0 432c0 44.2 35.8 80 80 80l320 0c44.2 0 80-35.8 80-80l0-112c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 112c0 8.8-7.2 16-16 16L80 448c-8.8 0-16-7.2-16-16l0-320c0-8.8 7.2-16 16-16l112 0c17.7 0 32-14.3 32-32s-14.3-32-32-32L80 32z"
+                />
+              </svg>
+            </a>
+          </li>
+          <li>
+            <div>Code by:</div>
+            <a
+              href="https://github.com/kevingarciamartin"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Kevin Garcia Martin
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                <path
+                  d="M320 0c-17.7 0-32 14.3-32 32s14.3 32 32 32l82.7 0L201.4 265.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L448 109.3l0 82.7c0 17.7 14.3 32 32 32s32-14.3 32-32l0-160c0-17.7-14.3-32-32-32L320 0zM80 32C35.8 32 0 67.8 0 112L0 432c0 44.2 35.8 80 80 80l320 0c44.2 0 80-35.8 80-80l0-112c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 112c0 8.8-7.2 16-16 16L80 448c-8.8 0-16-7.2-16-16l0-320c0-8.8 7.2-16 16-16l112 0c17.7 0 32-14.3 32-32s-14.3-32-32-32L80 32z"
+                />
+              </svg>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <h1>Kevin Garcia Martin</h1>
+    </footer>
+  </body>
 </html>
