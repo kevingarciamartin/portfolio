@@ -6,7 +6,7 @@
 }
 
 html {
-  /* color-scheme: dark light; */
+  color-scheme: dark light;
   hanging-punctuation: first last;
 }
 
@@ -43,6 +43,7 @@ button,
 input:is([type="submit"], [type="button"], [type="checkbox"]) {
   color: inherit;
   cursor: pointer;
+  font-weight: inherit;
   letter-spacing: inherit;
 }
 
