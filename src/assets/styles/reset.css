@@ -43,6 +43,7 @@ button,
 input:is([type="submit"], [type="button"], [type="checkbox"]) {
   color: inherit;
   cursor: pointer;
+  font-size: inherit;
   font-weight: inherit;
   letter-spacing: inherit;
 }
