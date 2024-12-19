@@ -335,10 +335,6 @@ footer a:focus-visible svg {
     }
   }
 
-  #hero h1 {
-    line-height: initial;
-  }
-
   footer {
     .container {
       display: grid;
