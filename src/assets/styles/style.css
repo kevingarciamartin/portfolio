@@ -352,3 +352,10 @@ footer a:focus-visible svg {
     }
   }
 }
+
+@media (min-width: 1000px) {
+  header,
+  footer {
+    font-size: var(--fs-medium);
+  }
+}
