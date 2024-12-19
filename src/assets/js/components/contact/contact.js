@@ -1,5 +1,5 @@
 import "./contact.css";
-import backdrop from "../../../img/valentin-salja-CLvkkjb-i3g-unsplash.jpg";
+import backdrop from "../../../img/snooki-i-london.jpeg";
 
 export function contact() {
   const main = document.querySelector("main");
