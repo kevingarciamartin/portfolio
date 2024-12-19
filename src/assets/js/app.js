@@ -5,5 +5,8 @@ import { darkmode } from "./modules/darkmode";
 import { clock } from "./modules/clock";
 import { handleNavigationState } from "./modules/navigation";
 import { toggleMobileMenu } from "./modules/mobileMenu";
+import { home } from "./pages/home/home";
 
-export function app() {}
+export function app() {
+  home();
+}
