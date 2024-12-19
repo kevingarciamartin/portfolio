@@ -1,5 +1,5 @@
 import "./hero.css";
-import portrait from "../../../img/portrait.jpg";
+import portrait from "../../../img/portrait.jpeg";
 
 export function hero() {
   const main = document.querySelector("main");
