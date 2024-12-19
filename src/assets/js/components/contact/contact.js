@@ -1,5 +1,6 @@
 import "./contact.css";
 import backdrop from "../../../img/snooki-i-london.jpeg";
+import { rotateSvgOnScroll, parallaxEffectOnBackground } from "../../utils/helpers";
 
 export function contact() {
   const main = document.querySelector("main");
@@ -41,17 +42,9 @@ export function contact() {
   section.appendChild(container);
 
   const svg = document.querySelector("#sun");
-  const maxRotation = 360;
 
   window.addEventListener("scroll", function () {
-    // const scrolled = window.scrollY;
-    // const parallaxBg = document.querySelector(".parallax-bg");
-    // parallaxBg.style.transform = `translateY(${scrolled * 0.3}px)`;
-
-    const scrollPercentage =
-      window.scrollY /
-      (document.documentElement.scrollHeight - window.innerHeight);
-    const rotation = scrollPercentage * maxRotation * 0.5;
-    svg.style.transform = `rotate(${rotation}deg)`;
+    parallaxEffectOnBackground(image);
+    rotateSvgOnScroll(svg, 270)
   });
 }
