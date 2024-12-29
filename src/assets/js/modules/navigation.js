@@ -1,4 +1,8 @@
-export const handleNavigationState = (() => {
+import { home } from "../pages/home/home";
+import { work } from "../pages/work/work";
+import { contact } from "../components/contact/contact";
+
+export const handleNavigation = (() => {
   const header = document.querySelector("header");
   const navLinks = document.querySelectorAll(".nav-link");
   const fastTravel = document.querySelector("#fast-travel");
@@ -7,12 +11,22 @@ export const handleNavigationState = (() => {
     navLink.addEventListener("click", () => {
       removeNavLinkActiveState();
       navLink.classList.add("active");
-  
+
       if (header.dataset.mobileMenuOpen === "true")
         header.dataset.mobileMenuOpen = "false";
+
+      switch (navLink.id) {
+        case "nav-home":
+          renderPage(home);
+          break;
+        case "nav-work":
+          renderPage(work);
+        default:
+          break;
+      }
     });
   });
-  
+
   fastTravel.addEventListener("click", () => {
     removeNavLinkActiveState();
     navLinks[0].classList.add("active");
