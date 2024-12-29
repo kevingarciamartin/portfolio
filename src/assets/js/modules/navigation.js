@@ -23,3 +23,10 @@ export const handleNavigationState = (() => {
     activeNavLink[0].classList.remove("active");
   }
 })();
+
+export function renderPage(page) {
+  const main = document.querySelector("main");
+  main.innerHTML = "";
+  page();
+  contact();
+}
