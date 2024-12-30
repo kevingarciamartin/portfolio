@@ -1,3 +1,4 @@
+import { pages } from "./pages";
 import { home } from "../pages/home/home";
 import { work } from "../pages/work/work";
 import { scrollToTop } from "../utils/helpers";
@@ -28,8 +29,12 @@ export const handleNavigation = (() => {
   });
 
   fastTravel.addEventListener("click", () => {
+    scrollToTop("smooth");
+
+    const currentNavIndex = pages.getIndexOfCurrentPage();
+
     removeNavLinkActiveState();
-    navLinks[0].classList.add("active");
+    navLinks[currentNavIndex].classList.add("active");
   });
 
   function removeNavLinkActiveState() {
@@ -37,10 +42,3 @@ export const handleNavigation = (() => {
     activeNavLink[0].classList.remove("active");
   }
 })();
-
-export function renderPage(page) {
-  const main = document.querySelector("main");
-  main.innerHTML = "";
-  page();
-  contact();
-}
