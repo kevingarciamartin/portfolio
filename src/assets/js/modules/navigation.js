@@ -1,6 +1,6 @@
 import { home } from "../pages/home/home";
 import { work } from "../pages/work/work";
-import { contact } from "../components/contact/contact";
+import { scrollToTop } from "../utils/helpers";
 
 export const handleNavigation = (() => {
   const header = document.querySelector("header");
@@ -17,10 +17,10 @@ export const handleNavigation = (() => {
 
       switch (navLink.id) {
         case "nav-home":
-          renderPage(home);
+          pages.renderPage(home, "nav-home");
           break;
         case "nav-work":
-          renderPage(work);
+          pages.renderPage(work, "nav-work");
         default:
           break;
       }
