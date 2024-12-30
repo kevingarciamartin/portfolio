@@ -10,3 +10,7 @@ export function parallaxEffectOnBackground(background) {
   const scrolled = window.scrollY;
   background.style.transform = `translateY(${scrolled * 0.1}px)`;
 }
+
+export function scrollToTop(scrollBehavior = 'auto') {
+  window.scrollTo({ top: 0, behavior: scrollBehavior });
+}
