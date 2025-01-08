@@ -14,3 +14,10 @@ export function parallaxEffectOnBackground(background) {
 export function scrollToTop(scrollBehavior = 'auto') {
   window.scrollTo({ top: 0, behavior: scrollBehavior });
 }
+
+export function trimStartOfString(str, substring) {
+  if (str.startsWith(substring)) {
+    return str.slice(substring.length);
+  }
+  return str;
+}
