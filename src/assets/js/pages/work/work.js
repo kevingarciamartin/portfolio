@@ -1,4 +1,5 @@
 import "./work.css";
+import { animatedLink } from "../../components/animatedLink/animatedLink";
 import { scrollToTop, trimStartOfString } from "../../utils/helpers";
 import doremir from "../../../img/work/doremir_logo.png";
 import chess50 from "../../../img/work/chess50.png";
@@ -14,8 +15,10 @@ const workArray = [
       "Analyzed the UI of one of the company's products for Windows and implemented the corresponding design in React for an upcoming hybrid application. In conjuction, I did a refactoring of the project where I removed Bootstrap, to more easily be able to implement the specific design from the computer version.",
     ],
     image: doremir,
-    url: "https://doremir.com/",
-    urlShowcase: "doremir.com",
+    link: {
+      text: "doremir.com",
+      href: "https://doremir.com/",
+    },
   },
   {
     name: "Chess50",
@@ -29,8 +32,10 @@ const workArray = [
       "- and searching for valid chess.com usernames to get their profile information and game statistics.",
     ],
     image: chess50,
-    url: "https://chess50-dde8edd06871.herokuapp.com/",
-    urlShowcase: "chess50-dde8edd06871.herokuapp.com",
+    link: {
+      text: "chess50-dde8edd06871.herokuapp.com",
+      href: "https://chess50-dde8edd06871.herokuapp.com/",
+    },
   },
   {
     name: "Fjordsmaken",
@@ -39,8 +44,10 @@ const workArray = [
       "A concept of what a single page restaurant website could look like.",
     ],
     image: fjordsmaken,
-    url: "https://kevingarciamartin.github.io/restaurant-page/",
-    urlShowcase: "kevingarciamartin.github.io/restaurant-page",
+    link: {
+      text: "kevingarciamartin.github.io/restaurant-page",
+      href: "https://kevingarciamartin.github.io/restaurant-page/",
+    },
   },
 ];
 
@@ -114,7 +121,7 @@ function renderWorkItem(item, scrollPosition) {
 
   workItem.innerHTML = `
   <div class="work-item__content">
-    <a href="${item.url}" target="_blank" rel="noopener noreferrer">
+    <a href="${item.link.href}" target="_blank" rel="noopener noreferrer">
       <img src="${item.image}">
     </a>
     <div class="work-item__title">
@@ -130,12 +137,7 @@ function renderWorkItem(item, scrollPosition) {
     </div>
     <div class="work-item__url">
       <span>URL</span>
-      <a 
-      href="${item.url}" 
-      target="_blank" 
-      rel="noopener noreferrer">
-        ${item.urlShowcase}
-      </a>
+
     </div>
     <button class="close-btn navigation">Go back</button>
   </div>
@@ -173,6 +175,9 @@ function renderWorkItem(item, scrollPosition) {
     p.textContent = paragraph;
     !isStartedList ? workItemDescription.appendChild(p) : "";
   });
+
+  const workItemURL = document.querySelector(".work-item__url");
+  workItemURL.appendChild(animatedLink(item.link.text, item.link.href));
 
   const closeBtn = workItem.querySelector(".close-btn");
   closeBtn.addEventListener("click", () => {
