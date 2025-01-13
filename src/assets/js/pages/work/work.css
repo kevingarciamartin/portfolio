@@ -7,7 +7,7 @@
 #work {
   grid-column: content-start / content-end;
 
-  margin-block: 65% 5rem;
+  margin-block: 14rem 5rem;
 
   .work__list {
     display: grid;
