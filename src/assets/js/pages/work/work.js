@@ -137,7 +137,7 @@ function renderWorkItem(item, scrollPosition) {
         ${item.urlShowcase}
       </a>
     </div>
-    <button class="close-btn">Go back</button>
+    <button class="close-btn navigation">Go back</button>
   </div>
   `;
 

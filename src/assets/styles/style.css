@@ -44,6 +44,12 @@ button {
   border: none;
 }
 
+:is(.navigation) {
+  font-size: var(--fs-small);
+  font-weight: bold;
+  letter-spacing: -1px;
+}
+
 body {
   --_body-padding-inline: 2vh;
 
