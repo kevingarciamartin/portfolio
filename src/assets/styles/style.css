@@ -44,7 +44,7 @@ button {
   border: none;
 }
 
-:is(.navigation) {
+.navigation {
   font-size: var(--fs-small);
   font-weight: bold;
   letter-spacing: -1px;
@@ -361,6 +361,10 @@ footer a:focus-visible svg {
 }
 
 @media (min-width: 1000px) {
+  .navigation {
+    font-size: var(--fs-medium);
+  }
+
   header,
   footer {
     font-size: var(--fs-medium);
