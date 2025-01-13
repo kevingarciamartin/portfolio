@@ -1,7 +1,7 @@
 import { pages } from "./pages";
 import { home } from "../pages/home/home";
 import { work } from "../pages/work/work";
-import { scrollToTop } from "../utils/helpers";
+import { scrollToTop, hideMainWorkContent } from "../utils/helpers";
 
 export const handleNavigation = (() => {
   const header = document.querySelector("header");
@@ -22,6 +22,12 @@ export const handleNavigation = (() => {
           break;
         case "nav-work":
           pages.renderPage(work, "nav-work");
+        case "nav-contact":
+          const workItem = document.querySelector("#work-item");
+          if (workItem) {
+            workItem.remove();
+            hideMainWorkContent(false);
+          }
         default:
           break;
       }

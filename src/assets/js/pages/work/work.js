@@ -1,6 +1,6 @@
 import "./work.css";
 import { animatedLink } from "../../components/animatedLink/animatedLink";
-import { scrollToTop, trimStartOfString } from "../../utils/helpers";
+import { scrollToTop, trimStartOfString, hideMainWorkContent } from "../../utils/helpers";
 import doremir from "../../../img/work/doremir_logo.png";
 import chess50 from "../../../img/work/chess50.png";
 import fjordsmaken from "../../../img/work/fjordsmaken_5.7.png";
@@ -111,7 +111,7 @@ export function work() {
 }
 
 function renderWorkItem(item, scrollPosition) {
-  hideContent();
+  hideMainWorkContent();
   scrollToTop();
 
   const main = document.querySelector("main");
@@ -182,17 +182,7 @@ function renderWorkItem(item, scrollPosition) {
   const closeBtn = workItem.querySelector(".close-btn");
   closeBtn.addEventListener("click", () => {
     workItem.remove();
-    hideContent(false);
+    hideMainWorkContent(false);
     window.scrollTo(0, scrollPosition);
   });
-}
-
-function hideContent(isTrue = true) {
-  const work = document.querySelector("#work");
-  const contact = document.querySelector("section.contact");
-  const footer = document.querySelector("footer");
-
-  work.style.display = isTrue ? "none" : "block";
-  contact.style.display = isTrue ? "none" : "flex";
-  footer.style.display = isTrue ? "none" : "grid";
 }

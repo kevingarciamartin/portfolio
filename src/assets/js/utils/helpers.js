@@ -21,3 +21,13 @@ export function trimStartOfString(str, substring) {
   }
   return str;
 }
+
+export function hideMainWorkContent(isTrue = true) {
+  const work = document.querySelector("#work");
+  const contact = document.querySelector("section.contact");
+  const footer = document.querySelector("footer");
+
+  work.style.display = isTrue ? "none" : "block";
+  contact.style.display = isTrue ? "none" : "flex";
+  footer.style.display = isTrue ? "none" : "grid";
+}
