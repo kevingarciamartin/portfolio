@@ -81,6 +81,15 @@
 
     padding-block: 10vh 3rem;
 
+    a img {
+      filter: brightness(1);
+      transition: filter 0.3s ease-in-out;
+      
+      &:hover {
+        filter: brightness(0.8);
+      }
+    }
+
     > div {
       span {
         color: var(--clr-text-secondary);
@@ -94,12 +103,22 @@
         padding-left: 1rem;
 
         li {
-          margin-bottom: 0.5rem;
+          margin-top: 0.5rem;
         }
       }
 
-      &.work-item__description p:not(:first-of-type) {
-        margin-block: 1rem;
+      &.work-item__description {
+        p:not(:first-of-type) {
+          margin-block: 1rem;
+        }
+
+        & *:last-child {
+          margin-bottom: 0 !important;
+        }
+      }
+
+      &.work-item__url {
+        display: grid;
       }
     }
   }

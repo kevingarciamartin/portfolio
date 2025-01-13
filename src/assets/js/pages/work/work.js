@@ -1,7 +1,8 @@
 import "./work.css";
 import { scrollToTop, trimStartOfString } from "../../utils/helpers";
-import doremir from "../../../img/doremir_logo.png";
-import chess50 from "../../../img/chess50.png";
+import doremir from "../../../img/work/doremir_logo.png";
+import chess50 from "../../../img/work/chess50.png";
+import fjordsmaken from "../../../img/work/fjordsmaken_5.7.png";
 
 const workArray = [
   {
@@ -20,7 +21,8 @@ const workArray = [
     name: "Chess50",
     stack: ["Flask", "Python", "JavaScript", "SQLite"],
     description: [
-      "A mini-clone application of the popular website chess.com. Features inlude:",
+      "A mini-clone application of the popular website chess.com, using their public API for various features. Authentication is implemented with an SQL database to store users.",
+      "Features inlude:",
       "- playing chess against an engine (Stockfish 17) with take-back moves, engine moves on demand and flipping the board,",
       "- solving chess.com's Daily Puzzle,",
       "- keeping track of the leaderboards for the most popular time controls,",
@@ -29,6 +31,16 @@ const workArray = [
     image: chess50,
     url: "https://chess50-dde8edd06871.herokuapp.com/",
     urlShowcase: "chess50-dde8edd06871.herokuapp.com",
+  },
+  {
+    name: "Fjordsmaken",
+    stack: ["Webpack", "JavaScript"],
+    description: [
+      "A concept of what a single page restaurant website could look like.",
+    ],
+    image: fjordsmaken,
+    url: "https://kevingarciamartin.github.io/restaurant-page/",
+    urlShowcase: "kevingarciamartin.github.io/restaurant-page", 
   },
 ];
 
@@ -118,9 +130,12 @@ function renderWorkItem(item) {
     </div>
     <div class="work-item__url">
       <span>URL</span>
-      <a href="${item.url}" target="_blank" rel="noopener noreferrer">${
-    item.urlShowcase
-  }</a>
+      <a 
+      href="${item.url}" 
+      target="_blank" 
+      rel="noopener noreferrer">
+        ${item.urlShowcase}
+      </a>
     </div>
     <button class="close-btn">Go back</button>
   </div>
