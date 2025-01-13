@@ -40,7 +40,7 @@ const workArray = [
     ],
     image: fjordsmaken,
     url: "https://kevingarciamartin.github.io/restaurant-page/",
-    urlShowcase: "kevingarciamartin.github.io/restaurant-page", 
+    urlShowcase: "kevingarciamartin.github.io/restaurant-page",
   },
 ];
 
@@ -95,7 +95,7 @@ export function work() {
     content.appendChild(image);
 
     item.addEventListener("click", () => {
-      renderWorkItem(element);
+      renderWorkItem(element, window.scrollY);
     });
   });
 
@@ -103,7 +103,7 @@ export function work() {
   section.appendChild(list);
 }
 
-function renderWorkItem(item) {
+function renderWorkItem(item, scrollPosition) {
   hideContent();
   scrollToTop();
 
@@ -178,6 +178,7 @@ function renderWorkItem(item) {
   closeBtn.addEventListener("click", () => {
     workItem.remove();
     hideContent(false);
+    window.scrollTo(0, scrollPosition);
   });
 }
 
