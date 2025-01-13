@@ -27,7 +27,7 @@ export function hideMainWorkContent(isTrue = true) {
   const contact = document.querySelector("section.contact");
   const footer = document.querySelector("footer");
 
-  work.style.display = isTrue ? "none" : "block";
+  work.style.display = isTrue ? "none" : "flex";
   contact.style.display = isTrue ? "none" : "flex";
   footer.style.display = isTrue ? "none" : "grid";
 }
