@@ -101,6 +101,7 @@
       }
 
       ul {
+        list-style: square;
         padding-left: 1rem;
 
         li {
@@ -170,11 +171,12 @@
           }
 
           img {
+            display: none;
+
             position: absolute;
             bottom: var(--_body-padding-inline);
             right: 0;
 
-            opacity: 0;
             width: 35%;
           }
         }
@@ -192,7 +194,7 @@
             }
 
             img {
-              opacity: 1;
+              display: block;
             }
           }
         }
@@ -213,9 +215,13 @@
       a:has(img) {
         position: absolute;
         bottom: var(--_body-padding-inline);
-        right: 0;
+        right: var(--_body-padding-inline);
 
         width: 35%;
+      }
+
+      .work-item__url .animated-link {
+        width: fit-content;
       }
     }
 
