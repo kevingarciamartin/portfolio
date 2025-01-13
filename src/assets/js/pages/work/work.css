@@ -23,11 +23,12 @@
       display: grid;
       gap: 1rem;
 
+      cursor: pointer;
+
       .work__content {
         display: grid;
         gap: 1rem;
 
-        cursor: pointer;
         counter-increment: work-counter;
 
         .work__info {
@@ -131,5 +132,105 @@
     background-color: var(--clr-text);
     color: var(--clr-background);
     border-radius: 3px;
+  }
+}
+
+@media (min-width: 1000px) {
+  #work {
+    display: flex;
+    align-items: end;
+
+    position: relative;
+
+    margin-block: 0;
+    padding-block: 0 var(--_body-padding-inline);
+
+    .work__list {
+      width: 50%;
+
+      li {
+        --_work-list-transition-speed: 200ms;
+        --_work-list-transition-effect: ease-in-out;
+
+        color: var(--clr-text-secondary);
+        transition: color var(--_work-list-transition-speed)
+          var(--_work-list-transition-effect);
+
+        .horizontal-line {
+          border-color: var(--clr-text-secondary);
+          transition: border-color var(--_work-list-transition-speed)
+            var(--_work-list-transition-effect);
+        }
+
+        .work__content {
+          .work__info svg path {
+            fill: var(--clr-text-secondary);
+            transition: fill var(--_work-list-transition-speed)
+              var(--_work-list-transition-effect);
+          }
+
+          img {
+            position: absolute;
+            bottom: var(--_body-padding-inline);
+            right: 0;
+
+            opacity: 0;
+            width: 35%;
+          }
+        }
+
+        &:hover {
+          color: var(--clr-text);
+
+          .horizontal-line {
+            border-color: var(--clr-text);
+          }
+
+          .work__content {
+            .work__info svg path {
+              fill: var(--clr-text);
+            }
+
+            img {
+              opacity: 1;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  #work-item {
+    position: relative;
+
+    .work-item__content {
+      display: flex;
+      flex-direction: column;
+      justify-content: end;
+
+      width: 50%;
+
+      a:has(img) {
+        position: absolute;
+        bottom: var(--_body-padding-inline);
+        right: 0;
+
+        width: 35%;
+      }
+    }
+
+    .close-btn.navigation {
+      right: 50%;
+      transform: translateX(50%);
+
+      background-color: transparent;
+      color: var(--clr-text);
+      border-radius: 3px;
+      transition: color 200ms ease;
+
+      &:hover {
+        color: var(--clr-accent);
+      }
+    }
   }
 }
