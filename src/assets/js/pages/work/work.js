@@ -1,6 +1,10 @@
 import "./work.css";
 import { animatedLink } from "../../components/animatedLink/animatedLink";
-import { scrollToTop, trimStartOfString, hideMainWorkContent } from "../../utils/helpers";
+import {
+  scrollToTop,
+  trimStartOfString,
+  hideMainWorkContent,
+} from "../../utils/helpers";
 import doremir from "../../../img/work/doremir_logo.png";
 import chess50 from "../../../img/work/chess50.png";
 import fjordsmaken from "../../../img/work/fjordsmaken_5.7.png";

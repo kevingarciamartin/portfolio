@@ -17,19 +17,19 @@ export const handleNavigation = (() => {
       if (header.dataset.mobileMenuOpen === "true")
         header.dataset.mobileMenuOpen = "false";
 
+      const workItem = document.querySelector("#work-item");
+      if (workItem) {
+        workItem.remove();
+        hideMainWorkContent(false);
+      }
+
       switch (navLink.id) {
         case "nav-home":
           pages.renderPage(home, "nav-home");
           break;
         case "nav-work":
           pages.renderPage(work, "nav-work");
-          break;
-        case "nav-contact":
-          const workItem = document.querySelector("#work-item");
-          if (workItem) {
-            workItem.remove();
-            hideMainWorkContent(false);
-          }
+          hideMainWorkContent(false);
           break;
         default:
           break;
@@ -38,6 +38,12 @@ export const handleNavigation = (() => {
   });
 
   mobileLogo.addEventListener("click", () => {
+    const workItem = document.querySelector("#work-item");
+    if (workItem) {
+      workItem.remove();
+      hideMainWorkContent(false);
+    }
+    
     pages.renderPage(home, "nav-home");
     scrollToTop();
     switchNavLinkActiveState();
