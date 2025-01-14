@@ -18,7 +18,10 @@ const workArray = [
       "Developed the company React dashboard for internal statistics by continously fetching new relevant data from their API and implementing new pages, charts and tables.",
       "Analyzed the UI of one of the company's products for Windows and implemented the corresponding design in React for an upcoming hybrid application. In conjuction, I did a refactoring of the project where I removed Bootstrap, to more easily be able to implement the specific design from the computer version.",
     ],
-    image: doremir,
+    image: {
+      src: doremir,
+      alt: "Doremir Music Research's logo",
+    },
     link: {
       text: "doremir.com",
       href: "https://doremir.com/",
@@ -35,7 +38,10 @@ const workArray = [
       "- keeping track of the leaderboards for the most popular time controls,",
       "- and searching for valid chess.com usernames to get their profile information and game statistics.",
     ],
-    image: chess50,
+    image: {
+      src: chess50,
+      alt: "Chess50's homepage",
+    },
     link: {
       text: "chess50-dde8edd06871.herokuapp.com",
       href: "https://chess50-dde8edd06871.herokuapp.com/",
@@ -47,7 +53,10 @@ const workArray = [
     description: [
       "A concept of what a single page restaurant website could look like.",
     ],
-    image: fjordsmaken,
+    image: {
+      src: fjordsmaken,
+      alt: "Fjordsmaken's homepage",
+    },
     link: {
       text: "kevingarciamartin.github.io/restaurant-page",
       href: "https://kevingarciamartin.github.io/restaurant-page/",
@@ -98,7 +107,8 @@ export function work() {
       </div>
     `;
 
-    image.src = element.image;
+    image.src = element.image.src;
+    image.setAttribute("alt", element.image.alt);
 
     list.appendChild(item);
     item.appendChild(content);
@@ -126,7 +136,7 @@ function renderWorkItem(item, scrollPosition) {
   workItem.innerHTML = `
   <div class="work-item__content">
     <a href="${item.link.href}" target="_blank" rel="noopener noreferrer">
-      <img src="${item.image}">
+      <img src="${item.image.src}" alt="${item.image.alt}">
     </a>
     <div class="work-item__title">
       <p>${item.name}</p>

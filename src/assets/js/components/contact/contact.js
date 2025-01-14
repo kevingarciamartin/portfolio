@@ -30,6 +30,8 @@ export function contact() {
   container.id = "contact";
 
   image.src = backdrop;
+  image.setAttribute('alt', 'Contact backdrop. An image of Kevin Garcia Martin walking in London.')
+
   container.innerHTML = `
     <div>
       <p>I'm always excited to discuss new projects and collaboration opportunities. Feel free to reach out and let's build something beautiful together.</p>
