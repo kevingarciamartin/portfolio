@@ -6,12 +6,17 @@
 
   min-height: 100svh;
 
-  img {
-    filter: sepia(0%) hue-rotate(0deg) saturate(0%) brightness(1);
+  div {
     width: min(50vw, 20rem);
     aspect-ratio: 3 / 4;
-    object-fit: cover;
     translate: 0 10%;
+    
+    img {
+      filter: sepia(0%) hue-rotate(0deg) saturate(0%) brightness(1);
+      width: min(50vw, 20rem);
+      aspect-ratio: 3 / 4;
+      object-fit: cover;
+    }
   }
 }
 
