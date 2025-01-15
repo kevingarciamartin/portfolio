@@ -30,7 +30,10 @@ export function contact() {
   container.id = "contact";
 
   image.src = backdrop;
-  image.setAttribute('alt', 'Contact backdrop. An image of Kevin Garcia Martin walking in London.')
+  image.setAttribute(
+    "alt",
+    "Contact backdrop. An image of Kevin Garcia Martin walking in London."
+  );
 
   container.innerHTML = `
     <div>
@@ -54,8 +57,8 @@ export function contact() {
   });
 
   const svg = document.querySelector("#sun");
-  window.addEventListener("scroll", function () {
+  window.addEventListener("scroll", () => {
     parallaxEffectOnBackground(image);
-    rotateSvgOnScroll(svg, 360);
+    rotateSvgOnScroll(svg, 180);
   });
 }

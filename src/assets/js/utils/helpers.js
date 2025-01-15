@@ -1,17 +1,32 @@
 export function rotateSvgOnScroll(svg, maxRotation = 360) {
-  const scrollPercentage =
-    window.scrollY /
-    (document.documentElement.scrollHeight - window.innerHeight);
-  const rotation = scrollPercentage * maxRotation;
-  svg.style.transform = `rotate(${rotation}deg)`;
+  const rect = svg.getBoundingClientRect();
+
+  if (isInViewport(svg)) {
+    const scrollPercentage = rect.top / window.innerHeight;
+    const rotation = scrollPercentage * maxRotation;
+    svg.style.transform = `rotate(${rotation}deg)`;
+  }
 }
 
 export function parallaxEffectOnBackground(background) {
-  const scrolled = window.scrollY;
-  background.style.transform = `translateY(${scrolled * 0.1}px)`;
+  const rect = background.getBoundingClientRect();
+
+  if (isInViewport(background)) {
+    const scrolled = rect.height - rect.top;
+    background.style.transform = `translateY(${scrolled * 0.1}px)`;
+  }
 }
 
-export function scrollToTop(scrollBehavior = 'auto') {
+const isInViewport = (element) => {
+  const rect = element.getBoundingClientRect();
+
+  return (
+    rect.top < (window.innerHeight || document.documentElement.clientHeight) &&
+    rect.bottom > 0
+  );
+};
+
+export function scrollToTop(scrollBehavior = "auto") {
   window.scrollTo({ top: 0, behavior: scrollBehavior });
 }
 
