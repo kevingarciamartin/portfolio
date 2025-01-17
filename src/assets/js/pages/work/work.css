@@ -87,12 +87,17 @@
 
     padding-block: 5rem 3rem;
 
-    a img {
-      filter: brightness(1);
-      transition: filter 0.3s ease-in-out;
+    a:has(img) {
+      justify-self: center;
+      width: min(100%, 30rem);
 
-      &:hover {
-        filter: brightness(0.8);
+      img {
+        filter: brightness(1);
+        transition: filter 0.3s ease-in-out;
+
+        &:hover {
+          filter: brightness(0.8);
+        }
       }
     }
 
@@ -126,6 +131,10 @@
 
       &.work-item__url {
         display: grid;
+
+        a {
+          width: fit-content;
+        }
       }
     }
   }
@@ -223,10 +232,6 @@
         right: var(--_body-padding-inline);
 
         width: 35%;
-      }
-
-      .work-item__url .animated-link {
-        width: fit-content;
       }
     }
 
