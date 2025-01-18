@@ -43,7 +43,10 @@ export const handleNavigation = (() => {
       workItem.remove();
       hideMainWorkContent(false);
     }
-    
+
+    if (header.dataset.mobileMenuOpen === "true")
+      header.dataset.mobileMenuOpen = "false";
+
     pages.renderPage(home, "nav-home");
     scrollToTop();
     switchNavLinkActiveState();
