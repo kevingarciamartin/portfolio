@@ -1,0 +1,212 @@
+header {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 9999;
+  padding: var(--_body-padding-inline);
+
+  font-size: var(--fs-small);
+  font-weight: bold;
+  letter-spacing: -1px;
+
+  ul {
+    display: flex;
+    justify-content: space-between;
+
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  > ul:first-of-type {
+    display: none;
+  }
+
+  ul li {
+    div:first-of-type {
+      color: var(--clr-text-secondary);
+    }
+
+    div:has(.clock) {
+      display: flex;
+      gap: 0.5ch;
+
+      .clock {
+        display: flex;
+
+        .colon {
+          opacity: 1;
+        }
+      }
+    }
+
+    nav ul,
+    .theme-buttons {
+      display: flex;
+      gap: 0.5ch;
+
+      li a.active,
+      button.active {
+        cursor: default;
+      }
+
+      li:not(:has(.active)),
+      button:not(.active) {
+        color: var(--clr-text-secondary);
+      }
+    }
+
+    nav ul {
+      li a {
+        color: inherit;
+        text-decoration: none;
+
+        [aria-hidden="true"] {
+          display: none;
+        }
+      }
+    }
+
+    .theme-buttons button {
+      padding: 0;
+    }
+  }
+}
+
+header nav ul li a:not(.active):hover,
+header .theme-buttons button:not(.active):hover,
+header nav ul li a:focus-visible,
+header .theme-buttons button:focus-visible {
+  color: var(--clr-accent) !important;
+  outline: none;
+  transition: color 500ms ease;
+}
+
+@media (max-width: 810px) {
+  header {
+    --_padding: 2vh;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    position: fixed;
+    background-color: var(--clr-background);
+    inset: 0;
+    padding: var(--_padding);
+    z-index: 9999;
+
+    ul:first-of-type {
+      display: flex;
+      align-items: center;
+
+      #menu-btn {
+        height: calc(1em);
+        line-height: 1;
+        padding: 0;
+        overflow-y: hidden;
+      }
+    }
+
+    > ul:last-of-type {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+
+      > li:has(nav) {
+        grid-row: 4;
+        margin-block: 4rem 1rem;
+
+        div {
+          display: none;
+        }
+
+        nav ul {
+          --_grid-gap: 3em;
+
+          display: grid;
+          grid-template-columns: 1fr;
+          gap: var(--_grid-gap);
+
+          counter-reset: menu-counter;
+
+          li a {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 1em;
+
+            position: relative;
+            font-size: var(--fs-large);
+            counter-increment: menu-counter;
+
+            &::before {
+              translate: 0 calc(var(--_grid-gap) / -4);
+            }
+
+            &.active {
+              color: var(--clr-text-secondary);
+            }
+
+            &:not(.active) {
+              color: var(--clr-text);
+            }
+
+            [aria-hidden="true"] {
+              display: block;
+            }
+
+            [aria-hidden="true"]::before {
+              content: counter(menu-counter, decimal-leading-zero);
+            }
+
+            span:not([aria-hidden="true"]) {
+              display: none;
+            }
+          }
+
+          li a::before,
+          li:last-child a::after {
+            content: "";
+            position: absolute;
+            background-color: var(--clr-text);
+            height: 1px;
+            width: 100%;
+          }
+
+          li:last-child a::after {
+            height: 1.5px;
+            translate: 0 calc(var(--_grid-gap) / 1.7);
+          }
+        }
+      }
+    }
+  }
+
+  header[data-mobile-menu-open="false"] {
+    bottom: auto;
+
+    #menu-btn > * {
+      transform: translateY(0);
+      transition: transform 500ms ease;
+    }
+
+    > ul:last-of-type {
+      display: none;
+      opacity: 0;
+    }
+  }
+
+  header[data-mobile-menu-open="true"] {
+    background-color: var(--clr-background) !important;
+
+    #menu-btn > * {
+      transform: translateY(-100%);
+      transition: transform 500ms ease;
+    }
+  }
+}
+
+@media (min-width: 1000px) {
+  header {
+    font-size: var(--fs-medium);
+  }
+}

@@ -1,4 +1,5 @@
 import { contact } from "../components/contact/contact";
+import { header } from "../components/header/header";
 
 export const pages = (() => {
   let pages = [];
@@ -18,6 +19,7 @@ export const pages = (() => {
     const main = document.querySelector("main");
     main.innerHTML = "";
 
+    header();
     page();
     contact();
     setCurrentPage(newCurrentPage);
