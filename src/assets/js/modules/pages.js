@@ -1,5 +1,6 @@
 import { contact } from "../components/contact/contact";
 import { header } from "../components/header/header";
+import { footer } from "../components/footer/footer";
 
 export const pages = (() => {
   let pages = [];
@@ -22,6 +23,8 @@ export const pages = (() => {
     header();
     page();
     contact();
+    footer();
+
     setCurrentPage(newCurrentPage);
   };
 
