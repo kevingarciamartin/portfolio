@@ -6,9 +6,17 @@
   text-transform: uppercase;
   text-decoration: none;
 
-  &:hover span,
-  &:focus-visible span {
-    transform: translateY(-100%);
+  &:hover,
+  &:focus-visible {
+    outline: none;
+    
+    span {
+      transform: translateY(-100%);
+    }
+    
+    span:nth-of-type(2) {
+      color: var(--clr-accent) !important;
+    }
   }
 
   span {
@@ -16,6 +24,6 @@
 
     color: var(--clr-text) !important;
     transform: translateY(0);
-    transition: transform 200ms ease;
+    transition: transform 200ms ease, color 200ms ease;
   }
 }
