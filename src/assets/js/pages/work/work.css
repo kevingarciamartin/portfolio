@@ -45,6 +45,10 @@
             }
           }
 
+          .work__info-name {
+            justify-self: start;
+          }
+
           svg {
             grid-row: span 2;
             align-self: center;
@@ -60,6 +64,7 @@
           .work__stack {
             grid-column: 2;
             grid-row: 2;
+            justify-self: start;
             color: var(--clr-text-secondary);
           }
         }
@@ -77,7 +82,6 @@
   display: grid;
   grid-template-columns: subgrid;
 
-  background-color: rgba(0, 0, 0, 0.7);
   background-color: var(--clr-background);
 
   .work-item__content {
@@ -96,6 +100,14 @@
         transition: filter 0.3s ease-in-out;
 
         &:hover {
+          filter: brightness(0.8);
+        }
+      }
+
+      &:focus-visible {
+        outline: none;
+        
+        img {
           filter: brightness(0.8);
         }
       }
@@ -195,7 +207,8 @@
           }
         }
 
-        &:hover {
+        &:hover,
+        &:focus-within {
           color: var(--clr-text);
 
           .horizontal-line {
@@ -203,6 +216,8 @@
           }
 
           .work__content {
+            outline: none;
+
             .work__info svg path {
               fill: var(--clr-text);
             }
@@ -244,8 +259,10 @@
       border-radius: 3px;
       transition: color 200ms ease;
 
-      &:hover {
+      &:hover,
+      &:focus-visible {
         color: var(--clr-accent);
+        outline: none;
       }
     }
   }

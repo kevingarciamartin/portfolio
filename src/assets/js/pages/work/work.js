@@ -74,7 +74,7 @@ export function work() {
 
   workArray.forEach((element, index) => {
     const item = document.createElement("li");
-    const content = document.createElement("div");
+    const content = document.createElement("button");
     const image = document.createElement("img");
     const lineAfter = document.createElement("div");
 
@@ -90,7 +90,7 @@ export function work() {
     content.innerHTML = `
       <div class="work__info">
         <span></span>
-        <span>${element.name}</span>
+        <span class="work__info-name">${element.name}</span>
         <svg width="80px" height="80px" viewBox="0 -0.5 17 17" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="si-glyph si-glyph-arrow-right">
             <title>1178</title>  
             <defs>
