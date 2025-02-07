@@ -1,4 +1,5 @@
 import doremir from "../../img/work/doremir_logo.png";
+import playlistManager from "../../img/work/playlist-manager.png";
 import chess50 from "../../img/work/chess50.png";
 import fjordsmaken from "../../img/work/fjordsmaken_5.7.png";
 
@@ -8,8 +9,8 @@ export const workData = [
     role: "Internship",
     stack: ["React"],
     description: [
-      "Developed the company React dashboard for internal statistics by continously fetching new relevant data from their API and implementing new pages, charts and tables.",
-      "Analyzed the UI of one of the company's products for Windows and implemented the corresponding design in React for an upcoming hybrid application. In conjuction, I did a refactoring of the project where I removed Bootstrap, to more easily be able to implement the specific design from the computer version.",
+      "I developed the company React dashboard for internal statistics by continously fetching new relevant data from their API and implementing new pages, charts and tables.",
+      "In addition, I analyzed the UI of one of the company's products for Windows and implemented the corresponding design in React for an upcoming hybrid application. In conjuction, I did a refactoring of the project where I removed Bootstrap, to more easily be able to implement the specific design from the computer version.",
     ],
     image: {
       src: doremir,
@@ -18,6 +19,21 @@ export const workData = [
     link: {
       text: "doremir.com",
       href: "https://doremir.com/",
+    },
+  },
+  {
+    name: "Playlist Manager",
+    stack: ["React", "Framer Motion"],
+    description: [
+      "A React web application that integrates with the Spotify API, allowing users to seamlessly manage their playlists and explore music. The primary goal is to provide an interactive, user-friendly interface that enhances the music experience by integrating playlist management, discovery, and playback into one seamless app.",
+    ],
+    image: {
+      src: playlistManager,
+      alt: "Playlist Manager's homepage",
+    },
+    link: {
+      text: "the-playlist-manager.netlify.app",
+      href: "https://the-playlist-manager.netlify.app/",
     },
   },
   {
