@@ -1,7 +1,7 @@
 import { pages } from "./pages";
 import { home } from "../pages/home/home";
 import { work } from "../pages/work/work";
-import { scrollToTop, hideMainWorkContent } from "../utils/helpers";
+import { scrollToTop, hideMainWorkContent } from "./helpers";
 
 export const handleNavigation = (() => {
   const header = document.querySelector("header");
