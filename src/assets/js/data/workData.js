@@ -21,21 +21,21 @@ export const workData = [
       href: "https://doremir.com/",
     },
   },
-  {
-    name: "Playlist Manager",
-    stack: ["React", "Framer Motion"],
-    description: [
-      "A React web application that integrates with the Spotify API, allowing users to seamlessly manage their playlists and explore music. The primary goal is to provide an interactive, user-friendly interface that enhances the music experience by integrating playlist management, discovery, and playback into one seamless app.",
-    ],
-    image: {
-      src: playlistManager,
-      alt: "Playlist Manager's homepage",
-    },
-    link: {
-      text: "the-playlist-manager.netlify.app",
-      href: "https://the-playlist-manager.netlify.app/",
-    },
-  },
+  // {
+  //   name: "Playlist Manager",
+  //   stack: ["React", "Framer Motion"],
+  //   description: [
+  //     "A React web application that integrates with the Spotify API, allowing users to seamlessly manage their playlists and explore music. The primary goal is to provide an interactive, user-friendly interface that enhances the music experience by integrating playlist management, discovery, and playback into one seamless app.",
+  //   ],
+  //   image: {
+  //     src: playlistManager,
+  //     alt: "Playlist Manager's homepage",
+  //   },
+  //   link: {
+  //     text: "the-playlist-manager.netlify.app",
+  //     href: "https://the-playlist-manager.netlify.app/",
+  //   },
+  // },
   {
     name: "Chess50",
     stack: ["Flask", "Python", "JavaScript", "SQLite"],
