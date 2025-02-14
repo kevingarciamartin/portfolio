@@ -15,6 +15,7 @@ export const workData = [
     image: {
       src: doremir,
       alt: "Doremir Music Research's logo",
+      viewTransitionName: "doremir-img",
     },
     link: {
       text: "doremir.com",
@@ -50,6 +51,7 @@ export const workData = [
     image: {
       src: chess50,
       alt: "Chess50's homepage",
+      viewTransitionName: "chess50-img",
     },
     link: {
       text: "chess50-dde8edd06871.herokuapp.com",
@@ -65,6 +67,7 @@ export const workData = [
     image: {
       src: fjordsmaken,
       alt: "Fjordsmaken's homepage",
+      viewTransitionName: "fjordsmaken-img",
     },
     link: {
       text: "kevingarciamartin.github.io/restaurant-page",
