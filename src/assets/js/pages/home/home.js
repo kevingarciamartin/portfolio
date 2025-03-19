@@ -4,5 +4,5 @@ import { featuredWork } from "./featuredWork/featuredWork";
 
 export function home() {
   hero();
-  featuredWork();
+  // featuredWork();
 }
