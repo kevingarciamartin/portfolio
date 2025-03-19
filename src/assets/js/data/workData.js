@@ -22,21 +22,6 @@ export const workData = [
       href: "https://doremir.com/",
     },
   },
-  // {
-  //   name: "Playlist Manager",
-  //   stack: ["React", "Framer Motion"],
-  //   description: [
-  //     "A React web application that integrates with the Spotify API, allowing users to seamlessly manage their playlists and explore music. The primary goal is to provide an interactive, user-friendly interface that enhances the music experience by integrating playlist management, discovery, and playback into one seamless app.",
-  //   ],
-  //   image: {
-  //     src: playlistManager,
-  //     alt: "Playlist Manager's homepage",
-  //   },
-  //   link: {
-  //     text: "the-playlist-manager.netlify.app",
-  //     href: "https://the-playlist-manager.netlify.app/",
-  //   },
-  // },
   {
     name: "Chess50",
     stack: ["Flask", "Python", "JavaScript", "SQLite"],
@@ -56,6 +41,30 @@ export const workData = [
     link: {
       text: "chess50-dde8edd06871.herokuapp.com",
       href: "https://chess50-dde8edd06871.herokuapp.com/",
+    },
+  },
+  {
+    name: "Playlist Manager",
+    stack: ["React", "Framer Motion"],
+    description: [
+      "A React web application that integrates with the Spotify API, allowing users to seamlessly manage their playlists and explore music. The primary goal is to provide an interactive, user-friendly interface that enhances the music experience by integrating playlist management, discovery, and playback into one seamless app.",
+      "Features include: ",
+      "- Authentication: Log in with Spotify to access user data",
+      "- Routing: Implemented using React Router for smooth navigation",
+      "- Spotify Data Integration: Fetch playlists, tracks, and recommendations directly from Spotify",
+      "- Playlist Management: Create, edit, and delete playlists",
+      "- Music Playback: Play and pause music using the Spotify Web Playback SDK",
+      "- Search Functionality: Find Spotify playlists based on keywords",
+      "- Personalized Recommendations: Get suggested playlists based on favorite genres.",
+      "The application requires you to be whitelisted to be able to log in. Contact me for a live demo."
+    ],
+    image: {
+      src: playlistManager,
+      alt: "Playlist Manager's homepage",
+    },
+    link: {
+      text: "the-playlist-manager.netlify.app",
+      href: "https://the-playlist-manager.netlify.app/",
     },
   },
   {
