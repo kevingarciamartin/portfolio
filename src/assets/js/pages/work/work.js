@@ -52,6 +52,10 @@ export function work() {
 
     image.src = element.image.src;
     image.setAttribute("alt", element.image.alt);
+    image.setAttribute(
+      "view-transition-name",
+      element.image.viewTransitionName
+    );
 
     list.appendChild(item);
     item.appendChild(content);
@@ -59,7 +63,14 @@ export function work() {
     content.appendChild(image);
 
     item.addEventListener("click", () => {
-      renderWorkItem(element, window.scrollY);
+      if (!document.startViewTransition) {
+        renderWorkItem(element, window.scrollY);
+        return;
+      }
+
+      document.startViewTransition(() => {
+        renderWorkItem(element, window.scrollY);
+      });
     });
   });
 
@@ -79,7 +90,9 @@ function renderWorkItem(item, scrollPosition) {
   workItem.innerHTML = `
   <div class="work-item__content">
     <a href="${item.link.href}" target="_blank" rel="noopener noreferrer">
-      <img src="${item.image.src}" alt="${item.image.alt}">
+      <img src="${item.image.src}" alt="${
+    item.image.alt
+  }" view-transition-name="${item.image.viewTransitionName}">
     </a>
     <div class="work-item__title">
       <p>${item.name}</p>
@@ -138,8 +151,17 @@ function renderWorkItem(item, scrollPosition) {
 
   const closeBtn = workItem.querySelector(".close-btn");
   closeBtn.addEventListener("click", () => {
-    workItem.remove();
-    hideMainWorkContent(false);
-    window.scrollTo(0, scrollPosition);
+    if (!document.startViewTransition) {
+      workItem.remove();
+      hideMainWorkContent(false);
+      window.scrollTo(0, scrollPosition);
+      return;
+    }
+
+    document.startViewTransition(() => {
+      workItem.remove();
+      hideMainWorkContent(false);
+      window.scrollTo(0, scrollPosition);
+    });
   });
 }
