@@ -95,6 +95,8 @@ header .theme-buttons button:focus-visible {
     padding: var(--_padding);
     z-index: 9999;
 
+    transition: background-color 300ms ease;
+
     ul:first-of-type {
       display: flex;
       align-items: center;
@@ -157,7 +159,7 @@ header .theme-buttons button:focus-visible {
               content: counter(menu-counter, decimal-leading-zero);
             }
 
-            span:not([aria-hidden="true"]) {
+            span:last-of-type {
               display: none;
             }
 
@@ -204,11 +206,39 @@ header .theme-buttons button:focus-visible {
       transform: translateY(-100%);
       transition: transform 500ms ease;
     }
+
+    li:not(:has(a)) {
+      overflow-y: clip;
+
+      > div {
+        animation: slideIn 500ms ease forwards;
+      }
+    }
+
+    /* li > a {
+      overflow-y: clip;
+
+      span:not(:last-of-type) {
+        animation: slideIn 500ms ease forwards;
+      }
+    } */
   }
 }
 
 @media (min-width: 1000px) {
   header {
     font-size: var(--fs-medium);
+  }
+}
+
+@keyframes slideIn {
+  0% {
+    opacity: 0.8;
+    transform: translateY(100%);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY();
   }
 }
