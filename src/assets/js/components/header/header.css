@@ -99,11 +99,14 @@ header .theme-buttons button:focus-visible {
       display: flex;
       align-items: center;
 
-      #menu-btn {
-        height: calc(1em);
-        line-height: 1;
+      #mobile-logo {
         padding: 0;
-        overflow-y: hidden;
+      }
+
+      #menu-btn {
+        height: 1lh;
+        padding: 0;
+        overflow-y: clip;
       }
     }
 
@@ -138,10 +141,6 @@ header .theme-buttons button:focus-visible {
             font-size: var(--fs-large);
             counter-increment: menu-counter;
 
-            &::before {
-              translate: 0 calc(var(--_grid-gap) / -4);
-            }
-
             &.active {
               color: var(--clr-text-secondary);
             }
@@ -161,19 +160,22 @@ header .theme-buttons button:focus-visible {
             span:not([aria-hidden="true"]) {
               display: none;
             }
+
+            &::before {
+              translate: 0 calc(var(--_grid-gap) / -4);
+            }
           }
 
           li a::before,
           li:last-child a::after {
             content: "";
             position: absolute;
-            background-color: var(--clr-text);
+            border: 1px solid var(--clr-text);
             height: 1px;
             width: 100%;
           }
 
           li:last-child a::after {
-            height: 1.5px;
             translate: 0 calc(var(--_grid-gap) / 1.7);
           }
         }

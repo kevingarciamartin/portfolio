@@ -7,7 +7,7 @@ footer {
   font-size: var(--fs-small);
   font-weight: bold;
   letter-spacing: -1px;
-  min-height: 100svh;
+  min-height: 100vh;
   padding-block: var(--_body-padding-inline);
 
   ul {
