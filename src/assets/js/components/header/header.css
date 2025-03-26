@@ -232,7 +232,7 @@ header .theme-buttons button:focus-visible {
       > div {
         overflow-y: clip;
 
-        span:not(:last-of-type) {
+        span {
           transform: translateY(1lh);
           animation: slideIn var(--_animation-duration) 100ms
             var(--_animation-function) forwards;
