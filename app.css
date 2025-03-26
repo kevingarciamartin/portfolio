@@ -126,6 +126,8 @@ button {
 
 body {
   --_body-padding-inline: 2vh;
+  --_theme-transition-duration: 500ms;
+  --_theme-transition-function: ease;
 
   display: grid;
   grid-template-columns: var(--_body-padding-inline) [content-start] 1fr [content-end] var(
@@ -136,6 +138,8 @@ body {
   color: var(--clr-text);
   font-family: var(--ff-base);
   overflow-x: hidden;
+  transition: all var(--_theme-transition-duration)
+    var(--_theme-transition-function);
 }
 
 main {
@@ -451,10 +455,6 @@ header .theme-buttons button:focus-visible {
           counter-reset: menu-counter;
 
           li a {
-            /* display: grid;
-            grid-template-columns: auto 1fr;
-            gap: 1em; */
-
             position: relative;
             font-size: var(--fs-large);
             counter-increment: menu-counter;
@@ -479,10 +479,6 @@ header .theme-buttons button:focus-visible {
               [aria-hidden="true"]::before {
                 content: counter(menu-counter, decimal-leading-zero);
               }
-
-              span:last-of-type {
-                display: none;
-              }
             }
 
             &::before {
@@ -493,15 +489,14 @@ header .theme-buttons button:focus-visible {
           li a::before,
           li:last-child a::after {
             content: "";
-            position: absolute;
+            display: block;
             border: 1px solid var(--clr-text);
             height: 1px;
-            width: 0%;
-            transition: width var(--_animation-duration) var(--_animation-function)  ;
+            width: 100%;
           }
 
           li:last-child a::after {
-            translate: 0 calc(var(--_grid-gap) / 1.7);
+            translate: 0 calc(var(--_grid-gap) / 6);
           }
         }
       }
@@ -513,7 +508,8 @@ header .theme-buttons button:focus-visible {
 
     #menu-btn > * {
       transform: translateY(0);
-      transition: transform var(--_animation-duration) var(--_animation-function);
+      transition: transform var(--_animation-duration)
+        var(--_animation-function);
     }
 
     > ul:last-of-type {
@@ -527,28 +523,33 @@ header .theme-buttons button:focus-visible {
 
     #menu-btn > * {
       transform: translateY(-100%);
-      transition: transform var(--_animation-duration) var(--_animation-function);
+      transition: transform var(--_animation-duration)
+        var(--_animation-function);
     }
 
     li:not(:has(a)) {
       overflow-y: clip;
 
       > div {
-        animation: slideIn var(--_animation-duration) var(--_animation-function) forwards;
+        animation: slideIn var(--_animation-duration) var(--_animation-function)
+          forwards;
       }
     }
 
     li > a {
-      &::before {
-        width: 100% !important;
+      &::before,
+      &::after {
+        animation: growDivider calc(var(--_animation-duration) * 2)
+          cubic-bezier(0, 0.55, 0.45, 1) forwards;
       }
 
       > div {
         overflow-y: clip;
 
-        span:not(:last-of-type) {
+        span {
           transform: translateY(1lh);
-          animation: slideIn var(--_animation-duration) 100ms var(--_animation-function) forwards;
+          animation: slideIn var(--_animation-duration) 100ms
+            var(--_animation-function) forwards;
         }
       }
     }
@@ -558,6 +559,12 @@ header .theme-buttons button:focus-visible {
 @media (min-width: 1000px) {
   header {
     font-size: var(--fs-medium);
+
+    & nav ul li:not(:last-of-type) a div::after {
+      content: ",";
+      display: inline-block;
+      margin-inline: -0.375ch 0.375ch;
+    }
   }
 }
 
@@ -570,6 +577,16 @@ header .theme-buttons button:focus-visible {
   100% {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes growDivider {
+  0% {
+    width: 0%;
+  }
+
+  100% {
+    width: 100%;
   }
 }
 
