@@ -171,16 +171,14 @@ header .theme-buttons button:focus-visible {
           li a::before,
           li:last-child a::after {
             content: "";
-            position: absolute;
+            display: block;
             border: 1px solid var(--clr-text);
             height: 1px;
-            width: 0%;
-            transition: width var(--_animation-duration)
-              var(--_animation-function);
+            width: 100%;
           }
 
           li:last-child a::after {
-            translate: 0 calc(var(--_grid-gap) / 1.7);
+            translate: 0 calc(var(--_grid-gap) / 6);
           }
         }
       }
@@ -215,14 +213,17 @@ header .theme-buttons button:focus-visible {
       overflow-y: clip;
 
       > div {
-        animation: slideIn var(--_animation-duration) var(--_animation-function)
-          forwards;
+        animation: slideInTextFromBottom var(--_animation-duration)
+          var(--_animation-function) forwards;
       }
     }
 
     li > a {
-      &::before {
-        width: 100% !important;
+      &::before,
+      &::after {
+        animation: slideInDividerFromLeft
+          calc(var(--_animation-duration) * 2)
+          cubic-bezier(0, 0.55, 0.45, 1) forwards;
       }
 
       > div {
@@ -230,7 +231,7 @@ header .theme-buttons button:focus-visible {
 
         span {
           transform: translateY(1lh);
-          animation: slideIn var(--_animation-duration) 100ms
+          animation: slideInTextFromBottom var(--_animation-duration) 100ms
             var(--_animation-function) forwards;
         }
       }
@@ -255,7 +256,7 @@ header .theme-buttons button:focus-visible {
   }
 }
 
-@keyframes slideIn {
+@keyframes slideInTextFromBottom {
   0% {
     opacity: 0.8;
     transform: translateY(1lh);
@@ -264,5 +265,14 @@ header .theme-buttons button:focus-visible {
   100% {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes slideInDividerFromLeft {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
   }
 }
