@@ -559,7 +559,6 @@ header .theme-buttons button:focus-visible {
     & nav ul li:not(:last-of-type) a div::after {
       content: ",";
       display: inline-block;
-      margin-inline: -0.375ch 0;
     }
   }
 }
