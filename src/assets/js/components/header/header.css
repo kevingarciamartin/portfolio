@@ -245,6 +245,12 @@ header .theme-buttons button:focus-visible {
 @media (min-width: 1000px) {
   header {
     font-size: var(--fs-medium);
+
+    & nav ul li:not(:last-of-type) a div::after {
+      content: ",";
+      display: inline-block;
+      margin-inline: -0.375ch 0.375ch;
+    }
   }
 }
 
