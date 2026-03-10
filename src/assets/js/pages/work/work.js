@@ -44,9 +44,7 @@ export function work() {
             </g>
         </svg>
         <span></span>
-        <span class="work__stack">${
-          element.role ? element.role : element.stack.join(", ")
-        }</span>
+        <span class="work__stack">${element.stack.join(", ")}</span>
       </div>
     `;
 
@@ -91,8 +89,8 @@ function renderWorkItem(item, scrollPosition) {
   <div class="work-item__content">
     <a href="${item.link.href}" target="_blank" rel="noopener noreferrer">
       <img src="${item.image.src}" alt="${
-    item.image.alt
-  }" view-transition-name="${item.image.viewTransitionName}">
+        item.image.alt
+      }" view-transition-name="${item.image.viewTransitionName}">
     </a>
     <div class="work-item__title">
       <p>${item.name}</p>
