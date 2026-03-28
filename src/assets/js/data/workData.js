@@ -2,6 +2,7 @@ import noctie from "../../img/work/noctie.png";
 import doremir from "../../img/work/doremir_logo.png";
 import playlistManager from "../../img/work/playlist-manager.png";
 import chess50 from "../../img/work/chess50.png";
+import visionoir from "../../img/work/visionoir_demo.mp4";
 
 export const workData = [
   {
@@ -42,6 +43,22 @@ export const workData = [
     link: {
       text: "doremir.com",
       href: "https://doremir.com/",
+    },
+  },
+  {
+    name: "Visionoir",
+    stack: ["React", "Node.js", "Express", "MongoDB"],
+    description: [
+      "Blindfold Chess Trainer is a full-stack web application designed to help chess players improve their board visualization and coordinate recognition skills. The core experience challenges users to quickly and accurately identify specific squares on a chess board through a series of timed rounds. By gamifying the process of mastering the 64 coordinates, the application provides a streamlined, interactive environment for players to build the mental mapping necessary for successful blindfold play and deep calculation.",
+    ],
+    video: {
+      src: visionoir,
+      alt: "Demo showcasing blindfold coordinate training",
+      viewTransitionName: "visionoir-vid",
+    },
+    link: {
+      text: "visionoir.vercel.app",
+      href: "https://visionoir.vercel.app/",
     },
   },
   {

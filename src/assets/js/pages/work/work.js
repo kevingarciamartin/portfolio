@@ -18,7 +18,9 @@ export function work() {
   workData.forEach((element, index) => {
     const item = document.createElement("li");
     const content = document.createElement("button");
-    const image = document.createElement("img");
+    const mediaElement = element.video
+      ? document.createElement("video")
+      : document.createElement("img");
     const lineAfter = document.createElement("div");
 
     if (index === 0) {
@@ -48,17 +50,26 @@ export function work() {
       </div>
     `;
 
-    image.src = element.image.src;
-    image.setAttribute("alt", element.image.alt);
-    image.setAttribute(
+    const media = element.video || element.image;
+    mediaElement.src = media.src;
+    if (element.video) {
+      mediaElement.autoplay = true;
+      mediaElement.muted = true;
+      mediaElement.loop = true;
+      mediaElement.playsinline = true;
+      mediaElement.setAttribute("aria-label", media.alt);
+    } else {
+      mediaElement.setAttribute("alt", media.alt);
+    }
+    mediaElement.setAttribute(
       "view-transition-name",
-      element.image.viewTransitionName
+      media.viewTransitionName
     );
 
     list.appendChild(item);
     item.appendChild(content);
     item.appendChild(lineAfter);
-    content.appendChild(image);
+    content.appendChild(mediaElement);
 
     item.addEventListener("click", () => {
       if (!document.startViewTransition) {
@@ -85,12 +96,15 @@ function renderWorkItem(item, scrollPosition) {
 
   workItem.id = "work-item";
 
+  const media = item.video || item.image;
+  const mediaTag = item.video
+    ? `<video src="${media.src}" aria-label="${media.alt}" view-transition-name="${media.viewTransitionName}" autoplay muted loop playsinline></video>`
+    : `<img src="${media.src}" alt="${media.alt}" view-transition-name="${media.viewTransitionName}">`;
+
   workItem.innerHTML = `
   <div class="work-item__content">
     <a href="${item.link.href}" target="_blank" rel="noopener noreferrer">
-      <img src="${item.image.src}" alt="${
-        item.image.alt
-      }" view-transition-name="${item.image.viewTransitionName}">
+      ${mediaTag}
     </a>
     <div class="work-item__title">
       <p>${item.name}</p>

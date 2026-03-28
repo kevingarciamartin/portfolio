@@ -69,7 +69,8 @@
           }
         }
 
-        img {
+        img,
+        video {
           justify-self: center;
           width: min(100%, 30rem);
         }
@@ -91,11 +92,12 @@
 
     padding-block: 5rem 3rem;
 
-    a:has(img) {
+    a:has(img, video) {
       justify-self: center;
       width: min(100%, 30rem);
 
-      img {
+      img,
+      video {
         filter: brightness(1);
         transition: filter 0.3s ease-in-out;
 
@@ -107,7 +109,8 @@
       &:focus-visible {
         outline: none;
 
-        img {
+        img,
+        video {
           filter: brightness(0.8);
         }
       }
@@ -196,7 +199,8 @@
               var(--_work-list-transition-effect);
           }
 
-          img {
+          img,
+          video {
             display: none;
 
             position: absolute;
@@ -224,7 +228,8 @@
               fill: var(--clr-text);
             }
 
-            img {
+            img,
+            video {
               display: block;
             }
           }
@@ -243,7 +248,7 @@
 
       width: 50%;
 
-      a:has(img) {
+      a:has(img, video) {
         position: absolute;
         bottom: var(--_body-padding-inline);
         right: var(--_body-padding-inline);
