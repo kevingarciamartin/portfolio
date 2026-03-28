@@ -783,7 +783,8 @@ footer a:focus-visible svg {
           }
         }
 
-        img {
+        img,
+        video {
           justify-self: center;
           width: min(100%, 30rem);
         }
@@ -805,11 +806,12 @@ footer a:focus-visible svg {
 
     padding-block: 5rem 3rem;
 
-    a:has(img) {
+    a:has(img, video) {
       justify-self: center;
       width: min(100%, 30rem);
 
-      img {
+      img,
+      video {
         filter: brightness(1);
         transition: filter 0.3s ease-in-out;
 
@@ -821,7 +823,8 @@ footer a:focus-visible svg {
       &:focus-visible {
         outline: none;
 
-        img {
+        img,
+        video {
           filter: brightness(0.8);
         }
       }
@@ -910,7 +913,8 @@ footer a:focus-visible svg {
               var(--_work-list-transition-effect);
           }
 
-          img {
+          img,
+          video {
             display: none;
 
             position: absolute;
@@ -938,7 +942,8 @@ footer a:focus-visible svg {
               fill: var(--clr-text);
             }
 
-            img {
+            img,
+            video {
               display: block;
             }
           }
@@ -957,7 +962,7 @@ footer a:focus-visible svg {
 
       width: 50%;
 
-      a:has(img) {
+      a:has(img, video) {
         position: absolute;
         bottom: var(--_body-padding-inline);
         right: var(--_body-padding-inline);
