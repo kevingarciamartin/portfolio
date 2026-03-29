@@ -1,0 +1,83 @@
+.work {
+  grid-column: 1 / -1;
+  margin-block: 14rem 5rem;
+  width: 100%;
+  max-width: var(--max-width);
+  margin-inline: auto;
+  padding-inline: var(--padding-inline);
+}
+
+.workList {
+  display: grid;
+  gap: 1rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  counter-reset: work-counter;
+}
+
+.workItem {
+  display: grid;
+  gap: 1rem;
+  cursor: pointer;
+}
+
+.horizontalLine {
+  border: 1px solid var(--clr-text);
+  height: 1px;
+  width: 100%;
+}
+
+.workContent {
+  display: grid;
+  gap: 1rem;
+  counter-increment: work-counter;
+  background: none;
+  border: none;
+  text-align: left;
+  padding: 0;
+  width: 100%;
+}
+
+.workInfo {
+  display: grid;
+  grid-template-columns: 3rem 1fr auto;
+  align-items: center;
+}
+
+.workInfo::before {
+  grid-row: span 2;
+  align-self: center;
+  font-size: 2rem;
+  content: counter(work-counter, decimal-leading-zero);
+}
+
+.title {
+  justify-self: start;
+  font-size: 1.5rem;
+  font-weight: normal;
+  margin: 0;
+}
+
+.arrowIcon {
+  grid-row: span 2;
+  align-self: center;
+  height: 2rem;
+  width: auto;
+  fill: var(--clr-text);
+}
+
+.stack {
+  grid-column: 2;
+  grid-row: 2;
+  justify-self: start;
+  color: var(--clr-text-secondary);
+  font-size: 0.875rem;
+}
+
+.media {
+  justify-self: center;
+  width: min(100%, 30rem);
+  height: auto;
+  display: block;
+}
