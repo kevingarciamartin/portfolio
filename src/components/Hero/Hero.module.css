@@ -1,0 +1,30 @@
+.hero {
+  display: grid;
+  grid-template-rows: 1fr auto;
+  align-items: center;
+  justify-items: center;
+  min-height: 100svh;
+}
+
+.imageWrapper {
+  width: min(50vw, 20rem);
+  aspect-ratio: 3 / 4;
+  translate: 0 10%;
+  position: relative;
+}
+
+.image {
+  filter: sepia(0%) hue-rotate(0deg) saturate(0%) brightness(1);
+  object-fit: cover;
+}
+
+.title {
+  font-family: var(--ff-header);
+  font-size: var(--fs-x-large);
+  font-weight: initial;
+  letter-spacing: -0.05em;
+  line-height: 0.7;
+  margin: 0;
+  translate: -0.05ch 0;
+  z-index: 1;
+}

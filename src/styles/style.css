@@ -1,0 +1,88 @@
+:root {
+  --clr-neutral-100: #ecebeb;
+  --clr-neutral-400: hsl(0 0 40);
+  --clr-neutral-900: #161310;
+  --clr-accent: #b25f3f;
+
+  --clr-background: var(--clr-neutral-100);
+  --clr-text: var(--clr-neutral-900);
+  --clr-text-secondary: var(--clr-neutral-400);
+
+  --ff-base: "PP Neue Montreal", sans-serif;
+  --ff-header: "Merchant-ExtraLight", "Helvetica", serif;
+
+  --fs-small: 0.9rem;
+  --fs-medium: 1rem;
+  --fs-large: 2rem;
+  --fs-x-large: calc(100vw / 7.6);
+}
+
+.light-theme {
+  --clr-text: var(--clr-neutral-900);
+  --clr-background: var(--clr-neutral-100);
+
+  color-scheme: light;
+}
+
+.dark-theme {
+  --clr-text: var(--clr-neutral-100);
+  --clr-background: var(--clr-neutral-900);
+
+  color-scheme: dark;
+}
+
+button {
+  background-color: transparent;
+  border: none;
+}
+
+.navigation {
+  font-size: var(--fs-small);
+  font-weight: bold;
+  letter-spacing: -1px;
+}
+
+body {
+  --_body-padding-inline: 2vh;
+  --_theme-transition-duration: 500ms;
+  --_theme-transition-function: ease;
+
+  display: grid;
+  grid-template-columns:
+    var(--_body-padding-inline)
+    [content-start] 1fr [content-end] var(--_body-padding-inline);
+
+  background-color: var(--clr-background);
+  color: var(--clr-text);
+  font-family: var(--ff-base);
+  overflow-x: hidden;
+  transition: all var(--_theme-transition-duration)
+    var(--_theme-transition-function);
+
+  > * {
+    grid-column: 1 / -1;
+  }
+}
+
+main {
+  display: grid;
+  grid-template-columns: subgrid;
+  grid-column: 1 / -1;
+}
+
+section {
+  grid-column: 1 / -1;
+  min-height: 100svh;
+}
+
+@media (max-width: 810px) {
+  body:has([data-mobile-menu-open="true"]) {
+    overflow-y: hidden;
+  }
+}
+
+@media (min-width: 1000px) {
+  .navigation {
+    font-size: var(--fs-medium);
+  }
+}
