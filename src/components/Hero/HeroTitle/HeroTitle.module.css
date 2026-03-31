@@ -1,0 +1,16 @@
+.title {
+  font-family: var(--ff-header);
+  font-size: var(--fs-x-large);
+  font-weight: initial;
+  letter-spacing: -0.05em;
+  line-height: 0.7;
+  margin: 0;
+  translate: -0.05ch 0;
+  z-index: 1;
+}
+
+.footer__title {
+  justify-self: center;
+  grid-column: 1 / -1;
+  grid-row: 1;
+}

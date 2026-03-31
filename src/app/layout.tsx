@@ -1,12 +1,13 @@
 "use client";
 
-import { ViewTransitions } from "next-view-transitions";
-import { usePathname } from "next/navigation";
 import "../styles/reset.css";
 import "../styles/fonts.css";
 import "../styles/style.css";
-import Header from "@/components/Header/Header";
+import { ViewTransitions } from "next-view-transitions";
+import { usePathname } from "next/navigation";
 import { ThemeProvider } from "@/context/ThemeContext";
+import Header from "@/components/Header/Header";
+import Footer from "@/components/Footer/Footer";
 
 export default function RootLayout({
   children,
@@ -38,6 +39,7 @@ export default function RootLayout({
           <ThemeProvider>
             {!isAdmin && <Header />}
             {children}
+            <Footer />
           </ThemeProvider>
         </body>
       </html>

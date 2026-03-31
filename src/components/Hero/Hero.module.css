@@ -17,14 +17,3 @@
   filter: sepia(0%) hue-rotate(0deg) saturate(0%) brightness(1);
   object-fit: cover;
 }
-
-.title {
-  font-family: var(--ff-header);
-  font-size: var(--fs-x-large);
-  font-weight: initial;
-  letter-spacing: -0.05em;
-  line-height: 0.7;
-  margin: 0;
-  translate: -0.05ch 0;
-  z-index: 1;
-}

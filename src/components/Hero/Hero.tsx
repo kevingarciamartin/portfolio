@@ -1,6 +1,7 @@
 import Image from "next/image";
 import styles from "./Hero.module.css";
 import portrait from "../../../public/img/portrait.jpeg";
+import HeroTitle from "./HeroTitle/HeroTitle";
 
 export default function Hero() {
   return (
@@ -15,7 +16,7 @@ export default function Hero() {
           className={styles.image}
         />
       </div>
-      <h1 className={styles.title}>Kevin Garcia Martin</h1>
+      <HeroTitle />
     </section>
   );
 }
