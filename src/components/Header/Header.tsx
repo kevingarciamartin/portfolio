@@ -1,98 +1,74 @@
 "use client";
 
 import { Link } from "next-view-transitions";
-import { usePathname } from "next/navigation";
+import Clock from "./Clock/Clock";
 import styles from "./Header.module.css";
-import { useState, useEffect } from "react";
+import { HeaderProvider, useHeader } from "./HeaderContext";
+import NavLink from "./NavLink/NavLink";
+import ThemeButton from "./ThemeButton/ThemeButton";
 
-export default function Header() {
-  const pathname = usePathname();
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+const HeaderContent = () => {
+  const { mobileMenuOpen, toggleMenu, closeMenu } = useHeader();
 
   return (
-    <header
-      className={styles.header}
-      data-mobile-menu-open={mobileMenuOpen}
-    >
+    <header className={styles.header} data-mobile-menu-open={mobileMenuOpen}>
       {/* Mobile Header */}
       <ul>
         <li>
-          <Link href="/" id="mobile-logo" onClick={() => setMobileMenuOpen(false)}>
-            Kevin García
+          <Link href="/" className={styles.mobileLogo} onClick={closeMenu}>
+            Kevin Garcia Martin
           </Link>
         </li>
         <li>
-          <button
-            id="menu-btn"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          >
-            <div>{mobileMenuOpen ? "Close" : "Menu"}</div>
+          <button className={styles.menuBtn} onClick={toggleMenu}>
+            <div>Menu</div>
+            <div>Close</div>
           </button>
         </li>
       </ul>
 
-      {/* Desktop & Expanded Mobile Header */}
+      {/* Desktop Header & Mobile Menu */}
       <ul>
         <li>
-          <div>Location</div>
-          <div>Stockholm, SE</div>
+          <div>Kevin Garcia Martin:</div>
+          <div>Developer x Engineer</div>
         </li>
         <li>
-          <div>Local Time</div>
-          <Clock />
+          <div>Location:</div>
+          <div>
+            Stockholm, Sweden
+            <Clock />
+          </div>
         </li>
         <li>
+          <div>Navigation:</div>
           <nav>
             <ul>
               <li>
-                <Link
-                  href="/"
-                  className={pathname === "/" ? styles.active : ""}
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  <div aria-hidden="true"></div>
-                  <div>Home</div>
-                </Link>
+                <NavLink href="/" label="Home" />
               </li>
               <li>
-                <Link
-                  href="/work"
-                  className={pathname === "/work" ? styles.active : ""}
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  <div aria-hidden="true"></div>
-                  <div>Work</div>
-                </Link>
+                <NavLink href="/work" label="Work" />
               </li>
             </ul>
           </nav>
         </li>
         <li>
+          <div>Theme:</div>
           <div className={styles["theme-buttons"]}>
-            <button>Light</button>
-            <button>Dark</button>
+            <ThemeButton value="light" />
+            <ThemeButton value="dark" />
           </div>
         </li>
       </ul>
     </header>
   );
-}
+};
 
-function Clock() {
-  const [time, setTime] = useState(new Date());
-
-  useEffect(() => {
-    const timer = setInterval(() => setTime(new Date()), 1000);
-    return () => clearInterval(timer);
-  }, []);
-
+export default function Header() {
   return (
-    <div className="clock">
-      {time.toLocaleTimeString("en-GB", {
-        hour: "2-digit",
-        minute: "2-digit",
-        timeZone: "Europe/Stockholm",
-      })}
-    </div>
+    <HeaderProvider>
+      <HeaderContent />
+    </HeaderProvider>
   );
 }

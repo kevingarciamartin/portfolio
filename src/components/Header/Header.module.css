@@ -26,19 +26,6 @@
       color: var(--clr-text-secondary);
     }
 
-    div:has(.clock) {
-      display: flex;
-      gap: 0.5ch;
-
-      .clock {
-        display: flex;
-
-        .colon {
-          opacity: 1;
-        }
-      }
-    }
-
     nav ul,
     .theme-buttons {
       display: flex;
@@ -70,6 +57,18 @@
       padding: 0;
     }
   }
+
+  &
+    nav
+    ul
+    li:not(:last-of-type)
+    a
+    [aria-hidden="true"]
+    + span:last-of-type::after,
+  & > ul > li:last-of-type div button:not(:last-of-type)::after {
+    content: ",";
+    display: inline-block;
+  }
 }
 
 .header nav ul li a:not(.active):hover,
@@ -97,17 +96,34 @@
     padding: var(--_padding);
     z-index: 9999;
 
-    transition: background-color 300ms var(--_animation-function);
+    transition: background-color var(--theme-transition-duration)
+      var(--theme-transition-function);
+
+    &
+      nav
+      ul
+      li:not(:last-of-type)
+      a
+      [aria-hidden="true"]
+      + span:last-of-type::after {
+      content: "" !important;
+    }
 
     ul:first-of-type {
       display: flex;
       align-items: center;
 
-      #mobile-logo {
+      .mobileLogo {
+        color: var(--clr-text);
+        text-decoration: none;
         padding: 0;
       }
 
-      #menu-btn {
+      li:has(.menuBtn) {
+        display: flex;
+      }
+
+      .menuBtn {
         height: 1lh;
         padding: 0;
         overflow-y: clip;
@@ -149,7 +165,7 @@
               color: var(--clr-text);
             }
 
-            > div {
+            > span {
               display: grid;
               grid-template-columns: auto 1fr;
               gap: 1em;
@@ -188,7 +204,7 @@
   .header[data-mobile-menu-open="false"] {
     bottom: auto;
 
-    #menu-btn > * {
+    .menuBtn > * {
       transform: translateY(0);
       transition: transform var(--_animation-duration)
         var(--_animation-function);
@@ -202,5 +218,67 @@
 
   .header[data-mobile-menu-open="true"] {
     background-color: var(--clr-background) !important;
+
+    .menuBtn > * {
+      transform: translateY(-100%);
+      transition: transform var(--_animation-duration)
+        var(--_animation-function);
+    }
+
+    li:not(:has(a)) {
+      overflow-y: clip;
+
+      > div {
+        animation: slideIn var(--_animation-duration) var(--_animation-function)
+          forwards;
+      }
+    }
+
+    li > a {
+      &::before,
+      &::after {
+        animation: growDivider calc(var(--_animation-duration) * 2)
+          cubic-bezier(0, 0.55, 0.45, 1) forwards;
+      }
+
+      > div,
+      span {
+        overflow-y: clip;
+
+        span {
+          transform: translateY(1lh);
+          animation: slideIn var(--_animation-duration) 100ms
+            var(--_animation-function) forwards;
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 1000px) {
+  .header {
+    font-size: var(--fs-medium);
+  }
+}
+
+@keyframes slideIn {
+  0% {
+    opacity: 0.8;
+    transform: translateY(1lh);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes growDivider {
+  0% {
+    width: 0%;
+  }
+
+  100% {
+    width: 100%;
   }
 }
