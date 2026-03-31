@@ -20,8 +20,6 @@ export default async function WorkItemPage({
     return <div>Project not found</div>;
   }
 
-  const media = workItem.videoUrl ? workItem.videoUrl : workItem.imageUrl;
-
   return (
     <main className={styles.main}>
       <section className={styles.workItemPage} id="work-item">
@@ -75,7 +73,7 @@ export default async function WorkItemPage({
               <span className={styles.sectionTitle}>Description</span>
               <div className={styles.description}>
                 {/* Assuming description is a Portable Text array */}
-                {workItem.description?.map((block: any, i: number) => (
+                {workItem.description?.map((block: { children: { text: string }[] }, i: number) => (
                   <p key={i}>{block.children[0].text}</p> // Basic rendering, needs PortableText component for complex content
                 ))}
               </div>

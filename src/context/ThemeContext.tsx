@@ -16,6 +16,7 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
 
   useEffect(() => {
     const storedTheme = localStorage.getItem("darkmode") === "enabled" ? "dark" : "light";
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setThemeState(storedTheme);
   }, []);
 

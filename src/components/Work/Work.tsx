@@ -1,4 +1,4 @@
-import { getWorkItems } from "@/sanity/queries";
+import { getWorkItems, type WorkItem } from "@/sanity/queries";
 import styles from "./Work.module.css";
 import Image from "next/image";
 import Link from "next/link";
@@ -10,8 +10,8 @@ export default async function Work() {
     <section className={styles.work} id="work">
       <ul className={styles.workList}>
         {workItems
-          .filter((item: any) => item.slug) // Ensure item.slug exists
-          .map((item: any, index: number) => (
+          .filter((item: WorkItem) => item.slug) // Ensure item.slug exists
+          .map((item: WorkItem, index: number) => (
           <li key={item._id} className={styles.workItem}>
             {index === 0 && <div className={styles.horizontalLine} />}
             <Link href={`/work/${item.slug}`} className={styles.workContent}>

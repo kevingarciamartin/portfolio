@@ -28,6 +28,10 @@ export const workType = defineType({
       of: [{ type: "reference", to: [{ type: "technology" }] }],
     }),
     defineField({
+      name: "role",
+      type: "string",
+    }),
+    defineField({
       name: "image",
       type: "image",
       options: { hotspot: true },

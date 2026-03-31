@@ -19,7 +19,6 @@ export default defineConfig({
             orderableDocumentListDeskItem({
               type: "work",
               title: "Work (Orderable)",
-              orderRankField: "orderRank",
               S,
               context,
             }),
