@@ -41,16 +41,14 @@ export default async function WorkItemPage({
                 aria-label={`Video of ${workItem.title}`}
               />
             ) : workItem.imageUrl ? (
-              <div className={styles.mediaContainer}>
-                <Image
-                  src={workItem.imageUrl}
-                  alt={workItem.title}
-                  fill
-                  priority
-                  className={styles.image}
-                  style={{ objectFit: "cover" }}
-                />
-              </div>
+              <Image
+                src={workItem.imageUrl}
+                alt={workItem.title}
+                fill
+                priority
+                className={styles.image}
+                style={{ objectFit: "cover" }}
+              />
             ) : null}
           </Link>
 
@@ -73,9 +71,11 @@ export default async function WorkItemPage({
               <span className={styles.sectionTitle}>Description</span>
               <div className={styles.description}>
                 {/* Assuming description is a Portable Text array */}
-                {workItem.description?.map((block: { children: { text: string }[] }, i: number) => (
-                  <p key={i}>{block.children[0].text}</p> // Basic rendering, needs PortableText component for complex content
-                ))}
+                {workItem.description?.map(
+                  (block: { children: { text: string }[] }, i: number) => (
+                    <p key={i}>{block.children[0].text}</p> // Basic rendering, needs PortableText component for complex content
+                  )
+                )}
               </div>
             </div>
 

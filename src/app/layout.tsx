@@ -1,22 +1,14 @@
-"use client";
-
 import "../styles/reset.css";
 import "../styles/fonts.css";
 import "../styles/style.css";
 import { ViewTransitions } from "next-view-transitions";
-import { usePathname } from "next/navigation";
-import { ThemeProvider } from "@/context/ThemeContext";
-import Header from "@/components/Header/Header";
-import Footer from "@/components/Footer/Footer";
+import ClientLayout from "@/components/ClientLayout";
 
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const pathname = usePathname();
-  const isAdmin = pathname?.startsWith("/admin");
-
   return (
     <ViewTransitions>
       <html lang="en" suppressHydrationWarning>
@@ -36,11 +28,7 @@ export default function RootLayout({
           />
         </head>
         <body suppressHydrationWarning>
-          <ThemeProvider>
-            {!isAdmin && <Header />}
-            {children}
-            <Footer />
-          </ThemeProvider>
+          <ClientLayout>{children}</ClientLayout>
         </body>
       </html>
     </ViewTransitions>
