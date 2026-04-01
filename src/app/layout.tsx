@@ -19,7 +19,7 @@ export default function RootLayout({
 
   return (
     <ViewTransitions>
-      <html lang="en">
+      <html lang="en" suppressHydrationWarning>
         <head>
           <script
             dangerouslySetInnerHTML={{
@@ -28,7 +28,7 @@ export default function RootLayout({
                   try {
                     var darkmode = localStorage.getItem('darkmode');
                     var theme = darkmode === 'enabled' ? 'dark' : 'light';
-                    document.body.classList.add(theme + '-theme');
+                    document.documentElement.classList.add(theme + '-theme');
                   } catch (e) {}
                 })();
               `,

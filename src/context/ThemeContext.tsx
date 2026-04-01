@@ -20,17 +20,21 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
     setThemeState(storedTheme);
   }, []);
 
+  useEffect(() => {
+    if (!theme) return;
+
+    if (theme === "dark") {
+      document.documentElement.classList.add("dark-theme");
+      document.documentElement.classList.remove("light-theme");
+    } else {
+      document.documentElement.classList.add("light-theme");
+      document.documentElement.classList.remove("dark-theme");
+    }
+  }, [theme]);
+
   const setTheme = (newTheme: Theme) => {
     setThemeState(newTheme);
-    if (newTheme === "dark") {
-      localStorage.setItem("darkmode", "enabled");
-      document.body.classList.add("dark-theme");
-      document.body.classList.remove("light-theme");
-    } else {
-      localStorage.setItem("darkmode", "null");
-      document.body.classList.add("light-theme");
-      document.body.classList.remove("dark-theme");
-    }
+    localStorage.setItem("darkmode", newTheme === "dark" ? "enabled" : "disabled");
   };
 
   return (
