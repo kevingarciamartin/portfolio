@@ -4,6 +4,7 @@ import { usePathname } from "next/navigation";
 import { ThemeProvider } from "@/context/ThemeContext";
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
+import Contact from "./Contact/Contact";
 
 export default function ClientLayout({
   children,
@@ -17,7 +18,13 @@ export default function ClientLayout({
     <ThemeProvider>
       {!isAdmin && <Header />}
       {children}
-      {!isAdmin && <Footer />}
+      {!isAdmin && (
+        <>
+          <Contact />
+          <Footer />
+        </>
+      )}
+      {/* {!isAdmin && >} */}
     </ThemeProvider>
   );
 }

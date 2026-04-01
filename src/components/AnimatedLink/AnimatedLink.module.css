@@ -1,0 +1,29 @@
+.animatedLink {
+  font-style: normal;
+  height: 1.2em;
+  letter-spacing: -1px;
+  overflow: clip;
+  text-transform: uppercase;
+  text-decoration: none;
+
+  &:hover,
+  &:focus-visible {
+    outline: none;
+    
+    span {
+      transform: translateY(-100%);
+    }
+    
+    span:nth-of-type(2) {
+      color: var(--clr-accent) !important;
+    }
+  }
+
+  span {
+    display: block;
+
+    color: var(--clr-text) !important;
+    transform: translateY(0);
+    transition: transform 200ms ease, color 200ms ease;
+  }
+}
