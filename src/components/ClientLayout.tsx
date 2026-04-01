@@ -17,7 +17,7 @@ export default function ClientLayout({
     <ThemeProvider>
       {!isAdmin && <Header />}
       {children}
-      <Footer />
+      {!isAdmin && <Footer />}
     </ThemeProvider>
   );
 }
