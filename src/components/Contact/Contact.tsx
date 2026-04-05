@@ -34,15 +34,15 @@ export default function Contact() {
   });
 
   const yPos = useTransform(scrollYProgress, [0, 1], [0, -150]);
-  const rotate = useTransform(scrollYProgress, [0, 1], [0, 720]);
+  const rotate = useTransform(scrollYProgress, [0, 1], [-720, 0]);
 
   return (
     <section ref={sectionRef} className={styles.contact}>
       <motion.img
         src={backdrop.src}
         alt="Contact backdrop. An image of Kevin Garcia Martin walking in London."
-        width={600}
-        height={600}
+        width={backdrop.width}
+        height={backdrop.height}
         className={styles.parallaxBg}
         style={{ y: yPos }}
       />
