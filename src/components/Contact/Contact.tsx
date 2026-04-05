@@ -1,10 +1,11 @@
 "use client";
 
-import styles from "./Contact.module.css";
 import { motion, useScroll, useTransform } from "framer-motion";
+import Image from "next/image";
 import { useRef } from "react";
 import backdrop from "../../../public/img/snooki-i-london.jpeg";
 import AnimatedLink, { AnimatedLinkProps } from "../AnimatedLink/AnimatedLink";
+import styles from "./Contact.module.css";
 
 const contactArray: AnimatedLinkProps[] = [
   {
@@ -24,6 +25,8 @@ const contactArray: AnimatedLinkProps[] = [
   },
 ];
 
+const MotionImage = motion.create(Image);
+
 export default function Contact() {
   const sectionRef = useRef(null);
   const svgRef = useRef(null);
@@ -38,19 +41,18 @@ export default function Contact() {
 
   return (
     <section ref={sectionRef} className={styles.contact}>
-      <motion.img
-        src={backdrop.src}
+      <MotionImage
+        src={backdrop}
         alt="Contact backdrop. An image of Kevin Garcia Martin walking in London."
-        width={backdrop.width}
-        height={backdrop.height}
         className={styles.parallaxBg}
         style={{ y: yPos }}
+        loading="lazy"
       />
       <article className={styles.contactArticle}>
         <div>
           <p>
-            I'm always excited to discuss new projects and collaboration
-            opportunities. Feel free to reach out and let's build something
+            I&apos;m always excited to discuss new projects and collaboration
+            opportunities. Feel free to reach out and let&apos;s build something
             beautiful together.
           </p>
           <motion.svg
