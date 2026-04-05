@@ -9,6 +9,7 @@ html {
   color-scheme: dark light;
   hanging-punctuation: first last;
   scrollbar-gutter: stable;
+  position: relative;
 }
 
 body {
