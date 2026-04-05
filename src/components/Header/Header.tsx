@@ -1,17 +1,46 @@
 "use client";
 
+import styles from "./Header.module.css";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import Clock from "./Clock/Clock";
-import styles from "./Header.module.css";
 import { HeaderProvider, useHeader } from "./HeaderContext";
 import NavLink from "./NavLink/NavLink";
 import ThemeButton from "./ThemeButton/ThemeButton";
 
 const HeaderContent = () => {
   const { mobileMenuOpen, toggleMenu, closeMenu } = useHeader();
+  const [scrollPercentage, setScrollPercentage] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+      const viewportHeight = window.innerHeight;
+      const percentage = Math.min(scrollPosition / viewportHeight, 1);
+      setScrollPercentage(percentage);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const headerStyle = !mobileMenuOpen
+    ? {
+        background: `linear-gradient(to bottom, hsl(from var(--clr-background) h s l / ${
+          scrollPercentage * 0.2
+        }) 95%, hsl(from var(--clr-background) h s l / 0))`,
+        backdropFilter: `blur(${scrollPercentage * 10}px)`,
+        WebkitBackdropFilter: `blur(${scrollPercentage * 10}px)`,
+      }
+    : {};
 
   return (
-    <header className={styles.header} data-mobile-menu-open={mobileMenuOpen}>
+    <header
+      className={styles.header}
+      data-mobile-menu-open={mobileMenuOpen}
+      style={headerStyle}
+    >
       {/* Mobile Header */}
       <ul>
         <li>
