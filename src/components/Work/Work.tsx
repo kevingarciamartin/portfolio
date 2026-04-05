@@ -53,9 +53,12 @@ export default async function Work() {
                     <Image
                       src={item.imageUrl}
                       alt={item.title}
-                      width={480}
-                      height={640}
+                      width={item.imageMetadata?.width || 480}
+                      height={item.imageMetadata?.height || 640}
                       className={styles.media}
+                      style={{ height: "auto" }}
+                      sizes="min(100vw, 30rem)"
+                      priority={index < 2}
                     />
                   )
                 )}

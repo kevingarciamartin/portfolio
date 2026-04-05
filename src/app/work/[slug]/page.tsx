@@ -48,6 +48,7 @@ export default async function WorkItemPage({
                 priority
                 className={styles.image}
                 style={{ objectFit: "cover" }}
+                sizes="(max-width: 800px) 100vw, 800px"
               />
             ) : null}
           </Link>

@@ -12,6 +12,10 @@ export interface WorkItem {
   }[];
   stack: string[];
   imageUrl?: string;
+  imageMetadata?: {
+    width: number;
+    height: number;
+  };
   videoUrl?: string;
   link?: {
     text?: string;
@@ -30,6 +34,7 @@ export const getWorkItems = async (): Promise<WorkItem[]> => {
       description,
       "stack": stack[]->title,
       "imageUrl": image.asset->url,
+      "imageMetadata": image.asset->metadata.dimensions,
       "videoUrl": video.asset->url,
       link,
       featured
@@ -48,6 +53,7 @@ export const getWorkBySlug = async (slug: string): Promise<WorkItem | null> => {
       description,
       "stack": stack[]->title,
       "imageUrl": image.asset->url,
+      "imageMetadata": image.asset->metadata.dimensions,
       "videoUrl": video.asset->url,
       link,
       featured
