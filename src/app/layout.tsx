@@ -1,7 +1,7 @@
-import "../styles/reset.css";
-import "../styles/fonts.css";
-import "../styles/style.css";
 import ClientLayout from "@/components/ClientLayout";
+import "@/styles/fonts.css";
+import "@/styles/reset.css";
+import "@/styles/style.css";
 
 export default function RootLayout({
   children,

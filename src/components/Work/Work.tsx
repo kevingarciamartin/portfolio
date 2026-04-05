@@ -1,7 +1,7 @@
 import { getWorkItems, type WorkItem } from "@/sanity/queries";
-import styles from "./Work.module.css";
 import Image from "next/image";
 import Link from "next/link";
+import styles from "./Work.module.css";
 
 export default async function Work() {
   const workItems = await getWorkItems();

@@ -1,10 +1,10 @@
 "use client";
 
+import AnimatedLink, { AnimatedLinkProps } from "@/components/AnimatedLink/AnimatedLink";
+import backdrop from "@public/img/snooki-i-london.jpeg";
 import { motion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
 import { useRef } from "react";
-import backdrop from "../../../public/img/snooki-i-london.jpeg";
-import AnimatedLink, { AnimatedLinkProps } from "../AnimatedLink/AnimatedLink";
 import styles from "./Contact.module.css";
 
 const contactArray: AnimatedLinkProps[] = [

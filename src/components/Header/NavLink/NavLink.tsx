@@ -1,9 +1,9 @@
 "use client";
 
+import { useHeader } from "@/context/HeaderContext";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import styles from "../Header.module.css";
-import { useHeader } from "../HeaderContext";
 
 interface NavLinkProps {
   href: string;

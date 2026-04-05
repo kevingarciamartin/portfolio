@@ -1,10 +1,10 @@
 "use client";
 
-import styles from "./Header.module.css";
-import { useEffect, useState } from "react";
+import { HeaderProvider, useHeader } from "@/context/HeaderContext";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 import Clock from "./Clock/Clock";
-import { HeaderProvider, useHeader } from "./HeaderContext";
+import styles from "./Header.module.css";
 import NavLink from "./NavLink/NavLink";
 import ThemeButton from "./ThemeButton/ThemeButton";
 

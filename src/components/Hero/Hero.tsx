@@ -1,6 +1,6 @@
+import portrait from "@public/img/portrait.jpeg";
 import Image from "next/image";
 import styles from "./Hero.module.css";
-import portrait from "../../../public/img/portrait.jpeg";
 import HeroTitle from "./HeroTitle/HeroTitle";
 
 export default function Hero() {

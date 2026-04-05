@@ -1,8 +1,7 @@
 "use client";
 
-import React from "react";
+import HeroTitle from "@/components/Hero/HeroTitle/HeroTitle";
 import styles from "./Footer.module.css";
-import HeroTitle from "../Hero/HeroTitle/HeroTitle";
 
 const Footer = () => {
   const scrollToTop = () => {
@@ -28,7 +27,6 @@ const Footer = () => {
           </li>
         </ul>
       </div>
-      {/* <p className={styles.hero__title}>Kevin Garcia Martin</p> */}
       <HeroTitle section={"footer"} />
     </footer>
   );
