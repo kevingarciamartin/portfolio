@@ -1,10 +1,11 @@
 "use client";
 
-import { usePathname } from "next/navigation";
-import { ThemeProvider } from "@/context/ThemeContext";
-import Header from "@/components/Header/Header";
+import Contact from "@/components/Contact/Contact";
 import Footer from "@/components/Footer/Footer";
-import Contact from "./Contact/Contact";
+import Header from "@/components/Header/Header";
+import { ThemeProvider } from "@/context/ThemeContext";
+import { ReactLenis } from "lenis/react";
+import { usePathname } from "next/navigation";
 
 export default function ClientLayout({
   children,
@@ -16,15 +17,16 @@ export default function ClientLayout({
 
   return (
     <ThemeProvider>
-      {!isAdmin && <Header />}
-      {children}
-      {!isAdmin && (
-        <>
+      {isAdmin ? (
+        children
+      ) : (
+        <ReactLenis root options={{ lerp: 0.1 }}>
+          <Header />
+          {children}
           <Contact />
           <Footer />
-        </>
+        </ReactLenis>
       )}
-      {/* {!isAdmin && >} */}
     </ThemeProvider>
   );
 }
