@@ -10,14 +10,23 @@
 }
 
 .parallaxBg {
+  --_brightness: 1;
+
   position: absolute;
   z-index: -1;
 
-  filter: sepia(30%) hue-rotate(0deg) saturate(100%) brightness(1);
+  filter: sepia(30%) hue-rotate(0deg) saturate(100%)
+    brightness(var(--_brightness));
   height: 130%;
   object-fit: cover;
   object-position: 70%;
   width: 100%;
+  transition: filter var(--theme-transition-duration)
+    var(--theme-transition-function);
+}
+
+:global(.dark-theme) .parallaxBg {
+  --_brightness: 0.8;
 }
 
 .contact article {
@@ -59,10 +68,6 @@
   gap: 0.25rem;
 
   text-align: center;
-}
-
-body:is(.dark-theme) .parallaxBg {
-  filter: sepia(30%) hue-rotate(0deg) saturate(100%) brightness(0.8);
 }
 
 @container (max-width: 500px) {
