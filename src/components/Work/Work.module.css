@@ -115,37 +115,35 @@
   }
 
   .workItem .media {
-    display: none;
+    opacity: 0;
+    pointer-events: none;
     position: absolute;
     bottom: var(--_body-padding-inline);
     right: 0;
     width: 35%;
     max-height: 80%;
     object-fit: contain;
+    transition: opacity 0.4s ease-in-out;
   }
 
-  .workItem:hover,
-  .workItem:focus-within {
+  .workItem.active {
     color: var(--clr-text);
   }
 
-  .workItem:hover .horizontalLine,
-  .workItem:focus-within .horizontalLine {
+  .workItem.active .horizontalLine {
     border-color: var(--clr-text);
   }
 
-  .workItem:hover .workContent,
-  .workItem:focus-within .workContent {
+  .workItem.active .workContent {
     outline: none;
   }
 
-  .workItem:hover .workInfo svg path,
-  .workItem:focus-within .workInfo svg path {
+  .workItem.active .workInfo svg path {
     fill: var(--clr-text);
   }
 
-  .workItem:hover .media,
-  .workItem:focus-within .media {
-    display: block;
+  .workItem.active .media {
+    opacity: 1;
+    pointer-events: auto;
   }
 }
