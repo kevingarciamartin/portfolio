@@ -16,6 +16,7 @@ export default async function Work() {
               {index === 0 && <div className={styles.horizontalLine} />}
               <Link href={`/work/${item.slug}`} className={styles.workContent}>
                 <div className={styles.workInfo}>
+                  <span></span>
                   <h3 className={styles.title}>{item.title}</h3>
                   <svg
                     width="80px"
