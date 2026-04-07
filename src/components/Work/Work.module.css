@@ -5,7 +5,6 @@
 
 .workList {
   display: grid;
-  gap: 1rem;
   list-style: none;
   margin: 0;
   padding: 0;
@@ -13,21 +12,25 @@
 }
 
 .workItem {
-  display: grid;
-  gap: 1rem;
+  --_margin: 0.5rem;
+
   cursor: pointer;
-  overflow: hidden;
+
+  a {
+    display: grid;
+    gap: var(--_margin);
+    overflow: clip;
+  }
 }
 
 .horizontalLine {
   border: 1px solid var(--clr-text);
   height: 1px;
+  margin-block: var(--_margin);
   width: 100%;
 }
 
 .workContent {
-  display: grid;
-  gap: 1rem;
   counter-increment: work-counter;
   text-decoration: none;
   color: inherit;
@@ -44,13 +47,13 @@
 }
 
 .workInfo span:first-of-type::before {
-  font-size: 2rem;
+  font-size: 1.5rem;
   content: counter(work-counter, decimal-leading-zero);
 }
 
 .title {
   justify-self: start;
-  font-size: 1.5rem;
+  font-size: 1rem;
   font-weight: normal;
   margin: 0;
 }
@@ -58,7 +61,7 @@
 .arrowIcon {
   grid-row: span 2;
   align-self: center;
-  height: 2rem;
+  height: 1rem;
   width: auto;
 }
 
@@ -78,6 +81,19 @@
   width: min(100%, 30rem);
   height: auto;
   display: block;
+  overflow: clip;
+}
+
+.mediaInner {
+  width: 100%;
+  height: 100%;
+}
+
+.mediaInner video {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
 }
 
 @media (min-width: 1000px) {
@@ -95,12 +111,17 @@
   }
 
   .workItem {
-    --_work-list-transition-speed: 200ms;
-    --_work-list-transition-effect: ease-in-out;
+    --_work-list-transition-speed: 500ms;
+    --_work-list-transition-effect: ease;
+    --media-opacity: 0;
 
     color: var(--clr-text-secondary);
     transition: color var(--_work-list-transition-speed)
       var(--_work-list-transition-effect);
+
+    a {
+      --_margin: 0;
+    }
   }
 
   .workItem .horizontalLine {
@@ -116,19 +137,23 @@
   }
 
   .workItem .media {
-    opacity: 0;
     pointer-events: none;
     position: absolute;
     bottom: var(--_body-padding-inline);
     right: 0;
     width: 35%;
     max-height: 80%;
-    object-fit: contain;
-    transition: opacity 0.4s ease-in-out;
+  }
+
+  .mediaInner {
+    transition: opacity var(--_work-list-transition-speed)
+      var(--_work-list-transition-effect);
+    opacity: var(--media-opacity);
   }
 
   .workItem.active {
     color: var(--clr-text);
+    --media-opacity: 1;
   }
 
   .workItem.active .horizontalLine {
@@ -141,10 +166,5 @@
 
   .workItem.active .workInfo svg path {
     fill: var(--clr-text);
-  }
-
-  .workItem.active .media {
-    opacity: 1;
-    pointer-events: auto;
   }
 }

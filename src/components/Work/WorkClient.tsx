@@ -1,7 +1,7 @@
 "use client";
 
 import { type WorkItem } from "@/sanity/queries";
-import { motion, Variants } from "framer-motion";
+import { Easing, motion, Variants } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
@@ -10,6 +10,9 @@ import styles from "./Work.module.css";
 interface WorkClientProps {
   workItems: WorkItem[];
 }
+
+const DURATION = 1;
+const EASE: Easing | Easing[] = [0, 0.55, 0.45, 1];
 
 const listVariants: Variants = {
   hidden: { opacity: 0 },
@@ -25,7 +28,7 @@ const lineVariants: Variants = {
   hidden: { width: 0 },
   visible: {
     width: "100%",
-    transition: { duration: 0.8, ease: [0.33, 1, 0.68, 1] },
+    transition: { duration: DURATION, ease: EASE },
   },
 };
 
@@ -34,16 +37,7 @@ const itemVariants: Variants = {
   visible: {
     y: 0,
     opacity: 1,
-    transition: { duration: 0.8, ease: [0.33, 1, 0.68, 1] },
-  },
-};
-
-const mediaVariants: Variants = {
-  hidden: { scale: 1.2, opacity: 0 },
-  visible: {
-    scale: 1,
-    opacity: 1,
-    transition: { duration: 1.2, ease: [0.33, 1, 0.68, 1] },
+    transition: { duration: DURATION, ease: EASE },
   },
 };
 
@@ -108,33 +102,46 @@ export default function WorkClient({ workItems }: WorkClientProps) {
                 </span>
               </motion.div>
               <motion.div
-                initial="hidden"
-                animate="visible"
-                variants={mediaVariants}
+                className={styles.media}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 1.2 }}
               >
-                {item.videoUrl ? (
-                  <video
-                    src={item.videoUrl}
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                    className={styles.media}
-                  />
-                ) : (
-                  item.imageUrl && (
-                    <Image
-                      src={item.imageUrl}
-                      alt={item.title}
-                      width={item.imageMetadata?.width || 480}
-                      height={item.imageMetadata?.height || 640}
-                      className={styles.media}
-                      style={{ height: "auto" }}
-                      sizes="min(100vw, 30rem)"
-                      priority={index < 2}
+                <motion.div
+                  initial={{ scale: 1.2 }}
+                  animate={{
+                    scale: 1,
+                    opacity: "var(--media-opacity, 1)",
+                  }}
+                  transition={{ duration: 1.2, ease: [0, 0.55, 0.45, 1] }}
+                  className={styles.mediaInner}
+                >
+                  {item.videoUrl ? (
+                    <video
+                      src={item.videoUrl}
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
                     />
-                  )
-                )}
+                  ) : (
+                    item.imageUrl && (
+                      <Image
+                        src={item.imageUrl}
+                        alt={item.title}
+                        width={item.imageMetadata?.width || 480}
+                        height={item.imageMetadata?.height || 640}
+                        style={{
+                          height: "auto",
+                          width: "100%",
+                          display: "block",
+                        }}
+                        sizes="min(100vw, 30rem)"
+                        priority={index < 2}
+                      />
+                    )
+                  )}
+                </motion.div>
               </motion.div>
             </Link>
             <motion.div
