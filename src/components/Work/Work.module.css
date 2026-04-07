@@ -38,7 +38,8 @@
 
 .workInfo {
   display: grid;
-  grid-template-columns: 3rem 1fr auto;
+  grid-template-columns: auto 1fr auto;
+  column-gap: 0.5rem;
 }
 
 .workInfo span:first-of-type {
@@ -74,6 +75,11 @@
   grid-row: 2;
   justify-self: start;
   color: var(--clr-text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+  min-width: 0;
 }
 
 .media {
