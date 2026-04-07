@@ -4,7 +4,7 @@
   grid-template-columns: subgrid;
   grid-column: 1 / -1;
 
-  font-size: var(--fs-small);
+  font-size: var(--fs-medium);
   font-weight: bold;
   letter-spacing: -1px;
   min-height: 100vh;
@@ -95,6 +95,6 @@
 
 @media (min-width: 1000px) {
   .footer {
-    font-size: var(--fs-medium);
+    font-size: var(--fs-x-medium);
   }
 }

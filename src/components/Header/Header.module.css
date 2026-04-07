@@ -5,6 +5,7 @@
   padding: var(--_body-padding-inline);
 
   font-size: var(--fs-small);
+  font-size: var(--fs-medium);
   font-weight: bold;
   letter-spacing: -1px;
   transition: background var(--theme-transition-duration)
@@ -259,7 +260,7 @@
 
 @media (min-width: 1000px) {
   .header {
-    font-size: var(--fs-medium);
+    font-size: var(--fs-x-medium);
   }
 }
 
