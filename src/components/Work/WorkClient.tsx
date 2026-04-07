@@ -1,6 +1,7 @@
 "use client";
 
 import { type WorkItem } from "@/sanity/queries";
+import { motion, Variants } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
@@ -10,29 +11,78 @@ interface WorkClientProps {
   workItems: WorkItem[];
 }
 
+const listVariants: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+};
+
+const lineVariants: Variants = {
+  hidden: { width: 0 },
+  visible: {
+    width: "100%",
+    transition: { duration: 0.8, ease: [0.33, 1, 0.68, 1] },
+  },
+};
+
+const itemVariants: Variants = {
+  hidden: { y: 20, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+    transition: { duration: 0.8, ease: [0.33, 1, 0.68, 1] },
+  },
+};
+
+const mediaVariants: Variants = {
+  hidden: { scale: 1.2, opacity: 0 },
+  visible: {
+    scale: 1,
+    opacity: 1,
+    transition: { duration: 1.2, ease: [0.33, 1, 0.68, 1] },
+  },
+};
+
 export default function WorkClient({ workItems }: WorkClientProps) {
   const [activeIndex, setActiveIndex] = useState<number>(0);
 
   const filteredItems = workItems.filter((item) => item.slug);
 
   return (
-    <ul className={styles.workList}>
+    <motion.ul
+      className={styles.workList}
+      variants={listVariants}
+      initial="hidden"
+      animate="visible"
+    >
       {filteredItems.map((item, index) => {
         const isActive = index === activeIndex;
 
         return (
-          <li
+          <motion.li
             key={item._id}
             className={`${styles.workItem} ${isActive ? styles.active : ""}`}
             onMouseEnter={() => setActiveIndex(index)}
+            variants={{
+              visible: { transition: { staggerChildren: 0.05 } },
+            }}
           >
-            {index === 0 && <div className={styles.horizontalLine} />}
+            {index === 0 && (
+              <motion.div
+                className={styles.horizontalLine}
+                variants={lineVariants}
+              />
+            )}
             <Link
               href={`/work/${item.slug}`}
               className={styles.workContent}
               onFocus={() => setActiveIndex(index)}
             >
-              <div className={styles.workInfo}>
+              <motion.div className={styles.workInfo} variants={itemVariants}>
                 <span></span>
                 <h3 className={styles.title}>{item.title}</h3>
                 <svg
@@ -51,35 +101,40 @@ export default function WorkClient({ workItems }: WorkClientProps) {
                 <span className={styles.stack}>
                   {item.stack?.join(", ") || "No stack specified"}
                 </span>
-              </div>
-              {item.videoUrl ? (
-                <video
-                  src={item.videoUrl}
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  className={styles.media}
-                />
-              ) : (
-                item.imageUrl && (
-                  <Image
-                    src={item.imageUrl}
-                    alt={item.title}
-                    width={item.imageMetadata?.width || 480}
-                    height={item.imageMetadata?.height || 640}
+              </motion.div>
+              <motion.div variants={mediaVariants}>
+                {item.videoUrl ? (
+                  <video
+                    src={item.videoUrl}
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
                     className={styles.media}
-                    style={{ height: "auto" }}
-                    sizes="min(100vw, 30rem)"
-                    priority={index < 2}
                   />
-                )
-              )}
+                ) : (
+                  item.imageUrl && (
+                    <Image
+                      src={item.imageUrl}
+                      alt={item.title}
+                      width={item.imageMetadata?.width || 480}
+                      height={item.imageMetadata?.height || 640}
+                      className={styles.media}
+                      style={{ height: "auto" }}
+                      sizes="min(100vw, 30rem)"
+                      priority={index < 2}
+                    />
+                  )
+                )}
+              </motion.div>
             </Link>
-            <div className={styles.horizontalLine} />
-          </li>
+            <motion.div
+              className={styles.horizontalLine}
+              variants={lineVariants}
+            />
+          </motion.li>
         );
       })}
-    </ul>
+    </motion.ul>
   );
 }
