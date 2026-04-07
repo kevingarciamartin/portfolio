@@ -111,9 +111,8 @@ export default function WorkClient({ workItems }: WorkClientProps) {
                   initial={{ scale: 1.2 }}
                   animate={{
                     scale: 1,
-                    opacity: "var(--media-opacity, 1)",
                   }}
-                  transition={{ duration: 1.2, ease: [0, 0.55, 0.45, 1] }}
+                  transition={{ duration: 1.2, ease: EASE }}
                   className={styles.mediaInner}
                 >
                   {item.videoUrl ? (
