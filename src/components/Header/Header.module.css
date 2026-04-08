@@ -1,7 +1,7 @@
 .header {
   position: fixed;
   inset: 0 0 auto 0;
-  z-index: 9999;
+  z-index: 999;
   padding: var(--_body-padding-inline);
 
   font-size: var(--fs-medium);
@@ -96,7 +96,7 @@
     background-color: var(--clr-background);
     inset: 0;
     padding: var(--_padding);
-    z-index: 9999;
+    z-index: 999;
 
     transition: background-color var(--theme-transition-duration)
       var(--theme-transition-function);

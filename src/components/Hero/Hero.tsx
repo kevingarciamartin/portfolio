@@ -1,4 +1,4 @@
-import portrait from "@public/img/portrait.webp";
+import portrait from "@public/img/portraits/portrait.webp";
 import Image from "next/image";
 import styles from "./Hero.module.css";
 import HeroTitle from "./HeroTitle/HeroTitle";

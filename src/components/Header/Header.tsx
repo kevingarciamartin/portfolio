@@ -1,6 +1,7 @@
 "use client";
 
 import { HeaderProvider, useHeader } from "@/context/HeaderContext";
+import { motion } from "framer-motion";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import Clock from "./Clock/Clock";
@@ -36,7 +37,10 @@ const HeaderContent = () => {
     : {};
 
   return (
-    <header
+    <motion.header
+      initial={{ y: -100, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.8, ease: "easeInOut" }}
       className={styles.header}
       data-mobile-menu-open={mobileMenuOpen}
       style={headerStyle}
@@ -90,7 +94,7 @@ const HeaderContent = () => {
           </div>
         </li>
       </ul>
-    </header>
+    </motion.header>
   );
 };
 
