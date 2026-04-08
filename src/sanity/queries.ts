@@ -2,6 +2,7 @@ import { client } from "./client";
 
 export interface WorkItem {
   _id: string;
+  _updatedAt?: string;
   title: string;
   slug: string;
   role?: string;
@@ -28,6 +29,7 @@ export const getWorkItems = async (): Promise<WorkItem[]> => {
   return client.fetch(`
     *[_type == "work"] | order(orderRank asc) {
       _id,
+      _updatedAt,
       title,
       "slug": slug.current,
       role,
