@@ -1,7 +1,8 @@
 "use client";
 
 import { type WorkItem } from "@/sanity/queries";
-import { Easing, motion, Variants } from "framer-motion";
+import { CIRC_EASE_OUT, DURATION, QUINT_EASE_OUT } from "@/utils/util";
+import { motion, Variants } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
@@ -10,9 +11,6 @@ import styles from "./Work.module.css";
 interface WorkClientProps {
   workItems: WorkItem[];
 }
-
-const DURATION = 1;
-const EASE: Easing | Easing[] = [0, 0.55, 0.45, 1];
 
 const listVariants: Variants = {
   hidden: { opacity: 0 },
@@ -28,16 +26,16 @@ const lineVariants: Variants = {
   hidden: { width: 0 },
   visible: {
     width: "100%",
-    transition: { duration: DURATION, ease: EASE },
+    transition: { duration: DURATION * 2, ease: QUINT_EASE_OUT },
   },
 };
 
 const itemVariants: Variants = {
-  hidden: { y: 20, opacity: 0 },
+  hidden: { y: "100%", opacity: 0 },
   visible: {
     y: 0,
     opacity: 1,
-    transition: { duration: DURATION, ease: EASE },
+    transition: { duration: DURATION / 2, ease: CIRC_EASE_OUT },
   },
 };
 
@@ -105,14 +103,14 @@ export default function WorkClient({ workItems }: WorkClientProps) {
                 className={styles.media}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ duration: 1.2 }}
+                transition={{ duration: DURATION }}
               >
                 <motion.div
                   initial={{ scale: 1.2 }}
                   animate={{
                     scale: 1,
                   }}
-                  transition={{ duration: 1.2, ease: EASE }}
+                  transition={{ duration: DURATION, ease: CIRC_EASE_OUT }}
                   className={styles.mediaInner}
                 >
                   {item.videoUrl ? (

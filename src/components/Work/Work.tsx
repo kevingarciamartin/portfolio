@@ -1,6 +1,6 @@
 import { getWorkItems } from "@/sanity/queries";
-import WorkClient from "./WorkClient";
 import styles from "./Work.module.css";
+import WorkClient from "./WorkClient";
 
 export default async function Work() {
   const workItems = await getWorkItems();

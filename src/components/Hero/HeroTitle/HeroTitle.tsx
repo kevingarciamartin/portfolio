@@ -1,5 +1,6 @@
 "use client";
 
+import { CIRC_EASE_OUT, DURATION } from "@/utils/util";
 import { motion } from "framer-motion";
 import styles from "./HeroTitle.module.css";
 
@@ -14,7 +15,7 @@ const HeroTitle = ({ section = "hero" }: HeroTitleProps) => {
         <motion.h1
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.8, ease: "easeInOut" }}
+          transition={{ duration: DURATION, ease: CIRC_EASE_OUT }}
           className={styles.title}
         >
           Kevin Garcia Martin

@@ -1,6 +1,7 @@
 "use client";
 
 import { HeaderProvider, useHeader } from "@/context/HeaderContext";
+import { CIRC_EASE_OUT, DURATION } from "@/utils/util";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -40,7 +41,7 @@ const HeaderContent = () => {
     <motion.header
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.8, ease: "easeInOut" }}
+      transition={{ duration: DURATION, ease: CIRC_EASE_OUT }}
       className={styles.header}
       data-mobile-menu-open={mobileMenuOpen}
       style={headerStyle}
