@@ -137,6 +137,7 @@ export default function WorkClient({ workItems }: WorkClientProps) {
                         }}
                         sizes="min(100vw, 30rem)"
                         priority={index < 2}
+                        fetchPriority={index < 2 ? "high" : "auto"}
                       />
                     )
                   )}

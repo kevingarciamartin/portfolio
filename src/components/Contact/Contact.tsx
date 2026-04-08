@@ -1,7 +1,9 @@
 "use client";
 
-import AnimatedLink, { AnimatedLinkProps } from "@/components/AnimatedLink/AnimatedLink";
-import backdrop from "@public/img/snooki-i-london.jpeg";
+import AnimatedLink, {
+  AnimatedLinkProps,
+} from "@/components/AnimatedLink/AnimatedLink";
+import backdrop from "@public/img/snooki-i-london.webp";
 import { motion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
 import { useRef } from "react";
@@ -47,6 +49,7 @@ export default function Contact() {
         className={styles.parallaxBg}
         style={{ y: yPos }}
         loading="lazy"
+        sizes="100vw"
       />
       <article className={styles.contactArticle}>
         <div>
