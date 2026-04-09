@@ -2,16 +2,15 @@
 
 import { HeaderProvider, useHeader } from "@/context/HeaderContext";
 import { CIRC_EASE_OUT, DURATION } from "@/utils/util";
-import { motion } from "framer-motion";
-import Link from "next/link";
+import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
-import Clock from "./Clock/Clock";
 import styles from "./Header.module.css";
-import NavLink from "./NavLink/NavLink";
-import ThemeButton from "./ThemeButton/ThemeButton";
+import MobileHeader from "./MobileHeader/MobileHeader";
+import DesktopHeader from "./DesktopHeader/DesktopHeader";
+import MobileMenu from "./MobileMenu/MobileMenu";
 
 const HeaderContent = () => {
-  const { mobileMenuOpen, toggleMenu, closeMenu } = useHeader();
+  const { mobileMenuOpen } = useHeader();
   const [scrollPercentage, setScrollPercentage] = useState(0);
 
   useEffect(() => {
@@ -46,55 +45,10 @@ const HeaderContent = () => {
       data-mobile-menu-open={mobileMenuOpen}
       style={headerStyle}
     >
-      {/* Mobile Header */}
-      <ul>
-        <li>
-          <Link href="/" className={styles.mobileLogo} onClick={closeMenu}>
-            Kevin Garcia Martin
-          </Link>
-        </li>
-        <li>
-          <button className={styles.menuBtn} onClick={toggleMenu}>
-            <div>Menu</div>
-            <div>Close</div>
-          </button>
-        </li>
-      </ul>
-
-      {/* Desktop Header & Mobile Menu */}
-      <ul>
-        <li>
-          <div>Kevin Garcia Martin:</div>
-          <div>Developer x Engineer</div>
-        </li>
-        <li>
-          <div>Location:</div>
-          <div>
-            Stockholm, Sweden
-            <Clock />
-          </div>
-        </li>
-        <li>
-          <div>Navigation:</div>
-          <nav>
-            <ul>
-              <li>
-                <NavLink href="/" label="Home" />
-              </li>
-              <li>
-                <NavLink href="/work" label="Work" />
-              </li>
-            </ul>
-          </nav>
-        </li>
-        <li>
-          <div>Theme:</div>
-          <div className={styles["theme-buttons"]}>
-            <ThemeButton value="light" />
-            <ThemeButton value="dark" />
-          </div>
-        </li>
-      </ul>
+      <MobileHeader />
+      <DesktopHeader />
+      {/* <AnimatePresence>{mobileMenuOpen && <MobileMenu />}</AnimatePresence> */}
+      {mobileMenuOpen && <MobileMenu />}
     </motion.header>
   );
 };
