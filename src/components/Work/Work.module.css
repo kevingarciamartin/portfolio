@@ -12,7 +12,7 @@
 }
 
 .workItem {
-  --_margin: 0.5rem;
+  --_margin: 1.25rem;
   --initial-y: 20%;
   --initial-scale: 1.05;
 
@@ -22,13 +22,12 @@
     display: grid;
     gap: var(--_margin);
     overflow: clip;
+    padding-block: var(--_margin);
   }
 }
 
 .horizontalLine {
   border: 1px solid var(--clr-text);
-  height: 1px;
-  margin-block: var(--_margin);
   width: 100%;
 }
 
