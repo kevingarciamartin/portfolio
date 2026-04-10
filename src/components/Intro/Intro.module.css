@@ -7,7 +7,11 @@
   grid-template-rows: 1fr auto;
   align-items: center;
   justify-items: center;
-  min-height: 100svh;
+  min-height: 100dvh;
+
+  @media (max-width: 810px) {
+    padding-bottom: var(--_body-padding-inline);
+  }
 }
 
 .imageWrapper {
