@@ -49,7 +49,8 @@ export default function Contact() {
         className={styles.parallaxBg}
         style={{ y: yPos }}
         loading="lazy"
-        sizes="100vw"
+        width={backdrop.width}
+        height={backdrop.height}
       />
       <article className={styles.contactArticle}>
         <div>
