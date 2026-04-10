@@ -13,6 +13,8 @@
 
 .workItem {
   --_margin: 0.5rem;
+  --initial-y: 20%;
+  --initial-scale: 1.05;
 
   cursor: pointer;
 
@@ -120,6 +122,8 @@
     --_work-list-transition-speed: 500ms;
     --_work-list-transition-effect: ease;
     --media-opacity: 0;
+    --initial-y: 100%;
+    --initial-scale: 1.2;
 
     color: var(--clr-text-secondary);
     transition: color var(--_work-list-transition-speed)

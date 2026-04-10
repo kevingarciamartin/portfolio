@@ -31,7 +31,7 @@ const lineVariants: Variants = {
 };
 
 const itemVariants: Variants = {
-  hidden: { y: "100%", opacity: 0 },
+  hidden: { y: "var(--initial-y)", opacity: 0 },
   visible: {
     y: 0,
     opacity: 1,
@@ -106,7 +106,7 @@ export default function WorkClient({ workItems }: WorkClientProps) {
                 transition={{ duration: DURATION }}
               >
                 <motion.div
-                  initial={{ scale: 1.2 }}
+                  initial={{ scale: "var(--initial-scale)" }}
                   animate={{
                     scale: 1,
                   }}
