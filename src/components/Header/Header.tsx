@@ -4,9 +4,9 @@ import { HeaderProvider, useHeader } from "@/context/HeaderContext";
 import { CIRC_EASE_OUT, DURATION } from "@/utils/util";
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
+import DesktopHeader from "./DesktopHeader/DesktopHeader";
 import styles from "./Header.module.css";
 import MobileHeader from "./MobileHeader/MobileHeader";
-import DesktopHeader from "./DesktopHeader/DesktopHeader";
 import MobileMenu from "./MobileMenu/MobileMenu";
 
 const HeaderContent = () => {
@@ -26,6 +26,18 @@ const HeaderContent = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    const body = document.body;
+
+    if (mobileMenuOpen) {
+      body.style.overflow = "hidden";
+      body.setAttribute("data-lenis-prevent", "true");
+    } else {
+      body.style.overflow = "visible";
+      body.removeAttribute("data-lenis-prevent");
+    }
+  }, [mobileMenuOpen]);
+
   const headerStyle = !mobileMenuOpen
     ? {
         background: `linear-gradient(to bottom, hsl(from var(--clr-background) h s l / ${
@@ -37,19 +49,22 @@ const HeaderContent = () => {
     : {};
 
   return (
-    <motion.header
-      initial={{ y: -100, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: DURATION, ease: CIRC_EASE_OUT }}
-      className={styles.header}
-      data-mobile-menu-open={mobileMenuOpen}
-      style={headerStyle}
-    >
-      <MobileHeader />
-      <DesktopHeader />
-      {/* <AnimatePresence>{mobileMenuOpen && <MobileMenu />}</AnimatePresence> */}
-      {mobileMenuOpen && <MobileMenu />}
-    </motion.header>
+    <>
+      <motion.header
+        initial={{ y: -100, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: DURATION, ease: CIRC_EASE_OUT }}
+        className={styles.header}
+        data-mobile-menu-open={mobileMenuOpen}
+        style={headerStyle}
+      >
+        <MobileHeader />
+        <DesktopHeader />
+      </motion.header>
+      <AnimatePresence>
+        {mobileMenuOpen && <MobileMenu key="mobile-menu" />}
+      </AnimatePresence>
+    </>
   );
 };
 

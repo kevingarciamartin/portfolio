@@ -1,41 +1,31 @@
+import ActionGroup from "../ActionGroup/ActionGroup";
 import Clock from "../Clock/Clock";
-import styles from "../Header.module.css";
-import NavLink from "../NavLink/NavLink";
-import ThemeButton from "../ThemeButton/ThemeButton";
+import sharedStyles from "../Header.module.css";
+import styles from "./DesktopHeader.module.css";
 
 const DesktopHeader = () => {
   return (
-    <ul className={styles.desktopHeader}>
+    <ul className={`${styles.desktopHeader} ${sharedStyles.headerItem}`}>
       <li>
-        <div>Kevin Garcia Martin:</div>
+        <div className={styles.secondary}>Kevin Garcia Martin:</div>
         <div>Developer x Engineer</div>
       </li>
       <li>
-        <div>Location:</div>
+        <div className={styles.secondary}>Location:</div>
         <div>
           Stockholm, Sweden
           <Clock />
         </div>
       </li>
       <li>
-        <div>Navigation:</div>
+        <div className={styles.secondary}>Navigation:</div>
         <nav>
-          <ul>
-            <li>
-              <NavLink href="/" label="Home" />
-            </li>
-            <li>
-              <NavLink href="/work" label="Work" />
-            </li>
-          </ul>
+          <ActionGroup variant="link" />
         </nav>
       </li>
       <li>
-        <div>Theme:</div>
-        <div className={styles["theme-buttons"]}>
-          <ThemeButton value="light" />
-          <ThemeButton value="dark" />
-        </div>
+        <div className={styles.secondary}>Theme:</div>
+        <ActionGroup variant="button" />
       </li>
     </ul>
   );

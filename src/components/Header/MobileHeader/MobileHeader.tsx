@@ -1,12 +1,14 @@
 import { useHeader } from "@/context/HeaderContext";
+import { easeInOut, motion, Variants } from "framer-motion";
 import Link from "next/link";
-import styles from "../Header.module.css";
+import sharedStyles from "../Header.module.css";
+import styles from "./MobileHeader.module.css";
 
 const MobileHeader = () => {
-  const { toggleMenu, closeMenu } = useHeader();
+  const { mobileMenuOpen, toggleMenu, closeMenu } = useHeader();
 
   return (
-    <ul className={styles.mobileHeader}>
+    <ul className={[styles.mobileHeader, sharedStyles.headerItem].join(" ")}>
       <li>
         <Link href="/" className={styles.mobileLogo} onClick={closeMenu}>
           Kevin Garcia Martin
@@ -14,8 +16,12 @@ const MobileHeader = () => {
       </li>
       <li>
         <button className={styles.menuBtn} onClick={toggleMenu}>
-          <div>Menu</div>
-          <div>Close</div>
+          <div className={mobileMenuOpen ? styles.open : styles.closed}>
+            Menu
+          </div>
+          <div className={mobileMenuOpen ? styles.open : styles.closed}>
+            Close
+          </div>
         </button>
       </li>
     </ul>
