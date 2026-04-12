@@ -118,8 +118,8 @@
   }
 
   .workItem {
-    --_work-list-transition-speed: 500ms;
-    --_work-list-transition-effect: ease;
+    --_work-list-transition-speed: var(--theme-transition-duration);
+    --_work-list-transition-effect: var(--theme-transition-function);
     --media-opacity: 0;
     --initial-y: 100%;
     --initial-scale: 1.2;
@@ -129,7 +129,7 @@
       var(--_work-list-transition-effect);
 
     a {
-      --_margin: 0;
+      --_margin: 0.75rem;
     }
   }
 
