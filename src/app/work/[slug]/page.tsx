@@ -1,6 +1,6 @@
 import { getWorkBySlug } from "@/sanity/queries";
+import { Link } from "next-view-transitions";
 import Image from "next/image";
-import Link from "next/link";
 import styles from "./page.module.css";
 
 export default async function WorkItemPage({
@@ -20,10 +20,12 @@ export default async function WorkItemPage({
     return <div>Project not found</div>;
   }
 
+  const viewTransitionName = `project-media-${slug}`;
+
   return (
     <main className={styles.main}>
       <section className={styles.workItemPage} id="work-item">
-        <div className={styles.content}>
+        <div className={styles.workItemContent}>
           <Link
             href={workItem.link?.href || "#"}
             target="_blank"
@@ -39,67 +41,66 @@ export default async function WorkItemPage({
                 playsInline
                 className={styles.media}
                 aria-label={`Video of ${workItem.title}`}
+                style={{ viewTransitionName }}
               />
             ) : workItem.imageUrl ? (
               <Image
                 src={workItem.imageUrl}
                 alt={workItem.title}
-                fill
+                width={workItem.imageMetadata?.width || 800}
+                height={workItem.imageMetadata?.height || 600}
                 priority
                 className={styles.image}
-                style={{ objectFit: "cover" }}
+                style={{
+                  objectFit: "cover",
+                  viewTransitionName,
+                }}
                 sizes="(max-width: 800px) 100vw, 800px"
               />
             ) : null}
           </Link>
 
-          <div className={styles.details}>
-            <div className={styles.header}>
-              <h1 className={styles.title}>{workItem.title}</h1>
-              {workItem.role && (
-                <span className={styles.role}>{workItem.role}</span>
-              )}
-            </div>
-
-            <div className={styles.stackSection}>
-              <span className={styles.sectionTitle}>Tech Stack</span>
-              <p className={styles.stack}>
-                {workItem.stack?.join(", ") || "N/A"}
-              </p>
-            </div>
-
-            <div className={styles.descriptionSection}>
-              <span className={styles.sectionTitle}>Description</span>
-              <div className={styles.description}>
-                {/* Assuming description is a Portable Text array */}
-                {workItem.description?.map(
-                  (block: { children: { text: string }[] }, i: number) => (
-                    <p key={i}>{block.children[0].text}</p> // Basic rendering, needs PortableText component for complex content
-                  )
-                )}
-              </div>
-            </div>
-
-            {workItem.link?.href && (
-              <div className={styles.urlSection}>
-                <span className={styles.sectionTitle}>URL</span>
-                <Link
-                  href={workItem.link.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={styles.link}
-                >
-                  {workItem.link.text || workItem.link.href}
-                </Link>
-              </div>
+          <div className={styles.titleSection}>
+            <p>{workItem.title}</p>
+            {workItem.role && (
+              <span className={styles.role}>{workItem.role}</span>
             )}
           </div>
+
+          <div className={styles.stackSection}>
+            <span className={styles.sectionLabel}>Tech stack</span>
+            <p>{workItem.stack?.join(", ") || "N/A"}</p>
+          </div>
+
+          <div className={styles.descriptionSection}>
+            <span className={styles.sectionLabel}>Description</span>
+            <div className={styles.description}>
+              {workItem.description?.map(
+                (block: { children: { text: string }[] }, i: number) => (
+                  <p key={i}>{block.children[0].text}</p>
+                )
+              )}
+            </div>
+          </div>
+
+          <div className={styles.urlSection}>
+            <span className={styles.sectionLabel}>URL</span>
+            {workItem.link?.href && (
+              <Link
+                href={workItem.link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.link}
+              >
+                {workItem.link.text || workItem.link.href}
+              </Link>
+            )}
+          </div>
+
+          <Link href="/work" className={`${styles.closeBtn} navigation`}>
+            Go back
+          </Link>
         </div>
-        <Link href="/work" className={`${styles.closeBtn} navigation`}>
-          {" "}
-          {/* Link back to the work page */}
-          Go back
-        </Link>
       </section>
     </main>
   );

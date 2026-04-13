@@ -3,6 +3,7 @@ import "@/styles/reset.css";
 import "@/styles/fonts.css";
 import "@/styles/style.css";
 import type { Metadata } from "next";
+import { ViewTransitions } from "next-view-transitions";
 
 export const metadata: Metadata = {
   title: "Kevin Garcia Martin — Developer x Engineer",
@@ -31,16 +32,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <head
-        suppressHydrationWarning
-        dangerouslySetInnerHTML={{
-          __html: `<script>(function(){try{var d=localStorage.getItem('darkmode');var t=d==='enabled'?'dark':'light';document.documentElement.classList.add(t+'-theme');}catch(e){}})();</script>`,
-        }}
-      />
-      <body suppressHydrationWarning>
-        <ClientLayout>{children}</ClientLayout>
-      </body>
-    </html>
+    <ViewTransitions>
+      <html lang="en" suppressHydrationWarning>
+        <head
+          suppressHydrationWarning
+          dangerouslySetInnerHTML={{
+            __html: `<script>(function(){try{var d=localStorage.getItem('darkmode');var t=d==='enabled'?'dark':'light';document.documentElement.classList.add(t+'-theme');}catch(e){}})();</script>`,
+          }}
+        />
+        <body suppressHydrationWarning>
+          <ClientLayout>{children}</ClientLayout>
+        </body>
+      </html>
+    </ViewTransitions>
   );
 }

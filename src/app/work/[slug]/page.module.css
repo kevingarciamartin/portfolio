@@ -1,161 +1,127 @@
 .main {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100svh;
-  padding: 2rem;
-  width: 100%;
+  display: grid;
+  grid-template-columns: subgrid;
+  grid-column: 1 / -1;
 }
 
 .workItemPage {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 2rem;
-  width: 100%;
-  max-width: 800px; /* Adjust as needed */
-  background-color: var(--clr-background); /* Assuming this is defined in your global styles */
-  padding: 2rem;
-  border-radius: 8px; /* Optional: for rounded corners */
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Optional: for depth */
+  grid-template-columns: subgrid;
+  grid-column: content-start / content-end;
+  background-color: var(--clr-background);
+  min-height: 100svh;
 }
 
-.content {
+.workItemContent {
   display: grid;
   gap: 2rem;
-  grid-column: 1 / -1;
+  grid-column: content-start / content-end;
+  padding-block: 5rem 3rem;
 }
 
 .mediaLink {
+  justify-self: center;
+  width: min(100%, 30rem);
   display: block;
+}
+
+.mediaLink img,
+.mediaLink video {
   width: 100%;
-  aspect-ratio: 16 / 9; /* Common aspect ratio for videos/images */
-  position: relative;
-  border-radius: 4px; /* Slightly rounded corners for media */
-  overflow: hidden; /* Ensures media stays within bounds */
+  height: auto;
+  filter: brightness(1);
+  transition: filter 0.3s ease-in-out;
+  display: block;
 }
 
-.media {
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* Covers the container, might crop */
+.mediaLink:hover img,
+.mediaLink:hover video {
+  filter: brightness(0.8);
 }
 
-.image {
-  object-fit: cover;
-}
-
-.details {
-  display: grid;
-  gap: 1.5rem;
-}
-
-.header {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.title {
-  font-size: 2.5rem; /* Larger title for the work item */
-  font-family: var(--ff-header); /* Assuming this is defined */
-  font-weight: initial;
-  letter-spacing: -0.05em;
-  line-height: 1.1;
-  color: var(--clr-text);
+.titleSection p {
+  margin: 0;
+  font-size: 1.5rem;
 }
 
 .role {
-  font-size: 1rem;
-  color: var(--clr-text-secondary); /* Assuming this is defined */
-}
-
-.stackSection,
-.descriptionSection,
-.urlSection {
-  display: grid;
-  gap: 0.5rem;
-}
-
-.sectionTitle {
-  font-size: 1rem;
   color: var(--clr-text-secondary);
-  font-weight: bold;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+  font-size: var(--fs-small);
 }
 
-.stack,
+.sectionLabel {
+  color: var(--clr-text-secondary);
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: var(--fs-small);
+}
+
+.stackSection p,
 .description p,
 .link {
-  font-size: 1rem;
-  color: var(--clr-text);
-  line-height: 1.6;
+  margin: 0;
+  font-size: var(--fs-medium);
+  line-height: 1.5;
 }
 
-.description {
+.description p:not(:first-of-type) {
+  margin-top: 1rem;
+}
+
+.urlSection {
   display: grid;
-  gap: 1rem;
 }
 
 .link {
+  width: fit-content;
   text-decoration: underline;
-  color: var(--clr-link); /* Assuming a link color is defined */
+  color: inherit;
 }
 
 .closeBtn {
   display: block;
   width: fit-content;
   margin-top: 2rem;
-  padding: 0.8rem 1.5rem;
-  background-color: var(--clr-button-bg); /* Assuming button styles */
-  color: var(--clr-button-text);
-  border: none;
-  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  background-color: var(--clr-text);
+  color: var(--clr-background);
+  text-decoration: none;
+  border-radius: 3px;
+  transition: color 200ms ease;
   cursor: pointer;
-  font-size: 1rem;
-  transition: background-color 0.3s ease;
 }
 
-.closeBtn:hover {
-  background-color: var(--clr-button-bg-hover); /* Assuming hover style */
-}
-
-@media (min-width: 768px) {
+@media (min-width: 1000px) {
   .workItemPage {
-    grid-template-columns: 1fr 1fr; /* Two columns on larger screens */
-    gap: 3rem;
+    position: relative;
   }
 
-  .content {
-    grid-column: 1 / -1; /* Span across both columns */
+  .workItemContent {
+    flex-direction: column;
+    justify-content: flex-end;
+    width: 50%;
   }
 
   .mediaLink {
-    grid-row: 1; /* Media in the first column */
-    aspect-ratio: 16 / 9;
-  }
-
-  .details {
-    grid-column: 2 / -1; /* Details in the second column */
-    grid-row: 1;
+    position: absolute;
+    bottom: var(--_body-padding-inline);
+    right: 0;
+    width: 35%;
   }
 
   .closeBtn {
-    grid-column: 1 / -1; /* Close button spans across */
-    justify-self: center;
-    margin-top: 3rem;
+    position: fixed;
+    bottom: var(--_body-padding-inline);
+    right: 50%;
+    transform: translateX(50%);
+    background-color: transparent;
+    color: var(--clr-text);
+    margin-top: 0;
   }
-}
 
-/* Basic support for Portable Text rendering if needed */
-.description p {
-  margin-bottom: 1rem;
-}
-.description ul,
-.description ol {
-  margin-left: 1.5rem;
-  margin-bottom: 1rem;
-}
-.description li {
-  margin-bottom: 0.5rem;
+  .closeBtn:hover,
+  .closeBtn:focus-visible {
+    color: var(--clr-accent);
+    outline: none;
+  }
 }

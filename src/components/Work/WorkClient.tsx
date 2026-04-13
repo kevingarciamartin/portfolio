@@ -3,8 +3,8 @@
 import { type WorkItem } from "@/sanity/queries";
 import { CIRC_EASE_OUT, DURATION, QUINT_EASE_OUT } from "@/utils/util";
 import { motion, Variants } from "framer-motion";
+import { Link } from "next-view-transitions";
 import Image from "next/image";
-import Link from "next/link";
 import { useState } from "react";
 import styles from "./Work.module.css";
 
@@ -99,20 +99,8 @@ export default function WorkClient({ workItems }: WorkClientProps) {
                   {item.stack?.join(", ") || "No stack specified"}
                 </span>
               </motion.div>
-              <motion.div
-                className={styles.media}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: DURATION }}
-              >
-                <motion.div
-                  initial={{ scale: "var(--initial-scale)" }}
-                  animate={{
-                    scale: 1,
-                  }}
-                  transition={{ duration: DURATION, ease: CIRC_EASE_OUT }}
-                  className={styles.mediaInner}
-                >
+              <div className={styles.media}>
+                <div className={styles.mediaInner}>
                   {item.videoUrl ? (
                     <video
                       src={item.videoUrl}
@@ -120,6 +108,7 @@ export default function WorkClient({ workItems }: WorkClientProps) {
                       muted
                       loop
                       playsInline
+                      style={{ viewTransitionName: `project-media-${item.slug}` }}
                     />
                   ) : (
                     item.imageUrl && (
@@ -132,6 +121,7 @@ export default function WorkClient({ workItems }: WorkClientProps) {
                           height: "auto",
                           width: "100%",
                           display: "block",
+                          viewTransitionName: `project-media-${item.slug}`,
                         }}
                         sizes="min(100vw, 30rem)"
                         priority={index < 2}
@@ -139,8 +129,8 @@ export default function WorkClient({ workItems }: WorkClientProps) {
                       />
                     )
                   )}
-                </motion.div>
-              </motion.div>
+                </div>
+              </div>
             </Link>
             <motion.div
               className={styles.horizontalLine}
