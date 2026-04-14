@@ -79,6 +79,7 @@ body {
   color: var(--clr-text);
   font-family: var(--ff-base);
   overflow-x: clip;
+  user-select: none;
   transition: all var(--theme-transition-duration)
     var(--theme-transition-function);
 
