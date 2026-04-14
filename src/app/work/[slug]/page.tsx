@@ -41,7 +41,7 @@ export default async function WorkItemPage({
               playsInline
               className={styles.media}
               aria-label={`Video of ${workItem.title}`}
-              style={{ viewTransitionName }}
+              style={{ "--vt-name": viewTransitionName } as React.CSSProperties}
             />
           ) : workItem.imageUrl ? (
             <Image
@@ -51,15 +51,16 @@ export default async function WorkItemPage({
               height={workItem.imageMetadata?.height || 600}
               priority
               className={styles.image}
-              style={{
-                objectFit: "cover",
-                viewTransitionName,
-              }}
+              style={
+                {
+                  objectFit: "cover",
+                  "--vt-name": viewTransitionName,
+                } as React.CSSProperties
+              }
               sizes="(max-width: 800px) 100vw, 800px"
             />
           ) : null}
         </Link>
-
         <div className={styles.titleSection}>
           <h1>{workItem.title}</h1>
           {workItem.role && (

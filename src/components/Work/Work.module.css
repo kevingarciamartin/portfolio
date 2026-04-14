@@ -176,4 +176,8 @@
   .workItem.active .workInfo svg path {
     fill: var(--clr-text);
   }
+
+  .workMedia {
+    view-transition-name: var(--vt-name);
+  }
 }

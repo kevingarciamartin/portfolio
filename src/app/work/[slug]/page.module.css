@@ -122,4 +122,9 @@
     opacity: 1;
     outline: none;
   }
+
+  .media,
+  .image {
+    view-transition-name: var(--vt-name);
+  }
 }

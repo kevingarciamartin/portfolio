@@ -53,6 +53,7 @@ export default function WorkClient({ workItems }: WorkClientProps) {
     >
       {filteredItems.map((item, index) => {
         const isActive = index === activeIndex;
+        const viewTransitionName = `project-media-${item.slug}`;
 
         return (
           <motion.li
@@ -108,7 +109,12 @@ export default function WorkClient({ workItems }: WorkClientProps) {
                       muted
                       loop
                       playsInline
-                      style={{ viewTransitionName: `project-media-${item.slug}` }}
+                      className={styles.workMedia}
+                      style={
+                        {
+                          "--vt-name": viewTransitionName,
+                        } as React.CSSProperties
+                      }
                     />
                   ) : (
                     item.imageUrl && (
@@ -117,12 +123,15 @@ export default function WorkClient({ workItems }: WorkClientProps) {
                         alt={item.title}
                         width={item.imageMetadata?.width || 480}
                         height={item.imageMetadata?.height || 640}
-                        style={{
-                          height: "auto",
-                          width: "100%",
-                          display: "block",
-                          viewTransitionName: `project-media-${item.slug}`,
-                        }}
+                        className={styles.workMedia}
+                        style={
+                          {
+                            height: "auto",
+                            width: "100%",
+                            display: "block",
+                            "--vt-name": viewTransitionName,
+                          } as React.CSSProperties
+                        }
                         sizes="min(100vw, 30rem)"
                         priority={index < 2}
                         fetchPriority={index < 2 ? "high" : "auto"}
