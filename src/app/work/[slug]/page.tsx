@@ -1,5 +1,6 @@
 import AnimatedLink from "@/components/AnimatedLink/AnimatedLink";
 import { getWorkBySlug } from "@/sanity/queries";
+import { PortableText } from "@portabletext/react";
 import { Link } from "next-view-transitions";
 import Image from "next/image";
 import styles from "./page.module.css";
@@ -76,11 +77,7 @@ export default async function WorkItemPage({
         <div className={styles.descriptionSection}>
           <span className={styles.sectionLabel}>Description</span>
           <div className={styles.description}>
-            {workItem.description?.map(
-              (block: { children: { text: string }[] }, i: number) => (
-                <p key={i}>{block.children[0].text}</p>
-              )
-            )}
+            <PortableText value={workItem.description} />
           </div>
         </div>
 

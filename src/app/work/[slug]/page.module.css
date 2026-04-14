@@ -51,13 +51,24 @@
 
 .stackSection p,
 .description p,
+.description ul,
 .link {
   margin: 0;
   font-size: var(--fs-medium);
   line-height: 1.5;
 }
 
-.description p:not(:first-of-type) {
+.description ul {
+  list-style: square;
+  padding-left: 1rem;
+}
+
+.description li {
+  margin-top: 0.5rem;
+}
+
+.description p:not(:first-of-type),
+.description ul {
   margin-top: 1rem;
 }
 
