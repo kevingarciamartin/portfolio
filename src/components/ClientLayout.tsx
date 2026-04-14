@@ -59,7 +59,7 @@ export default function ClientLayout({
             {showIntro && <Intro onFinish={handleIntroFinish} key="intro" />}
           </AnimatePresence>
           <Header />
-          {children}
+          <main>{children}</main>
           {!isWorkItem && (
             <>
               <Contact />
