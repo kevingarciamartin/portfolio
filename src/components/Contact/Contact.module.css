@@ -65,9 +65,8 @@
 
 .contact address {
   display: grid;
+  justify-items: center;
   gap: 0.25rem;
-
-  text-align: center;
 }
 
 @container (max-width: 500px) {
