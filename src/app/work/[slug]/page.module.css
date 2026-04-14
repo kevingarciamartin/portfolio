@@ -17,6 +17,7 @@
   justify-self: center;
   width: min(100%, 30rem);
   display: block;
+  overflow: clip;
 }
 
 .mediaLink img,
@@ -26,6 +27,11 @@
   filter: brightness(1);
   transition: filter 0.3s ease-in-out;
   display: block;
+}
+
+.mediaLink video {
+  height: 100%;
+  object-fit: cover;
 }
 
 .mediaLink:hover img,
@@ -134,8 +140,9 @@
     outline: none;
   }
 
-  .media,
-  .image {
+  :global(html.is-vt-supported) .media,
+  :global(html.is-vt-supported) .image {
     view-transition-name: var(--vt-name);
+    view-transition-class: project-media;
   }
 }

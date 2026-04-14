@@ -22,6 +22,20 @@ export default function ClientLayout({
   const [showIntro, setShowIntro] = useState(false);
 
   useEffect(() => {
+    const isChrome =
+      /Chrome/.test(navigator.userAgent) &&
+      /Google Inc/.test(navigator.vendor);
+    const isSafari =
+      /Safari/.test(navigator.userAgent) &&
+      /Apple Computer/.test(navigator.vendor) &&
+      !/Chrome/.test(navigator.userAgent);
+
+    if (isChrome || isSafari) {
+      document.documentElement.classList.add("is-vt-supported");
+    }
+  }, []);
+
+  useEffect(() => {
     if (isAdmin) {
       return;
     }

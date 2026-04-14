@@ -177,7 +177,8 @@
     fill: var(--clr-text);
   }
 
-  .workMedia {
+  :global(html.is-vt-supported) .workMedia {
     view-transition-name: var(--vt-name);
+    view-transition-class: project-media;
   }
 }
