@@ -17,6 +17,7 @@ export default function ClientLayout({
 }) {
   const pathname = usePathname();
   const isAdmin = pathname?.startsWith("/admin");
+  const isWorkItem = pathname?.startsWith("/work/") && pathname !== "/work";
 
   const [showIntro, setShowIntro] = useState(false);
 
@@ -59,8 +60,12 @@ export default function ClientLayout({
           </AnimatePresence>
           <Header />
           {children}
-          <Contact />
-          <Footer />
+          {!isWorkItem && (
+            <>
+              <Contact />
+              <Footer />
+            </>
+          )}
         </ReactLenis>
       )}
     </ThemeProvider>
