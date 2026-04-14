@@ -5,22 +5,12 @@ import { CIRC_EASE_OUT, DURATION, QUINT_EASE_OUT } from "@/utils/util";
 import { motion, Variants } from "framer-motion";
 import { Link } from "next-view-transitions";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./Work.module.css";
 
 interface WorkClientProps {
   workItems: WorkItem[];
 }
-
-const listVariants: Variants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-    },
-  },
-};
 
 const lineVariants: Variants = {
   hidden: { width: 0 },
@@ -41,13 +31,31 @@ const itemVariants: Variants = {
 
 export default function WorkClient({ workItems }: WorkClientProps) {
   const [activeIndex, setActiveIndex] = useState<number>(0);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 1000);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   const filteredItems = workItems.filter((item) => item.slug);
+
+  const dynamicListVariants: Variants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: isMobile ? 0 : 0.1,
+      },
+    },
+  };
 
   return (
     <motion.ul
       className={styles.workList}
-      variants={listVariants}
+      variants={dynamicListVariants}
       initial="hidden"
       animate="visible"
     >
