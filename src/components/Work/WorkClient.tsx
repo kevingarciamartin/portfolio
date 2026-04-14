@@ -30,7 +30,13 @@ const itemVariants: Variants = {
 };
 
 export default function WorkClient({ workItems }: WorkClientProps) {
-  const [activeIndex, setActiveIndex] = useState<number>(0);
+  const [activeIndex, setActiveIndex] = useState<number>(() => {
+    if (typeof window !== "undefined") {
+      const saved = sessionStorage.getItem("work-active-index");
+      return saved ? parseInt(saved, 10) : 0;
+    }
+    return 0;
+  });
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
@@ -39,6 +45,11 @@ export default function WorkClient({ workItems }: WorkClientProps) {
     window.addEventListener("resize", checkMobile);
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
+
+  const handleSetActive = (index: number) => {
+    setActiveIndex(index);
+    sessionStorage.setItem("work-active-index", index.toString());
+  };
 
   const filteredItems = workItems.filter((item) => item.slug);
 
@@ -67,7 +78,7 @@ export default function WorkClient({ workItems }: WorkClientProps) {
           <motion.li
             key={item._id}
             className={`${styles.workItem} ${isActive ? styles.active : ""}`}
-            onMouseEnter={() => setActiveIndex(index)}
+            onMouseEnter={() => handleSetActive(index)}
             variants={{
               visible: { transition: { staggerChildren: 0.05 } },
             }}
@@ -81,7 +92,7 @@ export default function WorkClient({ workItems }: WorkClientProps) {
             <Link
               href={`/work/${item.slug}`}
               className={styles.workContent}
-              onFocus={() => setActiveIndex(index)}
+              onFocus={() => handleSetActive(index)}
             >
               <motion.div className={styles.workInfo} variants={itemVariants}>
                 <span></span>
