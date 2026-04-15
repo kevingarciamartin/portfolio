@@ -42,7 +42,7 @@ export default function ClientLayout({
 
     const introPlayed = sessionStorage.getItem("intro-played");
     if (!introPlayed) {
-      setShowIntro(true);
+      requestAnimationFrame(() => setShowIntro(true));
     }
   }, [isAdmin]);
 

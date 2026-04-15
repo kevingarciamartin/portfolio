@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { vi, describe, it, expect } from "vitest";
 import WorkItemPage from "./page";
-import { getWorkBySlug } from "@/sanity/queries";
+import { getWorkBySlug, type WorkItem } from "@/sanity/queries";
 
 // Mock getWorkBySlug
 vi.mock("@/sanity/queries", () => ({
@@ -10,42 +10,36 @@ vi.mock("@/sanity/queries", () => ({
 
 describe("WorkItemPage", () => {
   it("renders a list in the description", async () => {
-    const mockWorkItem = {
+    const mockWorkItem: WorkItem = {
       _id: "1",
       title: "Test Project",
       slug: "test-project",
       description: [
         {
           _type: "block",
-          _key: "block1",
           children: [
             {
               _type: "span",
-              _key: "span1",
               text: "This is a paragraph.",
             },
           ],
         },
         {
           _type: "block",
-          _key: "block2",
           listItem: "bullet",
           children: [
             {
               _type: "span",
-              _key: "span2",
               text: "Bullet item 1",
             },
           ],
         },
         {
           _type: "block",
-          _key: "block3",
           listItem: "bullet",
           children: [
             {
               _type: "span",
-              _key: "span3",
               text: "Bullet item 2",
             },
           ],
@@ -55,10 +49,10 @@ describe("WorkItemPage", () => {
       link: { href: "https://example.com", text: "Visit site" },
     };
 
-    (getWorkBySlug as any).mockResolvedValue(mockWorkItem);
+    vi.mocked(getWorkBySlug).mockResolvedValue(mockWorkItem);
 
     // Since WorkItemPage is an async component, we call it directly
-    const Page = await WorkItemPage({ params: { slug: "test-project" } as any });
+    const Page = await WorkItemPage({ params: { slug: "test-project" } });
     render(Page);
 
     expect(screen.getByText("Test Project")).toBeInTheDocument();

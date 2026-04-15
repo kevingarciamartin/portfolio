@@ -28,7 +28,7 @@ const ActionGroup = ({ variant }: ActionGroupProps) => {
         </div>
       );
     }
-  }, [variant, routes]);
+  }, [variant]);
 
   return <>{content}</>;
 };

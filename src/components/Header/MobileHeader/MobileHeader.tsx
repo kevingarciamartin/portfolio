@@ -1,5 +1,4 @@
 import { useHeader } from "@/context/HeaderContext";
-import { easeInOut, motion, Variants } from "framer-motion";
 import Link from "next/link";
 import sharedStyles from "../Header.module.css";
 import styles from "./MobileHeader.module.css";
