@@ -3,7 +3,7 @@
 import { HeaderProvider, useHeader } from "@/context/HeaderContext";
 import { CIRC_EASE_OUT, DURATION } from "@/utils/util";
 import { AnimatePresence, motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import DesktopHeader from "./DesktopHeader/DesktopHeader";
 import styles from "./Header.module.css";
 import MobileHeader from "./MobileHeader/MobileHeader";
@@ -12,6 +12,11 @@ import MobileMenu from "./MobileMenu/MobileMenu";
 const HeaderContent = () => {
   const { mobileMenuOpen } = useHeader();
   const [scrollPercentage, setScrollPercentage] = useState(0);
+  const isInitialMount = useRef(true);
+
+  useEffect(() => {
+    isInitialMount.current = false;
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -51,7 +56,7 @@ const HeaderContent = () => {
   return (
     <>
       <motion.header
-        initial={{ y: -100, opacity: 0 }}
+        initial={isInitialMount.current ? { y: -100, opacity: 0 } : false}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: DURATION, ease: CIRC_EASE_OUT }}
         className={styles.header}
@@ -66,12 +71,12 @@ const HeaderContent = () => {
       </AnimatePresence>
     </>
   );
-};
+  };
 
-export default function Header() {
+  export default function Header() {
   return (
     <HeaderProvider>
       <HeaderContent />
     </HeaderProvider>
   );
-}
+  }

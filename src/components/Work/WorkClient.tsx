@@ -3,8 +3,7 @@
 import { type WorkItem } from "@/sanity/queries";
 import { CIRC_EASE_OUT, DURATION, QUINT_EASE_OUT } from "@/utils/util";
 import { motion, Variants } from "framer-motion";
-import { Link } from "next-view-transitions";
-import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import styles from "./Work.module.css";
 
@@ -37,11 +36,15 @@ export default function WorkClient({ workItems }: WorkClientProps) {
     }
     return 0;
   });
-  const [isMobile, setIsMobile] = useState(false);
+  const [isMobile, setIsMobile] = useState(() => {
+    if (typeof window !== "undefined") {
+      return window.innerWidth < 1000;
+    }
+    return false;
+  });
 
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 1000);
-    checkMobile();
     window.addEventListener("resize", checkMobile);
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
@@ -122,38 +125,27 @@ export default function WorkClient({ workItems }: WorkClientProps) {
               <div className={styles.media}>
                 <div className={styles.mediaInner}>
                   {item.videoUrl ? (
-                    <video
+                    <motion.video
                       src={item.videoUrl}
                       autoPlay
                       muted
                       loop
                       playsInline
-                      className={styles.workMedia}
-                      style={
-                        {
-                          "--vt-name": viewTransitionName,
-                        } as React.CSSProperties
+                      layoutId={
+                        isMobile ? undefined : `project-media-${item.slug}`
                       }
+                      className={styles.workMedia}
+                      style={{ aspectRatio: "4/5", objectFit: "cover" }}
                     />
                   ) : (
                     item.imageUrl && (
-                      <Image
+                      <motion.img
                         src={item.imageUrl}
                         alt={item.title}
-                        width={item.imageMetadata?.width || 480}
-                        height={item.imageMetadata?.height || 640}
-                        className={styles.workMedia}
-                        style={
-                          {
-                            height: "auto",
-                            width: "100%",
-                            display: "block",
-                            "--vt-name": viewTransitionName,
-                          } as React.CSSProperties
+                        layoutId={
+                          isMobile ? undefined : `project-media-${item.slug}`
                         }
-                        sizes="min(100vw, 30rem)"
-                        priority={index < 2}
-                        fetchPriority={index < 2 ? "high" : "auto"}
+                        className={styles.workMedia}
                       />
                     )
                   )}

@@ -1,8 +1,8 @@
 import AnimatedLink from "@/components/AnimatedLink/AnimatedLink";
+import WorkItemMedia from "@/components/Work/WorkItemMedia";
 import { getWorkBySlug } from "@/sanity/queries";
 import { PortableText } from "@portabletext/react";
-import { Link } from "next-view-transitions";
-import Image from "next/image";
+import Link from "next/link";
 import styles from "./page.module.css";
 
 export default async function WorkItemPage({
@@ -22,8 +22,6 @@ export default async function WorkItemPage({
     return <div>Project not found</div>;
   }
 
-  const viewTransitionName = `project-media-${slug}`;
-
   return (
     <section className={styles.workItemPage} id="work-item">
       <div className={styles.workItemContent}>
@@ -33,34 +31,14 @@ export default async function WorkItemPage({
           rel="noopener noreferrer"
           className={styles.mediaLink}
         >
-          {workItem.videoUrl ? (
-            <video
-              src={workItem.videoUrl}
-              autoPlay
-              muted
-              loop
-              playsInline
-              className={styles.media}
-              aria-label={`Video of ${workItem.title}`}
-              style={{ "--vt-name": viewTransitionName } as React.CSSProperties}
-            />
-          ) : workItem.imageUrl ? (
-            <Image
-              src={workItem.imageUrl}
-              alt={workItem.title}
-              width={workItem.imageMetadata?.width || 800}
-              height={workItem.imageMetadata?.height || 600}
-              priority
-              className={styles.image}
-              style={
-                {
-                  objectFit: "cover",
-                  "--vt-name": viewTransitionName,
-                } as React.CSSProperties
-              }
-              sizes="(max-width: 800px) 100vw, 800px"
-            />
-          ) : null}
+          <WorkItemMedia 
+            videoUrl={workItem.videoUrl} 
+            imageUrl={workItem.imageUrl} 
+            title={workItem.title} 
+            slug={slug} 
+            className={workItem.videoUrl ? styles.media : styles.image}
+            isMobile={false}
+          />
         </Link>
         <div className={styles.titleSection}>
           <h1>{workItem.title}</h1>

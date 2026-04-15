@@ -2,9 +2,7 @@
 
 import Contact from "@/components/Contact/Contact";
 import Footer from "@/components/Footer/Footer";
-import Header from "@/components/Header/Header";
 import Intro from "@/components/Intro/Intro";
-import { ThemeProvider } from "@/context/ThemeContext";
 import { AnimatePresence } from "framer-motion";
 import { ReactLenis } from "lenis/react";
 import { usePathname } from "next/navigation";
@@ -20,20 +18,6 @@ export default function ClientLayout({
   const isWorkItem = pathname?.startsWith("/work/") && pathname !== "/work";
 
   const [showIntro, setShowIntro] = useState(false);
-
-  useEffect(() => {
-    const isChrome =
-      /Chrome/.test(navigator.userAgent) &&
-      /Google Inc/.test(navigator.vendor);
-    const isSafari =
-      /Safari/.test(navigator.userAgent) &&
-      /Apple Computer/.test(navigator.vendor) &&
-      !/Chrome/.test(navigator.userAgent);
-
-    if (isChrome || isSafari) {
-      document.documentElement.classList.add("is-vt-supported");
-    }
-  }, []);
 
   useEffect(() => {
     if (isAdmin) {
@@ -64,7 +48,7 @@ export default function ClientLayout({
   };
 
   return (
-    <ThemeProvider>
+    <>
       {isAdmin ? (
         children
       ) : (
@@ -72,7 +56,6 @@ export default function ClientLayout({
           <AnimatePresence>
             {showIntro && <Intro onFinish={handleIntroFinish} key="intro" />}
           </AnimatePresence>
-          <Header />
           <main>{children}</main>
           {!isWorkItem && (
             <>
@@ -82,6 +65,6 @@ export default function ClientLayout({
           )}
         </ReactLenis>
       )}
-    </ThemeProvider>
+    </>
   );
 }

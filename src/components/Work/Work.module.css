@@ -14,7 +14,6 @@
 .workItem {
   --_margin: 1.25rem;
   --initial-y: 20%;
-  --initial-scale: 1.05;
 
   cursor: pointer;
 
@@ -88,7 +87,6 @@
   width: min(100%, 30rem);
   height: auto;
   display: block;
-  overflow: clip;
 }
 
 .mediaInner {
@@ -122,7 +120,6 @@
     --_work-list-transition-effect: var(--theme-transition-function);
     --media-opacity: 0;
     --initial-y: 100%;
-    --initial-scale: 1.2;
 
     color: var(--clr-text-secondary);
     transition: color var(--_work-list-transition-speed)
@@ -175,10 +172,5 @@
 
   .workItem.active .workInfo svg path {
     fill: var(--clr-text);
-  }
-
-  :global(html.is-vt-supported) .workMedia {
-    view-transition-name: var(--vt-name);
-    view-transition-class: project-media;
   }
 }
