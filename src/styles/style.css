@@ -8,9 +8,6 @@
   --clr-text: var(--clr-neutral-900);
   --clr-text-secondary: var(--clr-neutral-400);
 
-  --ff-base: "PP Neue Montreal", sans-serif;
-  --ff-header: "Merchant-ExtraLight", "Helvetica", serif;
-
   --fs-small: 0.9rem;
   --fs-medium: 1rem;
   --fs-x-medium: 1.125rem;
@@ -64,9 +61,7 @@ button {
 .navigation {
   font-size: var(--fs-small);
   font-weight: bold;
-  letter-spacing: -1px;
 }
-
 body {
   --_body-padding-inline: 2vh;
 
@@ -78,15 +73,20 @@ body {
   background-color: var(--clr-background);
   color: var(--clr-text);
   font-family: var(--ff-base);
+  font-weight: 400;
+  letter-spacing: -0.01em;
   overflow-x: clip;
   user-select: none;
-  transition: all var(--theme-transition-duration)
-    var(--theme-transition-function);
+  transition:
+    background-color var(--theme-transition-duration)
+      var(--theme-transition-function),
+    color var(--theme-transition-duration) var(--theme-transition-function);
 
   > * {
     grid-column: 1 / -1;
   }
 }
+
 
 main {
   display: grid;

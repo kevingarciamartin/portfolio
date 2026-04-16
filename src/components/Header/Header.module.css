@@ -6,7 +6,6 @@
 
   font-size: var(--fs-medium);
   font-weight: bold;
-  letter-spacing: -1px;
   transition:
     background var(--theme-transition-duration) var(--theme-transition-function),
     color var(--theme-transition-duration) var(--theme-transition-function);

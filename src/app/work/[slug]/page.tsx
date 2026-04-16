@@ -34,6 +34,7 @@ export default async function WorkItemPage({
           <WorkItemMedia 
             videoUrl={workItem.videoUrl} 
             imageUrl={workItem.imageUrl} 
+            imageMetadata={workItem.imageMetadata}
             title={workItem.title} 
             slug={slug} 
             className={workItem.videoUrl ? styles.media : styles.image}

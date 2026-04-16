@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import HeroTitle from "../Hero/HeroTitle/HeroTitle";
 import styles from "./Intro.module.css";
 
@@ -30,12 +31,12 @@ export default function Intro({ onFinish }: IntroProps) {
     >
       <div className={styles.imageWrapper}>
         {PORTRAITS.map((src, i) => (
-          <motion.img
+          <motion.div
             key={i}
-            src={src}
-            alt=""
             className={styles.image}
-            style={{ zIndex: i }}
+            style={{
+              zIndex: i,
+            }}
             initial={{ clipPath: "inset(0% 0% 100% 0%)" }}
             animate={{ clipPath: "inset(0% 0% 0% 0%)" }}
             transition={{
@@ -50,7 +51,17 @@ export default function Intro({ onFinish }: IntroProps) {
                   }
                 : undefined
             }
-          />
+          >
+            <Image
+              src={src}
+              alt=""
+              fill
+              priority={i === 0}
+              loading={i === 0 ? undefined : "eager"}
+              sizes={"min(50vw, 20rem)"}
+              style={{ objectFit: "cover" }}
+            />
+          </motion.div>
         ))}
       </div>
       <div className={styles.placeholderRow}>

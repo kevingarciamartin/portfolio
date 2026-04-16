@@ -3,6 +3,7 @@
 import { type WorkItem } from "@/sanity/queries";
 import { CIRC_EASE_OUT, DURATION, QUINT_EASE_OUT } from "@/utils/util";
 import { motion, Variants } from "framer-motion";
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import styles from "./Work.module.css";
@@ -125,28 +126,41 @@ export default function WorkClient({ workItems }: WorkClientProps) {
               <div className={styles.media}>
                 <div className={styles.mediaInner}>
                   {item.videoUrl ? (
-                    <motion.video
-                      src={item.videoUrl}
-                      autoPlay
-                      muted
-                      loop
-                      playsInline
+                    <motion.div
                       layoutId={
                         isMobile ? undefined : `project-media-${item.slug}`
                       }
-                      className={styles.workMedia}
-                      style={{ aspectRatio: "4/5", objectFit: "cover" }}
-                    />
+                      className={styles.workVideoWrapper}
+                    >
+                      <video
+                        src={item.videoUrl}
+                        autoPlay
+                        muted
+                        loop
+                        playsInline
+                        preload={isActive ? "auto" : "metadata"}
+                        className={styles.workMedia}
+                        style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                      />
+                    </motion.div>
                   ) : (
                     item.imageUrl && (
-                      <motion.img
-                        src={item.imageUrl}
-                        alt={item.title}
+                      <motion.div
                         layoutId={
                           isMobile ? undefined : `project-media-${item.slug}`
                         }
-                        className={styles.workMedia}
-                      />
+                        className={styles.workMediaWrapper}
+                      >
+                        <Image
+                          src={item.imageUrl}
+                          alt={item.title}
+                          width={item.imageMetadata?.width || 500}
+                          height={item.imageMetadata?.height || 625}
+                          sizes="(max-width: 1000px) 100vw, 500px"
+                          className={styles.workMedia}
+                          style={{ width: "100%", height: "auto" }}
+                        />
+                      </motion.div>
                     )
                   )}
                 </div>

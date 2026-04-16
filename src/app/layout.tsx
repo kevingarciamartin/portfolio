@@ -1,11 +1,10 @@
-import ClientLayout from "@/components/ClientLayout";
 import Header from "@/components/Header/Header";
 import { RootLayoutContent } from "@/components/RootLayoutContent";
 import { ThemeProvider } from "@/context/ThemeContext";
 import "@/styles/reset.css";
-import "@/styles/fonts.css";
 import "@/styles/style.css";
 import type { Metadata } from "next";
+import { merchant, ppNeueMontreal } from "./fonts";
 
 export const metadata: Metadata = {
   title: "Kevin Garcia Martin — Developer x Engineer",
@@ -34,7 +33,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html
+      lang="en"
+      suppressHydrationWarning
+      className={`${ppNeueMontreal.variable} ${merchant.variable}`}
+    >
       <head
         suppressHydrationWarning
         dangerouslySetInnerHTML={{
