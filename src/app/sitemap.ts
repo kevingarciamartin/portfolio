@@ -1,13 +1,13 @@
+import { ContentService } from "@/services/ContentService";
 import { MetadataRoute } from "next";
-import { getWorkItems } from "@/sanity/queries";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = "https://kevingm.com";
 
-  const workItems = await getWorkItems();
+  const workItems = await ContentService.getAllWork();
   const workRoutes = workItems.map((item) => ({
     url: `${baseUrl}/work/${item.slug}`,
-    lastModified: item._updatedAt ? new Date(item._updatedAt) : new Date(),
+    lastModified: item.updatedAt ? new Date(item.updatedAt) : new Date(),
     changeFrequency: "monthly" as const,
     priority: 0.8,
   }));

@@ -1,17 +1,20 @@
+import { ContentService } from "@/services/ContentService";
+import { type SmartWork } from "@/types/content";
 import { render, screen } from "@testing-library/react";
-import { vi, describe, it, expect } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 import WorkItemPage from "./page";
-import { getWorkBySlug, type WorkItem } from "@/sanity/queries";
 
-// Mock getWorkBySlug
-vi.mock("@/sanity/queries", () => ({
-  getWorkBySlug: vi.fn(),
+// Mock ContentService
+vi.mock("@/services/ContentService", () => ({
+  ContentService: {
+    getWork: vi.fn(),
+  },
 }));
 
 describe("WorkItemPage", () => {
   it("renders a list in the description", async () => {
-    const mockWorkItem: WorkItem = {
-      _id: "1",
+    const mockWorkItem: SmartWork = {
+      id: "1",
       title: "Test Project",
       slug: "test-project",
       description: [
@@ -46,10 +49,13 @@ describe("WorkItemPage", () => {
         },
       ],
       stack: ["React", "TypeScript"],
+      stackString: "React, TypeScript",
+      mainAsset: null,
       link: { href: "https://example.com", text: "Visit site" },
+      metadata: { title: "Test Project" },
     };
 
-    vi.mocked(getWorkBySlug).mockResolvedValue(mockWorkItem);
+    vi.mocked(ContentService.getWork).mockResolvedValue(mockWorkItem);
 
     // Since WorkItemPage is an async component, we call it directly
     const Page = await WorkItemPage({ params: { slug: "test-project" } });

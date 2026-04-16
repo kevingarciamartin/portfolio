@@ -1,10 +1,12 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 interface WorkItemMediaProps {
   videoUrl?: string;
   imageUrl?: string;
+  imageMetadata: { width?: number; height?: number };
   title: string;
   slug: string;
   className: string;
@@ -14,6 +16,7 @@ interface WorkItemMediaProps {
 export default function WorkItemMedia({
   videoUrl,
   imageUrl,
+  imageMetadata,
   title,
   slug,
   className,
@@ -22,27 +25,45 @@ export default function WorkItemMedia({
   return (
     <>
       {videoUrl ? (
-        <motion.video
-          src={videoUrl}
-          autoPlay
-          muted
-          loop
-          playsInline
+        <motion.div
           layoutId={isMobile ? undefined : `project-media-${slug}`}
           className={className}
-          aria-label={`Video of ${title}`}
-          style={{
-            aspectRatio: "4/5",
-            objectFit: "cover",
-          }}
-        />
+        >
+          <video
+            src={videoUrl}
+            autoPlay
+            muted
+            loop
+            playsInline
+            aria-label={`Video of ${title}`}
+            // style={{
+            //   width: "100%",
+            //   height: "100%",
+            //   objectFit: "cover",
+            // }}
+          />
+        </motion.div>
       ) : imageUrl ? (
-        <motion.img
-          src={imageUrl}
-          alt={title}
+        <motion.div
           layoutId={isMobile ? undefined : `project-media-${slug}`}
           className={className}
-        />
+          style={
+            imageMetadata.width && imageMetadata.height
+              ? {
+                  aspectRatio: imageMetadata.width / imageMetadata.height,
+                }
+              : {}
+          }
+        >
+          <Image
+            src={imageUrl}
+            alt={title}
+            width={imageMetadata?.width || 800}
+            height={imageMetadata?.height || 1000}
+            sizes="(max-width: 1000px) 100vw, 800px"
+            style={{ width: "100%", height: "auto" }}
+          />
+        </motion.div>
       ) : null}
     </>
   );
