@@ -1,4 +1,5 @@
 import AnimatedLink from "@/components/AnimatedLink/AnimatedLink";
+import ErrorLayout from "@/components/ErrorLayout/ErrorLayout";
 import WorkItemMedia from "@/components/Work/WorkItemMedia";
 import { ContentService } from "@/services/ContentService";
 import { PortableText } from "@portabletext/react";
@@ -9,7 +10,7 @@ import styles from "./page.module.css";
 export async function generateMetadata({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
   const work = await ContentService.getWork(slug);
@@ -19,18 +20,28 @@ export async function generateMetadata({
 export default async function WorkItemPage({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
 
   if (!slug) {
-    return <div>Error: Project slug is missing in the URL parameters.</div>;
+    return (
+      <ErrorLayout
+        title="404"
+        message="Project slug is missing in the URL parameters."
+      />
+    );
   }
 
   const workItem = await ContentService.getWork(slug);
 
   if (!workItem) {
-    return <div>Project not found</div>;
+    return (
+      <ErrorLayout
+        title="404"
+        message="The project you are looking for does not exist or has been moved."
+      />
+    );
   }
 
   return (

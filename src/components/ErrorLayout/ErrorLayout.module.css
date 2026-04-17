@@ -1,0 +1,72 @@
+.errorSection {
+  display: grid;
+  place-items: center;
+  min-height: 100svh;
+  grid-column: 1 / -1;
+  padding-inline: var(--_body-padding-inline);
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 2rem;
+  max-width: 90vw;
+}
+
+.title {
+  font-family: var(--ff-header);
+  font-size: var(--fs-x-large);
+  line-height: 0.8;
+  margin: 0;
+  text-transform: uppercase;
+  color: var(--clr-text);
+  letter-spacing: -0.05em;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.message {
+  font-size: var(--fs-medium);
+  color: var(--clr-text-secondary);
+  max-width: 40ch;
+  line-height: 1.4;
+  margin: 0;
+}
+
+.actions {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+.btn {
+  color: var(--clr-text);
+  text-decoration: none;
+  cursor: pointer;
+  padding-bottom: 2px;
+  outline: none;
+}
+
+.btn:hover,
+.btn:focus-visible {
+  color: var(--clr-accent);
+  transition: color var(--theme-transition-duration)
+    var(--theme-transition-function);
+}
+
+@media (min-width: 1000px) {
+  .message {
+    font-size: var(--fs-x-medium);
+  }
+
+  .container {
+    gap: 4rem;
+  }
+}
