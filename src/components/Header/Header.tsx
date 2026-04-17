@@ -1,47 +1,25 @@
 "use client";
 
 import { HeaderProvider, useHeader } from "@/context/HeaderContext";
+import { useBodyLock } from "@/hooks/useBodyLock";
+import { useScrollProgress } from "@/hooks/useScrollProgress";
 import { CIRC_EASE_OUT, DURATION } from "@/utils/util";
 import { AnimatePresence, motion } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
-import DesktopHeader from "./DesktopHeader/DesktopHeader";
+import Link from "next/link";
+import { useRef } from "react";
+import Clock from "./Clock/Clock";
 import styles from "./Header.module.css";
-import MobileHeader from "./MobileHeader/MobileHeader";
 import MobileMenu from "./MobileMenu/MobileMenu";
+import NavLink from "./NavLink/NavLink";
+import { routes } from "./routes";
+import ThemeButton from "./ThemeButton/ThemeButton";
 
 const HeaderContent = () => {
-  const { mobileMenuOpen } = useHeader();
-  const [scrollPercentage, setScrollPercentage] = useState(0);
+  const { mobileMenuOpen, toggleMenu, closeMenu } = useHeader();
+  const scrollPercentage = useScrollProgress();
   const isInitialMount = useRef(true);
 
-  useEffect(() => {
-    isInitialMount.current = false;
-  }, []);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollPosition = window.scrollY;
-      const viewportHeight = window.innerHeight;
-      const percentage = Math.min(scrollPosition / viewportHeight, 1);
-      setScrollPercentage(percentage);
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll();
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  useEffect(() => {
-    const body = document.body;
-
-    if (mobileMenuOpen) {
-      body.style.overflow = "hidden";
-      body.setAttribute("data-lenis-prevent", "true");
-    } else {
-      body.style.overflow = "visible";
-      body.removeAttribute("data-lenis-prevent");
-    }
-  }, [mobileMenuOpen]);
+  useBodyLock(mobileMenuOpen);
 
   const headerStyle = !mobileMenuOpen
     ? {
@@ -63,20 +41,71 @@ const HeaderContent = () => {
         data-mobile-menu-open={mobileMenuOpen}
         style={headerStyle}
       >
-        <MobileHeader />
-        <DesktopHeader />
+        {/* Mobile Header Layout */}
+        <ul className={styles.mobileHeader}>
+          <li>
+            <Link href="/" className={styles.mobileLogo} onClick={closeMenu}>
+              Kevin Garcia Martin
+            </Link>
+          </li>
+          <li>
+            <button className={styles.menuBtn} onClick={toggleMenu}>
+              <div className={mobileMenuOpen ? styles.open : styles.closed}>
+                Menu
+              </div>
+              <div className={mobileMenuOpen ? styles.open : styles.closed}>
+                Close
+              </div>
+            </button>
+          </li>
+        </ul>
+
+        {/* Desktop Header Layout */}
+        <ul className={styles.desktopHeader}>
+          <li>
+            <div className={styles.secondary}>Kevin Garcia Martin:</div>
+            <div>Developer x Engineer</div>
+          </li>
+          <li>
+            <div className={styles.secondary}>Location:</div>
+            <div>
+              Stockholm, Sweden
+              <Clock />
+            </div>
+          </li>
+          <li>
+            <div className={styles.secondary}>Navigation:</div>
+            <nav>
+              <ul className={styles.navLinks}>
+                {routes?.map((route, index) => (
+                  <li key={index}>
+                    <NavLink route={route} />
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          </li>
+          <li>
+            <div className={styles.secondary}>Theme:</div>
+            <div className={styles.themeGroup}>
+              <ThemeButton value="light" />
+              <ThemeButton value="dark" />
+            </div>
+          </li>
+        </ul>
       </motion.header>
+
       <AnimatePresence>
         {mobileMenuOpen && <MobileMenu key="mobile-menu" />}
       </AnimatePresence>
     </>
   );
-  };
+};
 
-  export default function Header() {
+export default function Header() {
   return (
     <HeaderProvider>
       <HeaderContent />
     </HeaderProvider>
   );
-  }
+}

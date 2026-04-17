@@ -1,6 +1,6 @@
 "use client";
 
-import { type WorkItem } from "@/sanity/queries";
+import { SmartWork } from "@/types/content";
 import { CIRC_EASE_OUT, DURATION, QUINT_EASE_OUT } from "@/utils/util";
 import { motion, Variants } from "framer-motion";
 import Image from "next/image";
@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 import styles from "./Work.module.css";
 
 interface WorkClientProps {
-  workItems: WorkItem[];
+  workItems: SmartWork[];
 }
 
 const lineVariants: Variants = {
@@ -76,11 +76,10 @@ export default function WorkClient({ workItems }: WorkClientProps) {
     >
       {filteredItems.map((item, index) => {
         const isActive = index === activeIndex;
-        const viewTransitionName = `project-media-${item.slug}`;
 
         return (
           <motion.li
-            key={item._id}
+            key={item.id}
             className={`${styles.workItem} ${isActive ? styles.active : ""}`}
             onMouseEnter={() => handleSetActive(index)}
             variants={{
@@ -120,12 +119,12 @@ export default function WorkClient({ workItems }: WorkClientProps) {
                   </g>
                 </svg>
                 <span className={styles.stack}>
-                  {item.stack?.join(", ") || "No stack specified"}
+                  {item.stackString || "No stack specified"}
                 </span>
               </motion.div>
               <div className={styles.media}>
                 <div className={styles.mediaInner}>
-                  {item.videoUrl ? (
+                  {item.mainAsset?.type === "video" ? (
                     <motion.div
                       layoutId={
                         isMobile ? undefined : `project-media-${item.slug}`
@@ -133,32 +132,36 @@ export default function WorkClient({ workItems }: WorkClientProps) {
                       className={styles.workVideoWrapper}
                     >
                       <video
-                        src={item.videoUrl}
+                        src={item.mainAsset.url}
                         autoPlay
                         muted
                         loop
                         playsInline
                         preload={isActive ? "auto" : "metadata"}
-                        className={styles.workMedia}
-                        style={{ width: "100%", height: "100%", objectFit: "cover" }}
                       />
                     </motion.div>
                   ) : (
-                    item.imageUrl && (
+                    item.mainAsset?.url && (
                       <motion.div
                         layoutId={
                           isMobile ? undefined : `project-media-${item.slug}`
                         }
                         className={styles.workMediaWrapper}
+                        style={{
+                          aspectRatio:
+                            item.mainAsset.width / item.mainAsset.height,
+                        }}
                       >
                         <Image
-                          src={item.imageUrl}
+                          src={item.mainAsset.url}
                           alt={item.title}
-                          width={item.imageMetadata?.width || 500}
-                          height={item.imageMetadata?.height || 625}
-                          sizes="(max-width: 1000px) 100vw, 500px"
-                          className={styles.workMedia}
-                          style={{ width: "100%", height: "auto" }}
+                          width={item.mainAsset.width}
+                          height={item.mainAsset.height}
+                          sizes="(max-width: 1000px) 100%, 500px"
+                          style={{
+                            width: "100%",
+                            height: "auto",
+                          }}
                         />
                       </motion.div>
                     )

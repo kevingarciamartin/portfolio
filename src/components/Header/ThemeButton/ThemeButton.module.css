@@ -3,4 +3,29 @@
   background: none;
   border: none;
   font: inherit;
+  cursor: pointer;
+}
+
+.active {
+  color: inherit;
+  cursor: default;
+
+  &:focus-visible {
+    color: var(--clr-accent) !important;
+    outline: none;
+    transition: color var(--theme-transition-duration)
+      var(--theme-transition-function);
+  }
+}
+
+.notActive {
+  color: var(--clr-text-secondary);
+
+  &:hover,
+  &:focus-visible {
+    color: var(--clr-accent) !important;
+    outline: none;
+    transition: color var(--theme-transition-duration)
+      var(--theme-transition-function);
+  }
 }

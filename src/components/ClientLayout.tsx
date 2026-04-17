@@ -3,6 +3,7 @@
 import Contact from "@/components/Contact/Contact";
 import Footer from "@/components/Footer/Footer";
 import Intro from "@/components/Intro/Intro";
+import { useBodyLock } from "@/hooks/useBodyLock";
 import { AnimatePresence } from "framer-motion";
 import { ReactLenis } from "lenis/react";
 import { usePathname } from "next/navigation";
@@ -30,17 +31,7 @@ export default function ClientLayout({
     }
   }, [isAdmin]);
 
-  useEffect(() => {
-    const body = document.body;
-
-    if (showIntro) {
-      body.style.overflow = "hidden";
-      body.setAttribute("data-lenis-prevent", "true");
-    } else {
-      body.style.overflow = "visible";
-      body.removeAttribute("data-lenis-prevent");
-    }
-  }, [showIntro]);
+  useBodyLock(showIntro);
 
   const handleIntroFinish = () => {
     setShowIntro(false);

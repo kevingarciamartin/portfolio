@@ -3,7 +3,6 @@
 import { useHeader } from "@/context/HeaderContext";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import sharedStyles from "../ActionGroup/ActionGroup.module.css";
 import { Route } from "../routes";
 import styles from "./NavLink.module.css";
 
@@ -23,7 +22,7 @@ const NavLink = ({ route }: NavLinkProps) => {
       href={href}
       className={[
         styles.navLink,
-        isActive ? sharedStyles.active : sharedStyles.notActive,
+        isActive ? styles.active : styles.notActive,
       ].join(" ")}
       onClick={closeMenu}
     >

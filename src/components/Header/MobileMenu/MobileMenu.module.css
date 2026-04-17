@@ -94,4 +94,14 @@
   .secondary {
     color: var(--clr-text-secondary);
   }
+
+  .themeGroup {
+    display: flex;
+    gap: 0.25ch;
+
+    button:not(:last-of-type)::after {
+      content: ", ";
+      display: inline-block;
+    }
+  }
 }

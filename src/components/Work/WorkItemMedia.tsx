@@ -6,7 +6,7 @@ import Image from "next/image";
 interface WorkItemMediaProps {
   videoUrl?: string;
   imageUrl?: string;
-  imageMetadata?: { width: number; height: number };
+  imageMetadata: { width?: number; height?: number };
   title: string;
   slug: string;
   className: string;
@@ -36,17 +36,19 @@ export default function WorkItemMedia({
             loop
             playsInline
             aria-label={`Video of ${title}`}
-            style={{
-              width: "100%",
-              height: "100%",
-              objectFit: "cover",
-            }}
           />
         </motion.div>
       ) : imageUrl ? (
         <motion.div
           layoutId={isMobile ? undefined : `project-media-${slug}`}
           className={className}
+          style={
+            imageMetadata.width && imageMetadata.height
+              ? {
+                  aspectRatio: imageMetadata.width / imageMetadata.height,
+                }
+              : {}
+          }
         >
           <Image
             src={imageUrl}

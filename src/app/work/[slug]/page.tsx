@@ -1,9 +1,20 @@
 import AnimatedLink from "@/components/AnimatedLink/AnimatedLink";
 import WorkItemMedia from "@/components/Work/WorkItemMedia";
-import { getWorkBySlug } from "@/sanity/queries";
+import { ContentService } from "@/services/ContentService";
 import { PortableText } from "@portabletext/react";
+import { type Metadata } from "next";
 import Link from "next/link";
 import styles from "./page.module.css";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string };
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const work = await ContentService.getWork(slug);
+  return work?.metadata || { title: "Project Not Found" };
+}
 
 export default async function WorkItemPage({
   params,
@@ -16,7 +27,7 @@ export default async function WorkItemPage({
     return <div>Error: Project slug is missing in the URL parameters.</div>;
   }
 
-  const workItem = await getWorkBySlug(slug);
+  const workItem = await ContentService.getWork(slug);
 
   if (!workItem) {
     return <div>Project not found</div>;
@@ -31,13 +42,26 @@ export default async function WorkItemPage({
           rel="noopener noreferrer"
           className={styles.mediaLink}
         >
-          <WorkItemMedia 
-            videoUrl={workItem.videoUrl} 
-            imageUrl={workItem.imageUrl} 
-            imageMetadata={workItem.imageMetadata}
-            title={workItem.title} 
-            slug={slug} 
-            className={workItem.videoUrl ? styles.media : styles.image}
+          <WorkItemMedia
+            videoUrl={
+              workItem.mainAsset?.type === "video"
+                ? workItem.mainAsset.url
+                : undefined
+            }
+            imageUrl={
+              workItem.mainAsset?.type === "image"
+                ? workItem.mainAsset.url
+                : undefined
+            }
+            imageMetadata={{
+              width: workItem.mainAsset?.width,
+              height: workItem.mainAsset?.height,
+            }}
+            title={workItem.title}
+            slug={slug}
+            className={
+              workItem.mainAsset?.type === "video" ? styles.media : styles.image
+            }
             isMobile={false}
           />
         </Link>
@@ -50,7 +74,7 @@ export default async function WorkItemPage({
 
         <div className={styles.stackSection}>
           <span className={styles.sectionLabel}>Tech stack</span>
-          <p>{workItem.stack?.join(", ") || "N/A"}</p>
+          <p>{workItem.stackString || "N/A"}</p>
         </div>
 
         <div className={styles.descriptionSection}>
