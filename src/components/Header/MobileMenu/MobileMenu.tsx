@@ -1,9 +1,9 @@
 import { CIRC_EASE_OUT, DURATION, QUINT_EASE_OUT } from "@/utils/util";
 import { motion, Variants } from "framer-motion";
-import ActionGroup from "../ActionGroup/ActionGroup";
 import Clock from "../Clock/Clock";
 import NavLink from "../NavLink/NavLink";
 import { routes } from "../routes";
+import ThemeButton from "../ThemeButton/ThemeButton";
 import styles from "./MobileMenu.module.css";
 
 const MobileMenu = () => {
@@ -11,9 +11,7 @@ const MobileMenu = () => {
   const EXIT_DURATION = ANIMATION_DURATION;
 
   const listVariants: Variants = {
-    // initial: { opacity: 0 },
     animate: {
-      // opacity: 1,
       transition: {
         staggerChildren: 0.05,
       },
@@ -96,7 +94,10 @@ const MobileMenu = () => {
         <li>
           <motion.div variants={itemVariants}>
             <div className={styles.secondary}>Theme:</div>
-            <ActionGroup variant="button" />
+            <div className={styles.themeGroup}>
+              <ThemeButton value="light" />
+              <ThemeButton value="dark" />
+            </div>
           </motion.div>
         </li>
         <li className={styles.mobileNav}>

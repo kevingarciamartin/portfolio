@@ -1,7 +1,6 @@
 "use client";
 
 import { useTheme } from "@/context/ThemeContext";
-import sharedStyles from "../ActionGroup/ActionGroup.module.css";
 import styles from "./ThemeButton.module.css";
 
 interface ThemeButtonProps {
@@ -17,7 +16,7 @@ const ThemeButton = ({ value }: ThemeButtonProps) => {
     <button
       className={[
         styles.themeButton,
-        isActive ? sharedStyles.active : sharedStyles.notActive,
+        isActive ? styles.active : styles.notActive,
       ].join(" ")}
       onClick={() => setTheme(value)}
     >
