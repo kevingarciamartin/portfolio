@@ -99,7 +99,7 @@ export default function WorkClient({ workItems }: WorkClientProps) {
             >
               <motion.div className={styles.workInfo} variants={itemVariants}>
                 <span></span>
-                <h3 className={styles.title}>{item.title}</h3>
+                <h2 className={styles.title}>{item.title}</h2>
                 <svg
                   width="80px"
                   height="80px"

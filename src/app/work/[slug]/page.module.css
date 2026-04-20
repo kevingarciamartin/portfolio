@@ -1,9 +1,11 @@
 .workItemPage {
   display: grid;
   grid-template-columns: subgrid;
-  grid-column: content-start / content-end;
+  grid-column: 1 / -1;
   background-color: var(--clr-background);
   min-height: 100svh;
+  transition: background-color var(--theme-transition-duration)
+    var(--theme-transition-function);
 }
 
 .workItemContent {
@@ -58,13 +60,12 @@
   font-weight: 200;
 }
 
-.role {
-  color: var(--clr-text-secondary);
-}
-
+.role,
 .sectionLabel {
   color: var(--clr-text-secondary);
-  display: block;
+  font-size: inherit;
+  font-weight: 900;
+  margin: 0;
 }
 
 .stackSection p,
@@ -72,7 +73,7 @@
 .description ul,
 .link {
   margin: 0;
-  font-size: var(--fs-medium);
+  font-size: inherit;
   line-height: 1.5;
 }
 
@@ -104,15 +105,16 @@
   position: fixed;
   bottom: var(--_body-padding-inline);
   right: var(--_body-padding-inline);
-  padding: 0.5rem 1rem;
-  background-color: var(--clr-background);
-  color: var(--clr-text);
-  border: 1px solid var(--clr-text);
-  text-decoration: none;
-  border-radius: 2px;
-  transition: opacity 200ms ease;
-  cursor: pointer;
   z-index: 100;
+  background-color: var(--clr-background);
+  border: 1px solid var(--clr-text);
+  border-radius: 2px;
+  color: var(--clr-text);
+  cursor: pointer;
+  font-weight: 900;
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  transition: opacity 200ms ease;
 }
 
 @media (min-width: 1000px) {
@@ -129,7 +131,7 @@
 
   .mediaLink {
     position: absolute;
-    right: 0;
+    right: var(--_body-padding-inline);
     width: 35%;
     max-height: 80%;
   }

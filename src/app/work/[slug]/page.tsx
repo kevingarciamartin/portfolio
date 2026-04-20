@@ -78,25 +78,23 @@ export default async function WorkItemPage({
         </Link>
         <div className={styles.titleSection}>
           <h1>{workItem.title}</h1>
-          {workItem.role && (
-            <span className={styles.role}>{workItem.role}</span>
-          )}
+          {workItem.role && <h2 className={styles.role}>{workItem.role}</h2>}
         </div>
 
         <div className={styles.stackSection}>
-          <span className={styles.sectionLabel}>Tech stack</span>
+          <h2 className={styles.sectionLabel}>Tech stack</h2>
           <p>{workItem.stackString || "N/A"}</p>
         </div>
 
         <div className={styles.descriptionSection}>
-          <span className={styles.sectionLabel}>Description</span>
+          <h2 className={styles.sectionLabel}>Description</h2>
           <div className={styles.description}>
             <PortableText value={workItem.description} />
           </div>
         </div>
 
         <div className={styles.urlSection}>
-          <span className={styles.sectionLabel}>URL</span>
+          <h2 className={styles.sectionLabel}>URL</h2>
           {workItem.link?.href && (
             <AnimatedLink
               label={workItem.link.text || workItem.link.href}

@@ -58,10 +58,6 @@ button {
   border: none;
 }
 
-.navigation {
-  font-size: var(--fs-small);
-  font-weight: bold;
-}
 body {
   --_body-padding-inline: 2vh;
 
@@ -73,6 +69,7 @@ body {
   background-color: var(--clr-background);
   color: var(--clr-text);
   font-family: var(--ff-base);
+  font-size: var(--fs-x-medium);
   font-weight: 400;
   letter-spacing: -0.01em;
   overflow-x: clip;
@@ -86,7 +83,6 @@ body {
     grid-column: 1 / -1;
   }
 }
-
 
 main {
   display: grid;
@@ -102,11 +98,5 @@ section {
 @media (max-width: 810px) {
   body:has([data-mobile-menu-open="true"]) {
     overflow-y: hidden;
-  }
-}
-
-@media (min-width: 1000px) {
-  .navigation {
-    font-size: var(--fs-medium);
   }
 }

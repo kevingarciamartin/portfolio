@@ -40,6 +40,7 @@
   display: grid;
   grid-template-columns: 1.75rem 1fr auto;
   column-gap: 1rem;
+  /* font-size: var(--fs-x-medium); */
 }
 
 .workInfo span:first-of-type {
@@ -54,7 +55,7 @@
 
 .title {
   justify-self: start;
-  font-size: 1rem;
+  font-size: inherit;
   font-weight: normal;
   margin: 0;
 }

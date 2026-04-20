@@ -4,17 +4,11 @@
   z-index: 999;
   padding: var(--_body-padding-inline);
 
-  font-size: var(--fs-medium);
+  font-size: inherit;
   font-weight: bold;
   transition:
     background var(--theme-transition-duration) var(--theme-transition-function),
     color var(--theme-transition-duration) var(--theme-transition-function);
-}
-
-@media (min-width: 1000px) {
-  .header {
-    font-size: var(--fs-x-medium);
-  }
 }
 
 .secondary {
