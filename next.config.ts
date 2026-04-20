@@ -13,9 +13,6 @@ const nextConfig: NextConfig = {
   compiler: {
     styledComponents: true,
   },
-  experimental: {
-    viewTransition: true,
-  },
 };
 
 export default nextConfig;
