@@ -23,6 +23,7 @@ export interface SmartWork {
     text?: string;
     href?: string;
   };
+  githubUrl?: string;
   featured?: boolean;
   metadata: Metadata;
 }

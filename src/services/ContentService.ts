@@ -28,6 +28,7 @@ export interface RawWorkItem {
     text?: string;
     href?: string;
   };
+  githubUrl?: string;
   featured?: boolean;
 }
 
@@ -43,6 +44,7 @@ const WORK_PROJECTION = `
   "imageMetadata": image.asset->metadata.dimensions,
   "videoUrl": video.asset->url,
   link,
+  githubUrl,
   featured
 `;
 

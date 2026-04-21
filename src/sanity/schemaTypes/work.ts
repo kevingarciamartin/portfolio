@@ -52,6 +52,11 @@ export const workType = defineType({
       ],
     }),
     defineField({
+      name: "githubUrl",
+      title: "GitHub URL",
+      type: "url",
+    }),
+    defineField({
       name: "featured",
       type: "boolean",
       initialValue: false,

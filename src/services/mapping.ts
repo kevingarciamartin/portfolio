@@ -36,6 +36,7 @@ export const mapToSmartWork = (work: RawWorkItem): SmartWork => {
     stackString,
     mainAsset,
     link: work.link,
+    githubUrl: work.githubUrl,
     featured: work.featured,
     metadata,
   };

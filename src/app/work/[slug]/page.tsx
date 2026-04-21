@@ -93,14 +93,27 @@ export default async function WorkItemPage({
           </div>
         </div>
 
-        <div className={styles.urlSection}>
-          <h2 className={styles.sectionLabel}>URL</h2>
-          {workItem.link?.href && (
-            <AnimatedLink
-              label={workItem.link.text || workItem.link.href}
-              href={workItem.link.href}
-              type="url"
-            />
+        <div className={styles.linksSection}>
+          <div className={styles.urlSection}>
+            <h2 className={styles.sectionLabel}>Website</h2>
+            {workItem.link?.href && (
+              <AnimatedLink
+                label={workItem.link.text || workItem.link.href}
+                href={workItem.link.href}
+                type="url"
+              />
+            )}
+          </div>
+
+          {workItem.githubUrl && (
+            <div className={styles.urlSection}>
+              <h2 className={styles.sectionLabel}>Repo</h2>
+              <AnimatedLink
+                label="GitHub"
+                href={workItem.githubUrl}
+                type="url"
+              />
+            </div>
           )}
         </div>
 

@@ -73,4 +73,30 @@ describe("WorkItemPage", () => {
     expect(listItem1).toBeInTheDocument();
     expect(listItem1?.parentElement?.tagName).toBe("UL");
   });
+
+  it("renders the GitHub link when provided", async () => {
+    const mockWorkItem: SmartWork = {
+      id: "2",
+      title: "GitHub Project",
+      slug: "github-project",
+      description: [],
+      stack: [],
+      stackString: "",
+      mainAsset: null,
+      link: { href: "https://example.com", text: "Visit site" },
+      githubUrl: "https://github.com/user/repo",
+      metadata: { title: "GitHub Project" },
+    };
+
+    vi.mocked(ContentService.getWork).mockResolvedValue(mockWorkItem);
+
+    const Page = await WorkItemPage({ params: { slug: "github-project" } });
+    render(Page);
+
+    expect(screen.getByText("Repo")).toBeInTheDocument();
+    const githubLabels = screen.getAllByText("GitHub");
+    expect(githubLabels[0]).toBeInTheDocument();
+    const githubLink = githubLabels[0].closest("a");
+    expect(githubLink).toHaveAttribute("href", "https://github.com/user/repo");
+  });
 });
