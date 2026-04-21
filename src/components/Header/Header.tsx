@@ -6,7 +6,7 @@ import { useScrollProgress } from "@/hooks/useScrollProgress";
 import { CIRC_EASE_OUT, DURATION } from "@/utils/util";
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
-import { useRef } from "react";
+import { usePathname } from "next/navigation";
 import Clock from "./Clock/Clock";
 import styles from "./Header.module.css";
 import MobileMenu from "./MobileMenu/MobileMenu";
@@ -17,7 +17,6 @@ import ThemeButton from "./ThemeButton/ThemeButton";
 const HeaderContent = () => {
   const { mobileMenuOpen, toggleMenu, closeMenu } = useHeader();
   const scrollPercentage = useScrollProgress();
-  const isInitialMount = useRef(true);
 
   useBodyLock(mobileMenuOpen);
 
@@ -34,7 +33,7 @@ const HeaderContent = () => {
   return (
     <>
       <motion.header
-        initial={isInitialMount.current ? { y: -100, opacity: 0 } : false}
+        initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: DURATION, ease: CIRC_EASE_OUT }}
         className={styles.header}
@@ -103,6 +102,11 @@ const HeaderContent = () => {
 };
 
 export default function Header() {
+  const pathname = usePathname();
+  const isAdmin = pathname?.startsWith("/admin");
+
+  if (isAdmin) return null;
+
   return (
     <HeaderProvider>
       <HeaderContent />
