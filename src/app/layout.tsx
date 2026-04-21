@@ -3,6 +3,8 @@ import { RootLayoutContent } from "@/components/RootLayoutContent";
 import { ThemeProvider } from "@/context/ThemeContext";
 import "@/styles/reset.css";
 import "@/styles/style.css";
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata } from "next";
 import { merchant, ppNeueMontreal } from "./fonts";
 
@@ -49,6 +51,8 @@ export default function RootLayout({
           <Header />
           <RootLayoutContent>{children}</RootLayoutContent>
         </ThemeProvider>
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
