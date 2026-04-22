@@ -8,8 +8,10 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata } from "next";
 import { merchant, ppNeueMontreal } from "./fonts";
 
+export const metadataTitle = "Kevin Garcia Martin — Developer x Engineer";
+
 export const metadata: Metadata = {
-  title: "Kevin Garcia Martin — Developer x Engineer",
+  title: metadataTitle,
   description: "Personal Portfolio of Kevin Garcia Martin",
   icons: {
     icon: [
