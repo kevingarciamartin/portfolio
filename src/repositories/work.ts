@@ -1,4 +1,3 @@
-import { metadataTitle } from "@/app/layout";
 import { client } from "@/sanity/client";
 import { type WorkItem, type WorkLink, type WorkMedia } from "@/types/content";
 
@@ -80,16 +79,6 @@ function mapToWorkItem(raw: RawWorkItem): WorkItem {
       }
     : null;
 
-  const metadata = {
-    title: `${raw.title} | ${metadataTitle}`,
-    description: raw.role || `Case study for ${raw.title}`,
-    openGraph: {
-      title: raw.title,
-      description: raw.role,
-      images: raw.imageUrl ? [{ url: raw.imageUrl }] : [],
-    },
-  };
-
   return {
     id: raw._id,
     updatedAt: raw._updatedAt,
@@ -103,7 +92,6 @@ function mapToWorkItem(raw: RawWorkItem): WorkItem {
     primaryLink,
     githubUrl: raw.githubUrl,
     featured: raw.featured,
-    metadata,
   };
 }
 

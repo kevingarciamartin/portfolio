@@ -1,5 +1,3 @@
-import { type Metadata } from "next";
-
 export type MediaType = "image" | "video";
 
 export interface WorkMedia {
@@ -28,5 +26,4 @@ export interface WorkItem {
   primaryLink: WorkLink | null;
   githubUrl?: string;
   featured?: boolean;
-  metadata: Metadata; // We will eventually decouple this too
 }

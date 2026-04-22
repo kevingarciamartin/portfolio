@@ -2,6 +2,7 @@ import AnimatedLink from "@/components/AnimatedLink/AnimatedLink";
 import ErrorLayout from "@/components/ErrorLayout/ErrorLayout";
 import WorkItemMedia from "@/components/Work/WorkItemMedia";
 import { ContentService } from "@/services/ContentService";
+import { getWorkItemMetadata } from "@/utils/seo";
 import { PortableText } from "@portabletext/react";
 import { type Metadata } from "next";
 import Link from "next/link";
@@ -14,7 +15,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   const work = await ContentService.getWork(slug);
-  return work?.metadata || { title: "Project Not Found" };
+  return work ? getWorkItemMetadata(work) : { title: "Project Not Found" };
 }
 
 export default async function WorkItemPage({

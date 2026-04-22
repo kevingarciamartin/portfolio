@@ -3,12 +3,11 @@ import { RootLayoutContent } from "@/components/RootLayoutContent";
 import { ThemeProvider } from "@/context/ThemeContext";
 import "@/styles/reset.css";
 import "@/styles/style.css";
+import { metadataTitle } from "@/utils/constants";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata } from "next";
 import { merchant, ppNeueMontreal } from "./fonts";
-
-export const metadataTitle = "Kevin Garcia Martin — Developer x Engineer";
 
 export const metadata: Metadata = {
   title: metadataTitle,

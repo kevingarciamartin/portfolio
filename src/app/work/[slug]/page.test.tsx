@@ -52,18 +52,19 @@ describe("WorkItemPage", () => {
       stackString: "React, TypeScript",
       mainMedia: null,
       primaryLink: { href: "https://example.com", text: "Visit site" },
-      metadata: { title: "Test Project" },
     };
 
     vi.mocked(ContentService.getWork).mockResolvedValue(mockWorkItem);
 
     // Since WorkItemPage is an async component, we call it directly
-    const Page = await WorkItemPage({ params: Promise.resolve({ slug: "test-project" }) });
+    const Page = await WorkItemPage({
+      params: Promise.resolve({ slug: "test-project" }),
+    });
     render(Page);
 
     expect(screen.getByText("Test Project")).toBeInTheDocument();
     expect(screen.getByText("This is a paragraph.")).toBeInTheDocument();
-    
+
     // Check if list items are rendered
     expect(screen.getByText("Bullet item 1")).toBeInTheDocument();
     expect(screen.getByText("Bullet item 2")).toBeInTheDocument();
@@ -85,12 +86,13 @@ describe("WorkItemPage", () => {
       mainMedia: null,
       primaryLink: { href: "https://example.com", text: "Visit site" },
       githubUrl: "https://github.com/user/repo",
-      metadata: { title: "GitHub Project" },
     };
 
     vi.mocked(ContentService.getWork).mockResolvedValue(mockWorkItem);
 
-    const Page = await WorkItemPage({ params: Promise.resolve({ slug: "github-project" }) });
+    const Page = await WorkItemPage({
+      params: Promise.resolve({ slug: "github-project" }),
+    });
     render(Page);
 
     expect(screen.getByText("Repo")).toBeInTheDocument();
