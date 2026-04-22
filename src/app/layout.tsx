@@ -7,6 +7,7 @@ import { metadataTitle } from "@/utils/constants";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata } from "next";
+import { cookies } from "next/headers";
 import { merchant, ppNeueMontreal } from "./fonts";
 
 export const metadata: Metadata = {
@@ -30,11 +31,14 @@ export const metadata: Metadata = {
   manifest: "/img/favicon_io/site.webmanifest",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const cookieStore = await cookies();
+  const introPlayed = cookieStore.get("intro-played")?.value === "true";
+
   return (
     <html
       lang="en"
@@ -50,7 +54,9 @@ export default function RootLayout({
       <body suppressHydrationWarning>
         <ThemeProvider>
           <Header />
-          <RootLayoutContent>{children}</RootLayoutContent>
+          <RootLayoutContent introPlayed={introPlayed}>
+            {children}
+          </RootLayoutContent>
         </ThemeProvider>
         <Analytics />
         <SpeedInsights />
