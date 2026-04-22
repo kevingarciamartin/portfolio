@@ -2,7 +2,7 @@
 
 import WorkItemMedia from "@/components/Work/WorkItemMedia";
 import { type WorkItem } from "@/types/content";
-import { CIRC_EASE_OUT, DURATION, QUINT_EASE_OUT } from "@/utils/util";
+import { CIRC_EASE_OUT, DURATION, QUINT_EASE_OUT } from "@/utils/constants";
 import { motion, Variants } from "framer-motion";
 import Link from "next/link";
 import { useEffect, useState } from "react";

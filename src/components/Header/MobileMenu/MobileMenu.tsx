@@ -1,4 +1,4 @@
-import { CIRC_EASE_OUT, DURATION, QUINT_EASE_OUT } from "@/utils/util";
+import { CIRC_EASE_OUT, DURATION, QUINT_EASE_OUT } from "@/utils/constants";
 import { motion, Variants } from "framer-motion";
 import Clock from "../Clock/Clock";
 import NavLink from "../NavLink/NavLink";

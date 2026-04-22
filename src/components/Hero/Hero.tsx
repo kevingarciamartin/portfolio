@@ -1,6 +1,6 @@
 "use client";
 
-import { CIRC_EASE_OUT, DURATION } from "@/utils/util";
+import { CIRC_EASE_OUT, DURATION } from "@/utils/constants";
 import portrait from "@public/img/portraits/portrait.webp";
 import { motion } from "framer-motion";
 import Image from "next/image";

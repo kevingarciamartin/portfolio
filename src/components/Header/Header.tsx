@@ -3,7 +3,7 @@
 import { HeaderProvider, useHeader } from "@/context/HeaderContext";
 import { useBodyLock } from "@/hooks/useBodyLock";
 import { useScrollProgress } from "@/hooks/useScrollProgress";
-import { CIRC_EASE_OUT, DURATION } from "@/utils/util";
+import { CIRC_EASE_OUT, DURATION } from "@/utils/constants";
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
 import { usePathname } from "next/navigation";

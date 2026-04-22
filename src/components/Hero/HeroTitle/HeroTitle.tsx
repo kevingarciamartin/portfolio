@@ -1,6 +1,6 @@
 "use client";
 
-import { CIRC_EASE_OUT, DURATION } from "@/utils/util";
+import { CIRC_EASE_OUT, DURATION } from "@/utils/constants";
 import { motion } from "framer-motion";
 import styles from "./HeroTitle.module.css";
 
