@@ -137,7 +137,7 @@
   .mediaLink {
     position: absolute;
     right: var(--_body-padding-inline);
-    width: 35%;
+    width: 30%;
     max-height: 80%;
   }
 
