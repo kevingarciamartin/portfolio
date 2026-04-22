@@ -1,15 +1,15 @@
 "use client";
 
-import { SmartWork } from "@/types/content";
+import WorkItemMedia from "@/components/Work/WorkItemMedia";
+import { type WorkItem } from "@/types/content";
 import { CIRC_EASE_OUT, DURATION, QUINT_EASE_OUT } from "@/utils/util";
 import { motion, Variants } from "framer-motion";
-import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import styles from "./Work.module.css";
 
 interface WorkClientProps {
-  workItems: SmartWork[];
+  workItems: WorkItem[];
 }
 
 const lineVariants: Variants = {
@@ -124,48 +124,17 @@ export default function WorkClient({ workItems }: WorkClientProps) {
               </motion.div>
               <div className={styles.media}>
                 <div className={styles.mediaInner}>
-                  {item.mainAsset?.type === "video" ? (
-                    <motion.div
-                      layoutId={
-                        isMobile ? undefined : `project-media-${item.slug}`
-                      }
-                      className={styles.workVideoWrapper}
-                    >
-                      <video
-                        src={item.mainAsset.url}
-                        autoPlay
-                        muted
-                        loop
-                        playsInline
-                        preload={isActive ? "auto" : "metadata"}
-                      />
-                    </motion.div>
-                  ) : (
-                    item.mainAsset?.url && (
-                      <motion.div
-                        layoutId={
-                          isMobile ? undefined : `project-media-${item.slug}`
-                        }
-                        className={styles.workMediaWrapper}
-                        style={{
-                          aspectRatio:
-                            item.mainAsset.width / item.mainAsset.height,
-                        }}
-                      >
-                        <Image
-                          src={item.mainAsset.url}
-                          alt={item.title}
-                          width={item.mainAsset.width}
-                          height={item.mainAsset.height}
-                          sizes="(max-width: 1000px) 100%, 500px"
-                          style={{
-                            width: "100%",
-                            height: "auto",
-                          }}
-                        />
-                      </motion.div>
-                    )
-                  )}
+                  <WorkItemMedia
+                    media={item.mainMedia}
+                    title={item.title}
+                    slug={item.slug}
+                    className={
+                      item.mainMedia?.type === "video"
+                        ? styles.workVideoWrapper
+                        : styles.workMediaWrapper
+                    }
+                    isMobile={isMobile}
+                  />
                 </div>
               </div>
             </Link>

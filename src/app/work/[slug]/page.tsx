@@ -48,30 +48,17 @@ export default async function WorkItemPage({
     <section className={styles.workItemPage} id="work-item">
       <div className={styles.workItemContent}>
         <Link
-          href={workItem.link?.href || "#"}
+          href={workItem.primaryLink?.href || "#"}
           target="_blank"
           rel="noopener noreferrer"
           className={styles.mediaLink}
         >
           <WorkItemMedia
-            videoUrl={
-              workItem.mainAsset?.type === "video"
-                ? workItem.mainAsset.url
-                : undefined
-            }
-            imageUrl={
-              workItem.mainAsset?.type === "image"
-                ? workItem.mainAsset.url
-                : undefined
-            }
-            imageMetadata={{
-              width: workItem.mainAsset?.width,
-              height: workItem.mainAsset?.height,
-            }}
+            media={workItem.mainMedia}
             title={workItem.title}
             slug={slug}
             className={
-              workItem.mainAsset?.type === "video" ? styles.media : styles.image
+              workItem.mainMedia?.type === "video" ? styles.media : styles.image
             }
             isMobile={false}
           />
@@ -96,10 +83,10 @@ export default async function WorkItemPage({
         <div className={styles.linksSection}>
           <div className={styles.urlSection}>
             <h2 className={styles.sectionLabel}>Website</h2>
-            {workItem.link?.href && (
+            {workItem.primaryLink?.href && (
               <AnimatedLink
-                label={workItem.link.text || workItem.link.href}
-                href={workItem.link.href}
+                label={workItem.primaryLink.text}
+                href={workItem.primaryLink.href}
                 type="url"
               />
             )}

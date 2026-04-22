@@ -1,5 +1,5 @@
 import { ContentService } from "@/services/ContentService";
-import { type SmartWork } from "@/types/content";
+import { type WorkItem } from "@/types/content";
 import { render, screen } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
 import WorkItemPage from "./page";
@@ -13,7 +13,7 @@ vi.mock("@/services/ContentService", () => ({
 
 describe("WorkItemPage", () => {
   it("renders a list in the description", async () => {
-    const mockWorkItem: SmartWork = {
+    const mockWorkItem: WorkItem = {
       id: "1",
       title: "Test Project",
       slug: "test-project",
@@ -50,15 +50,15 @@ describe("WorkItemPage", () => {
       ],
       stack: ["React", "TypeScript"],
       stackString: "React, TypeScript",
-      mainAsset: null,
-      link: { href: "https://example.com", text: "Visit site" },
+      mainMedia: null,
+      primaryLink: { href: "https://example.com", text: "Visit site" },
       metadata: { title: "Test Project" },
     };
 
     vi.mocked(ContentService.getWork).mockResolvedValue(mockWorkItem);
 
     // Since WorkItemPage is an async component, we call it directly
-    const Page = await WorkItemPage({ params: { slug: "test-project" } });
+    const Page = await WorkItemPage({ params: Promise.resolve({ slug: "test-project" }) });
     render(Page);
 
     expect(screen.getByText("Test Project")).toBeInTheDocument();
@@ -75,22 +75,22 @@ describe("WorkItemPage", () => {
   });
 
   it("renders the GitHub link when provided", async () => {
-    const mockWorkItem: SmartWork = {
+    const mockWorkItem: WorkItem = {
       id: "2",
       title: "GitHub Project",
       slug: "github-project",
       description: [],
       stack: [],
       stackString: "",
-      mainAsset: null,
-      link: { href: "https://example.com", text: "Visit site" },
+      mainMedia: null,
+      primaryLink: { href: "https://example.com", text: "Visit site" },
       githubUrl: "https://github.com/user/repo",
       metadata: { title: "GitHub Project" },
     };
 
     vi.mocked(ContentService.getWork).mockResolvedValue(mockWorkItem);
 
-    const Page = await WorkItemPage({ params: { slug: "github-project" } });
+    const Page = await WorkItemPage({ params: Promise.resolve({ slug: "github-project" }) });
     render(Page);
 
     expect(screen.getByText("Repo")).toBeInTheDocument();

@@ -1,6 +1,6 @@
 import { client } from "@/sanity/client";
-import { type SmartWork } from "@/types/content";
-import { mapToSmartWork } from "./mapping";
+import { type WorkItem } from "@/types/content";
+import { mapToWorkItem } from "./mapping";
 
 /**
  * Raw WorkItem interface matching the Sanity schema projection.
@@ -49,18 +49,18 @@ const WORK_PROJECTION = `
 `;
 
 export const ContentService = {
-  getWork: async (slug: string): Promise<SmartWork | null> => {
+  getWork: async (slug: string): Promise<WorkItem | null> => {
     const raw = await client.fetch<RawWorkItem | null>(
       `*[_type == "work" && slug.current == $slug][0] { ${WORK_PROJECTION} }`,
       { slug }
     );
-    return raw ? mapToSmartWork(raw) : null;
+    return raw ? mapToWorkItem(raw) : null;
   },
 
-  getAllWork: async (): Promise<SmartWork[]> => {
+  getAllWork: async (): Promise<WorkItem[]> => {
     const raws = await client.fetch<RawWorkItem[]>(
       `*[_type == "work"] | order(orderRank asc) { ${WORK_PROJECTION} }`
     );
-    return raws.map(mapToSmartWork);
+    return raws.map(mapToWorkItem);
   },
 };

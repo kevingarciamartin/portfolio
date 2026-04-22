@@ -1,36 +1,39 @@
 "use client";
 
+import { type WorkMedia } from "@/types/content";
 import { motion } from "framer-motion";
 import Image from "next/image";
 
 interface WorkItemMediaProps {
-  videoUrl?: string;
-  imageUrl?: string;
-  imageMetadata: { width?: number; height?: number };
+  media: WorkMedia | null;
   title: string;
   slug: string;
   className: string;
   isMobile: boolean;
 }
 
+/**
+ * A 'dumb' component that renders work assets.
+ * It consumes a stable WorkMedia domain object and is decoupled from the CMS schema.
+ */
 export default function WorkItemMedia({
-  videoUrl,
-  imageUrl,
-  imageMetadata,
+  media,
   title,
   slug,
   className,
   isMobile,
 }: WorkItemMediaProps) {
+  if (!media) return null;
+
   return (
     <>
-      {videoUrl ? (
+      {media.type === "video" ? (
         <motion.div
           layoutId={isMobile ? undefined : `project-media-${slug}`}
           className={className}
         >
           <video
-            src={videoUrl}
+            src={media.url}
             autoPlay
             muted
             loop
@@ -38,28 +41,24 @@ export default function WorkItemMedia({
             aria-label={`Video of ${title}`}
           />
         </motion.div>
-      ) : imageUrl ? (
+      ) : (
         <motion.div
           layoutId={isMobile ? undefined : `project-media-${slug}`}
           className={className}
-          style={
-            imageMetadata.width && imageMetadata.height
-              ? {
-                  aspectRatio: imageMetadata.width / imageMetadata.height,
-                }
-              : {}
-          }
+          style={{
+            aspectRatio: media.aspectRatio,
+          }}
         >
           <Image
-            src={imageUrl}
+            src={media.url}
             alt={title}
-            width={imageMetadata?.width || 800}
-            height={imageMetadata?.height || 1000}
+            width={media.width}
+            height={media.height}
             sizes="(max-width: 1000px) 100vw, 800px"
             style={{ width: "100%", height: "auto" }}
           />
         </motion.div>
-      ) : null}
+      )}
     </>
   );
 }
