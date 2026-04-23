@@ -18,6 +18,7 @@
 .title {
   font-family: var(--ff-header);
   font-size: var(--fs-x-large);
+  font-weight: 200;
   line-height: 0.8;
   margin: 0;
   text-transform: uppercase;
@@ -34,7 +35,6 @@
 
 .message {
   font-size: var(--fs-medium);
-  color: var(--clr-text-secondary);
   max-width: 40ch;
   line-height: 1.4;
   margin: 0;
@@ -48,6 +48,7 @@
 
 .btn {
   color: var(--clr-text);
+  font-weight: 900;
   text-decoration: none;
   cursor: pointer;
   padding-bottom: 2px;
@@ -64,9 +65,5 @@
 @media (min-width: 1000px) {
   .message {
     font-size: var(--fs-x-medium);
-  }
-
-  .container {
-    gap: 4rem;
   }
 }
