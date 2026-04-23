@@ -7,7 +7,7 @@ import Image from "next/image";
 import styles from "./Hero.module.css";
 import HeroTitle from "./HeroTitle/HeroTitle";
 
-export default function Hero({ introPlayed = true }: { introPlayed?: boolean }) {
+export default function Hero() {
   return (
     <section className={styles.hero} id="hero">
       <motion.div
@@ -27,7 +27,8 @@ export default function Hero({ introPlayed = true }: { introPlayed?: boolean }) 
             alt="Portrait of Kevin Garcia Martin"
             fill
             sizes="(max-width: 768px) 50vw, 320px"
-            priority={introPlayed}
+            priority
+            fetchPriority="high"
             className={styles.image}
           />
         </motion.div>
