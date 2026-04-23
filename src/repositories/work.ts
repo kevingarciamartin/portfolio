@@ -14,6 +14,7 @@ export interface RawWorkItem {
   description: any;
   stack: string[];
   imageUrl?: string;
+  imageLqip?: string;
   imageMetadata?: {
     width: number;
     height: number;
@@ -36,6 +37,7 @@ const WORK_PROJECTION = `
   description,
   "stack": stack[]->title,
   "imageUrl": image.asset->url,
+  "imageLqip": image.asset->metadata.lqip,
   "imageMetadata": image.asset->metadata.dimensions,
   "videoUrl": video.asset->url,
   link,
@@ -60,6 +62,7 @@ function mapToWorkMedia(raw: RawWorkItem): WorkMedia | null {
     height,
     aspectRatio: width / height,
     type: isVideo ? "video" : "image",
+    blurDataURL: raw.imageLqip,
   };
 }
 

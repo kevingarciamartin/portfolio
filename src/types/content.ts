@@ -6,6 +6,7 @@ export interface WorkMedia {
   height: number;
   aspectRatio: number;
   type: MediaType;
+  blurDataURL?: string;
 }
 
 export interface WorkLink {

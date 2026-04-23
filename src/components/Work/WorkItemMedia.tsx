@@ -59,6 +59,8 @@ export default function WorkItemMedia({
             sizes="(max-width: 1000px) 100vw, 800px"
             style={{ width: "100%", height: "auto" }}
             priority={priority}
+            placeholder={media.blurDataURL ? "blur" : undefined}
+            blurDataURL={media.blurDataURL}
           />
         </motion.div>
       )}
