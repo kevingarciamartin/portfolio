@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
+import { cubicBezier, motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import styles from "./About.module.css";
 
@@ -19,13 +19,19 @@ export const About = () => {
   // Threshold: switch at 50% scroll progress
   const y1 = useTransform(
     scrollYProgress,
-    [0, 0.45, 0.5],
-    ["0%", "0%", "-100%"]
+    [0, 0.35, 0.5],
+    ["0%", "0%", "-100%"],
+    {
+      ease: cubicBezier(0.4, 0, 0.2, 1),
+    }
   );
   const y2 = useTransform(
     scrollYProgress,
-    [0.5, 0.55, 1],
-    ["100%", "0%", "0%"]
+    [0.5, 0.65, 1],
+    ["100%", "0%", "0%"],
+    {
+      ease: cubicBezier(0.4, 0, 0.2, 1),
+    }
   );
 
   return (
