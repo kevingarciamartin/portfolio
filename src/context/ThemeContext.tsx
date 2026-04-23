@@ -15,9 +15,19 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   const [theme, setThemeState] = useState<Theme | undefined>(undefined);
 
   useEffect(() => {
-    const storedTheme = localStorage.getItem("darkmode") === "enabled" ? "dark" : "light";
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    setThemeState(storedTheme);
+    const getCookie = (name: string) => {
+      const value = `; ${document.cookie}`;
+      const parts = value.split(`; ${name}=`);
+      if (parts.length === 2) return parts.pop()?.split(";").shift();
+    };
+
+    const storedTheme = getCookie("theme") as Theme | undefined;
+    if (storedTheme) {
+      setThemeState(storedTheme);
+    } else {
+      // Fallback or initial detection if needed
+      setThemeState("light");
+    }
   }, []);
 
   useEffect(() => {
@@ -34,7 +44,8 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
 
   const setTheme = (newTheme: Theme) => {
     setThemeState(newTheme);
-    localStorage.setItem("darkmode", newTheme === "dark" ? "enabled" : "disabled");
+    // Set cookie with 10 year expiration (315360000 seconds)
+    document.cookie = `theme=${newTheme}; path=/; max-age=315360000; sameSite=Lax`;
   };
 
   return (

@@ -38,19 +38,16 @@ export default async function RootLayout({
 }>) {
   const cookieStore = await cookies();
   const introPlayed = cookieStore.get("intro-played")?.value === "true";
+  const theme = cookieStore.get("theme")?.value || "light";
+  const themeClass = theme === "dark" ? "dark-theme" : "light-theme";
 
   return (
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${ppNeueMontreal.variable} ${merchant.variable}`}
+      className={`${ppNeueMontreal.variable} ${merchant.variable} ${themeClass}`}
     >
-      <head
-        suppressHydrationWarning
-        dangerouslySetInnerHTML={{
-          __html: `<script>(function(){try{var d=localStorage.getItem('darkmode');var t=d==='enabled'?'dark':'light';document.documentElement.classList.add(t+'-theme');}catch(e){}})();</script>`,
-        }}
-      >
+      <head>
         <link rel="preconnect" href="https://cdn.sanity.io" />
       </head>
       <body suppressHydrationWarning>
