@@ -9,7 +9,7 @@ const paragraphs = [
   "When logic meets intuition, I surrender to the process. My background in engineering is my structure, while the browser is my canvas for creative freedom.",
 ];
 
-export const About = () => {
+export default function About() {
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -60,4 +60,4 @@ export const About = () => {
       </div>
     </section>
   );
-};
+}
