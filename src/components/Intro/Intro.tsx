@@ -57,9 +57,12 @@ export default function Intro({ onFinish }: IntroProps) {
               src={src}
               alt=""
               fill
+              // Only prioritize the first image to avoid bandwidth competition.
+              // Eager load the next two so they're ready for the sequence.
+              // Lazy load the rest as they appear later in the animation.
               priority={i === 0}
-              loading={i === 0 ? undefined : "eager"}
-              sizes={"min(50vw, 20rem)"}
+              loading={i === 0 ? undefined : i <= 2 ? "eager" : "lazy"}
+              sizes="(max-width: 640px) 50vw, 320px"
               style={{ objectFit: "cover" }}
             />
           </motion.div>

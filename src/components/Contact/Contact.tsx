@@ -51,6 +51,7 @@ export default function Contact() {
         loading="lazy"
         width={backdrop.width}
         height={backdrop.height}
+        sizes="100vw"
       />
       <article className={styles.contactArticle}>
         <div>

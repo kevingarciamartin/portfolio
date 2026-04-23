@@ -104,14 +104,17 @@ export class SanityWorkRepository implements IWorkRepository {
   async getBySlug(slug: string): Promise<WorkItem | null> {
     const raw = await client.fetch<RawWorkItem | null>(
       `*[_type == "work" && slug.current == $slug][0] { ${WORK_PROJECTION} }`,
-      { slug }
+      { slug },
+      { next: { revalidate: 3600 } }
     );
     return raw ? mapToWorkItem(raw) : null;
   }
 
   async list(): Promise<WorkItem[]> {
     const raws = await client.fetch<RawWorkItem[]>(
-      `*[_type == "work"] | order(orderRank asc) { ${WORK_PROJECTION} }`
+      `*[_type == "work"] | order(orderRank asc) { ${WORK_PROJECTION} }`,
+      {},
+      { next: { revalidate: 3600 } }
     );
     return raws.map(mapToWorkItem);
   }

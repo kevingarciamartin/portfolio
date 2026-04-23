@@ -128,6 +128,7 @@ export default function WorkClient({ workItems }: WorkClientProps) {
                     media={item.mainMedia}
                     title={item.title}
                     slug={item.slug}
+                    priority={index === 0}
                     className={
                       item.mainMedia?.type === "video"
                         ? styles.workVideoWrapper

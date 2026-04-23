@@ -50,7 +50,9 @@ export default async function RootLayout({
         dangerouslySetInnerHTML={{
           __html: `<script>(function(){try{var d=localStorage.getItem('darkmode');var t=d==='enabled'?'dark':'light';document.documentElement.classList.add(t+'-theme');}catch(e){}})();</script>`,
         }}
-      />
+      >
+        <link rel="preconnect" href="https://cdn.sanity.io" />
+      </head>
       <body suppressHydrationWarning>
         <ThemeProvider>
           <Header />

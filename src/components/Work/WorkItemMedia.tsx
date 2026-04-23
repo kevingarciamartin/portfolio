@@ -10,6 +10,7 @@ interface WorkItemMediaProps {
   slug: string;
   className: string;
   isMobile: boolean;
+  priority?: boolean;
 }
 
 /**
@@ -22,6 +23,7 @@ export default function WorkItemMedia({
   slug,
   className,
   isMobile,
+  priority = false,
 }: WorkItemMediaProps) {
   if (!media) return null;
 
@@ -56,6 +58,7 @@ export default function WorkItemMedia({
             height={media.height}
             sizes="(max-width: 1000px) 100vw, 800px"
             style={{ width: "100%", height: "auto" }}
+            priority={priority}
           />
         </motion.div>
       )}
