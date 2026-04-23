@@ -1,0 +1,49 @@
+.aboutSection {
+  height: 200vh;
+  /* position: relative; */
+}
+
+.stickyContainer {
+  height: 50%;
+  position: sticky;
+  top: 0;
+
+  padding: 0 2rem;
+}
+
+.textContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  position: relative;
+
+  font-family: var(--ff-header);
+  font-size: 6.67vw;
+  /* font-weight: 200; */
+  line-height: 8.4vw;
+  letter-spacing: -0.1333vw;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+}
+
+.paragraphWrapper {
+  position: absolute;
+  text-wrap: balance;
+  width: 100%;
+}
+
+.lineWrapper {
+  display: inline-flex;
+  margin-right: 0.25ch;
+  overflow: hidden;
+}
+
+@media (min-width: 810px) {
+  .textContainer {
+    font-size: 4.24vw;
+    letter-spacing: -0.1696vw;
+    line-height: 4.74vw;
+  }
+}
