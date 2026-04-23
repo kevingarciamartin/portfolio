@@ -9,6 +9,7 @@ const PORTRAITS = [
   "/img/portraits/p1.webp",
   "/img/portraits/p2.webp",
   "/img/portraits/p3.webp",
+  "/img/portraits/p4.webp",
   "/img/portraits/p5.webp",
   "/img/portraits/p7.webp",
   "/img/portraits/p8.webp",
