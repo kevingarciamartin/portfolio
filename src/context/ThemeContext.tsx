@@ -2,7 +2,7 @@
 
 import React, { createContext, useContext, useEffect, useState } from "react";
 
-type Theme = "light" | "dark";
+export type Theme = "light" | "dark";
 
 interface ThemeContextType {
   theme: Theme | undefined;
@@ -11,24 +11,27 @@ interface ThemeContextType {
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
-export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
-  const [theme, setThemeState] = useState<Theme | undefined>(undefined);
+export const ThemeProvider = ({
+  children,
+  initialTheme,
+}: {
+  children: React.ReactNode;
+  initialTheme?: Theme;
+}) => {
+  const [theme, setThemeState] = useState<Theme | undefined>(() => {
+    if (initialTheme) return initialTheme;
 
-  useEffect(() => {
+    // Client-side only fallback
+    if (typeof document === "undefined") return undefined;
+
     const getCookie = (name: string) => {
       const value = `; ${document.cookie}`;
       const parts = value.split(`; ${name}=`);
       if (parts.length === 2) return parts.pop()?.split(";").shift();
     };
 
-    const storedTheme = getCookie("theme") as Theme | undefined;
-    if (storedTheme) {
-      setThemeState(storedTheme);
-    } else {
-      // Fallback or initial detection if needed
-      setThemeState("light");
-    }
-  }, []);
+    return (getCookie("theme") as Theme) || "light";
+  });
 
   useEffect(() => {
     if (!theme) return;

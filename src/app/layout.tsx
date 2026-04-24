@@ -1,5 +1,6 @@
 import Header from "@/components/Header/Header";
 import { RootLayoutContent } from "@/components/RootLayoutContent";
+import type { Theme } from "@/context/ThemeContext";
 import { ThemeProvider } from "@/context/ThemeContext";
 import "@/styles/reset.css";
 import "@/styles/style.css";
@@ -51,7 +52,7 @@ export default async function RootLayout({
         <link rel="preconnect" href="https://cdn.sanity.io" />
       </head>
       <body suppressHydrationWarning>
-        <ThemeProvider>
+        <ThemeProvider initialTheme={theme as Theme}>
           <Header />
           <RootLayoutContent introPlayed={introPlayed}>
             {children}

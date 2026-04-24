@@ -1,3 +1,5 @@
+import { type PortableTextBlock } from "next-sanity";
+
 export type MediaType = "image" | "video";
 
 export interface WorkMedia {
@@ -20,7 +22,7 @@ export interface WorkItem {
   title: string;
   slug: string;
   role?: string;
-  description: any; // Using any for PortableText as it's standard, but can be more specific
+  description: PortableTextBlock[];
   stack: string[];
   stackString: string;
   mainMedia: WorkMedia | null;

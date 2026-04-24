@@ -1,19 +1,25 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useSyncExternalStore } from "react";
+
+const emptySubscribe = () => () => {};
 
 const Clock = () => {
   const timeZone = "Europe/Stockholm";
 
+  const isClient = useSyncExternalStore(
+    emptySubscribe,
+    () => true,
+    () => false
+  );
+
   const [time, setTime] = useState(new Date());
-  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    setMounted(true);
+    if (!isClient) return;
     const timer = setInterval(() => setTime(new Date()), 1000);
     return () => clearInterval(timer);
-  }, []);
+  }, [isClient]);
 
-  if (!mounted) {
+  if (!isClient) {
     return (
       <span className="clock" style={{ marginLeft: "0.5ch" }}>
         (--:--)

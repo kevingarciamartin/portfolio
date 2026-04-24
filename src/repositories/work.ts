@@ -1,5 +1,6 @@
 import { client } from "@/sanity/client";
 import { type WorkItem, type WorkLink, type WorkMedia } from "@/types/content";
+import { type PortableTextBlock } from "next-sanity";
 
 /**
  * Raw WorkItem interface matching the Sanity schema projection.
@@ -11,7 +12,7 @@ export interface RawWorkItem {
   title: string;
   slug: string;
   role?: string;
-  description: any;
+  description: PortableTextBlock[];
   stack: string[];
   imageUrl?: string;
   imageLqip?: string;
@@ -124,6 +125,7 @@ export class SanityWorkRepository implements IWorkRepository {
 }
 
 export class MockWorkRepository implements IWorkRepository {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   async getBySlug(slug: string): Promise<WorkItem | null> {
     return null;
   }
