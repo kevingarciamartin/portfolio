@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { Easing, motion } from "framer-motion";
 import Image from "next/image";
 import HeroTitle from "../Hero/HeroTitle/HeroTitle";
 import styles from "./Intro.module.css";
@@ -22,13 +22,15 @@ interface IntroProps {
 }
 
 export default function Intro({ onFinish }: IntroProps) {
+  const ease: Easing | Easing[] = [0.76, 0, 0.24, 1];
+
   return (
     <motion.div
       id="intro"
       className={styles.introContainer}
-      initial={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 1, ease: "easeInOut" }}
+      initial={{ clipPath: "inset(0% 0% 0% 0%)" }}
+      exit={{ clipPath: "inset(0% 100% 0% 0%)" }}
+      transition={{ duration: 1, ease: ease }}
     >
       <div className={styles.imageWrapper}>
         {PORTRAITS.map((src, i) => (
@@ -43,7 +45,7 @@ export default function Intro({ onFinish }: IntroProps) {
             transition={{
               delay: 0.35 + i * 0.25,
               duration: 1,
-              ease: [0.33, 1, 0.68, 1],
+              ease: ease,
             }}
             onAnimationComplete={
               i === PORTRAITS.length - 1
@@ -57,11 +59,8 @@ export default function Intro({ onFinish }: IntroProps) {
               src={src}
               alt=""
               fill
-              // Only prioritize the first image to avoid bandwidth competition.
-              // Eager load the next two so they're ready for the sequence.
-              // Lazy load the rest as they appear later in the animation.
               priority={i === 0}
-              loading={i === 0 ? undefined : i <= 2 ? "eager" : "lazy"}
+              loading={i === 0 ? undefined : "eager"}
               sizes="(max-width: 640px) 50vw, 320px"
               style={{ objectFit: "cover" }}
             />
