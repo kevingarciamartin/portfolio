@@ -1,6 +1,6 @@
 .workListSection {
   grid-column: 1 / -1;
-  min-height: auto;
+  align-content: center;
   padding-block: calc(var(--_body-padding-inline) * 4);
 }
 
