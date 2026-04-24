@@ -61,11 +61,6 @@
   content: counter(work-counter, decimal-leading-zero);
 }
 
-.item:hover .counter::before,
-.item:focus-within .counter::before {
-  opacity: 1;
-}
-
 .title {
   grid-column: span 4;
   text-transform: uppercase;
@@ -73,12 +68,6 @@
 
 .role {
   justify-self: end;
-  opacity: 0.8;
-}
-
-.item:hover .role,
-.item:focus-within .role {
-  opacity: 1;
 }
 
 @media (max-width: 810px) {
